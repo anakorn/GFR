@@ -71,16 +71,19 @@ struct ALLEGRO_FONT_VTABLE
 };
 
 enum {
-   ALLEGRO_ALIGN_LEFT   = 0,
-   ALLEGRO_ALIGN_CENTRE = 1,
-   ALLEGRO_ALIGN_RIGHT  = 2
+   ALLEGRO_ALIGN_LEFT       = 0,
+   ALLEGRO_ALIGN_CENTRE     = 1,
+   ALLEGRO_ALIGN_CENTER     = 1,
+   ALLEGRO_ALIGN_RIGHT      = 2,
+   ALLEGRO_ALIGN_INTEGER    = 4
 };
 
 ALLEGRO_FONT_FUNC(bool, al_register_font_loader, (const char *ext, ALLEGRO_FONT *(*load)(const char *filename, int size, int flags)));
 ALLEGRO_FONT_FUNC(ALLEGRO_FONT *, al_load_bitmap_font, (const char *filename));
 ALLEGRO_FONT_FUNC(ALLEGRO_FONT *, al_load_font, (const char *filename, int size, int flags));
 
-ALLEGRO_FONT_FUNC(ALLEGRO_FONT *, al_grab_font_from_bitmap, (ALLEGRO_BITMAP *bmp, int n, int ranges[]));
+ALLEGRO_FONT_FUNC(ALLEGRO_FONT *, al_grab_font_from_bitmap, (ALLEGRO_BITMAP *bmp, int n, const int ranges[]));
+ALLEGRO_FONT_FUNC(ALLEGRO_FONT *, al_create_builtin_font, (void));
 
 ALLEGRO_FONT_FUNC(void, al_draw_ustr, (const ALLEGRO_FONT *font, ALLEGRO_COLOR color, float x, float y, int flags, ALLEGRO_USTR const *ustr));
 ALLEGRO_FONT_FUNC(void, al_draw_text, (const ALLEGRO_FONT *font, ALLEGRO_COLOR color, float x, float y, int flags, char const *text));

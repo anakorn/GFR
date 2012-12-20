@@ -94,6 +94,7 @@ void _al_win_kbd_handle_key_press(int scode, int vcode, bool extended,
                            bool repeated, ALLEGRO_DISPLAY_WIN *win_disp);
 void _al_win_kbd_handle_key_release(int scode, int vcode, bool extended,
                            ALLEGRO_DISPLAY_WIN *win_disp);
+void _al_win_fix_modifiers(void);
 
 /* mouse routines */
 void _al_win_mouse_handle_move(int x, int y, bool abs, ALLEGRO_DISPLAY_WIN *win_disp);
@@ -159,7 +160,7 @@ HICON _al_win_create_icon(HWND wnd, ALLEGRO_BITMAP *sprite, int xfocus, int yfoc
 /* window decorations */
 void _al_win_set_window_position(HWND window, int x, int y);
 void _al_win_get_window_position(HWND window, int *x, int *y);
-void _al_win_set_window_frameless(ALLEGRO_DISPLAY *display, HWND window, int w, int h, bool frameless);
+void _al_win_set_window_frameless(ALLEGRO_DISPLAY *display, HWND window, bool frameless);
 bool _al_win_set_display_flag(ALLEGRO_DISPLAY *display, int flag, bool onoff);
 void _al_win_set_window_title(ALLEGRO_DISPLAY *display, const char *title);
 

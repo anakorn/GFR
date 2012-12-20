@@ -9,12 +9,25 @@
 /* #undef ALLEGRO_BCC32 */
 /* #undef ALLEGRO_GP2XWIZ */
 /* #undef ALLEGRO_IPHONE */
-
+/* #undef ALLEGRO_ANDROID */
 /* #undef ALLEGRO_CFG_ALLOW_SSE */
 #define ALLEGRO_NO_ASM
 /* #undef ALLEGRO_CFG_NO_FPU */
 /* #undef ALLEGRO_CFG_DLL_TLS */
 /* #undef ALLEGRO_CFG_PTHREADS_TLS */
+#define ALLEGRO_CFG_RELEASE_LOGGING
+
+/* #undef ALLEGRO_CFG_GLSL_SHADERS */
+/* #undef ALLEGRO_CFG_HLSL_SHADERS */
+/* #undef ALLEGRO_CFG_CG_SHADERS */
+
+/* #undef ALLEGRO_CFG_NO_GLES2 */
+/* #undef ALLEGRO_CFG_ANDROID_LEGACY */
+
+#ifdef ALLEGRO_ANDROID
+#define ALLEGRO_CFG_ANDROID_APP_NAME ${ANDROID_APP_NAME}
+#define ALLEGRO_CFG_ANDROID_APP_NAME_SLASH "${ANDROID_APP_NAME_SLASH}"
+#endif
 
 /*---------------------------------------------------------------------------*/
 

@@ -6,15 +6,14 @@
 namespace framework
 {
 	class Component;
-
 	class Entity // : boost::noncopyable()
 	{
 	public:
 		Entity();
 		~Entity();
 
-		void		AttachComponent			(const std::string componentName, Component& component);
-		bool		ContainsComponents		(const u64 componentsMask) const;
+		void		AttachComponent			(const std::string& componentName);
+		Component*	GetComponent			(const std::string& componentName);
 		const u64	GetComponentsMask		() const;
 
 	private:

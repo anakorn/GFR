@@ -1,27 +1,25 @@
 #include "Component.h"
+#include "ComponentDetail.h"
 
 using namespace framework;
 
-const u64 Component::GetMask() const
+Component* framework::CreateComponent(const std::string& componentName)
 {
-	return 0;
+	component::detail::CreateComponentFuncRegistry& reg = component::detail::GetComponentRegistry();
+	component::detail::CreateComponentFuncRegistry::iterator funcIt = reg.find(componentName);
+
+	//if (funcIt == reg.end())
+	//{
+	//	// No function found that is associated with componentName
+	//	return nullptr;
+	//}
+	assert(funcIt != reg.end());
+
+	component::detail::CreateComponentFunc func = funcIt->second;
+	return func();
 }
 
-Component* CreateComponent(const std::string componentName)
-{
-	CreateComponentFuncRegistry::iterator funcIt;
-	funcIt = s_CreateComponentFuncRegistry.find(componentName);
-
-	if (funcIt == s_CreateComponentFuncRegistry.end())
-	{
-		// No function found that is associated with componentName
-		return nullptr;
-	}
-	//return (*funcIt)();
-	return nullptr;
-}
-
-void DestroyComponent(Component* component)
+void framework::DestroyComponent(const Component* component)
 {
 	delete component;
 }

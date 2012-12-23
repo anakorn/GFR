@@ -70,13 +70,18 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="gfr_main.cpp" />
-    <ClCompile Include="Subsystem.cpp" />
+    <ClCompile Include="SubsystemBase.cpp" />
+    <ClCompile Include="SubsystemDerived.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentDerived.h" />
+    <ClInclude Include="ComponentDetail.h" />
+    <ClInclude Include="ComponentMasks.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="Subsystem.h" />
+    <ClInclude Include="SubsystemBase.h" />
+    <ClInclude Include="SubsystemDerived.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

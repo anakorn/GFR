@@ -1,5 +1,5 @@
-#ifndef GFR_SUBSYSTEM_H
-#define GFR_SUBSYSTEM_H
+#ifndef GFR_SUBSYSTEM_BASE_H
+#define GFR_SUBSYSTEM_BASE_H
 #include "Common.h"
 
 namespace framework

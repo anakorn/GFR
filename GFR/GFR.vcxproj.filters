@@ -5,11 +5,14 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Subsystem.cpp">
-      <Filter>Framework\Subsystem</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Framework\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SubsystemBase.cpp">
+      <Filter>Framework\Subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SubsystemDerived.cpp">
+      <Filter>Framework\Subsystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -27,12 +30,24 @@
     <ClInclude Include="Component.h">
       <Filter>Framework\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Subsystem.h">
-      <Filter>Framework\Subsystem</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Common.h" />
+    <ClInclude Include="ComponentDetail.h">
+      <Filter>Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentMasks.h">
+      <Filter>Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SubsystemBase.h">
+      <Filter>Framework\Subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="SubsystemDerived.h">
+      <Filter>Framework\Subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentDerived.h">
+      <Filter>Framework\Component</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

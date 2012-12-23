@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <allegro5/allegro.h>
 
-#include "Subsystem.h"
+#include "SubsystemBase.h"
+#include "SubsystemDerived.h"
 #include "Entity.h"
 #include "Component.h"
+#include "ComponentDerived.h"
 #include <vector>
 
 int main(int argc, char** argv)
@@ -30,14 +32,21 @@ int main(int argc, char** argv)
 
 	/********************* BEGIN TEMPORARY CODE *********************/
 	
+	framework::Subsystem* sys = new framework::MovementSubsystem();
+
 	std::vector<framework::Entity> ents;
+	framework::Entity ent = framework::Entity();
+	ent.AttachComponent("PhysicsComponent");
+	ent.AttachComponent("DrawComponent");
+	ents.push_back(ent);
 
 	while (true) {
-
-		framework::Entity ent = framework::Entity();
-		framework::Component* comp = framework::CreateComponent("Bob");
-		ent.AttachComponent("Bob", *comp);
-
+		for (auto it = ents.begin(); it != ents.end(); ++it) {
+			framework::Entity& currEnt = *it;
+			if (sys->IsEntityCompatible(currEnt)) {
+				sys->ProcessEntity(currEnt);
+			}
+		}
 	}
 	
 	/********************* END TEMPORARY CODE **********************/

@@ -8,6 +8,9 @@
     <ClCompile Include="Subsystem.cpp">
       <Filter>Framework\Subsystem</Filter>
     </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Framework\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Framework">

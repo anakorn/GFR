@@ -2,8 +2,8 @@
 #include <allegro5/allegro.h>
 
 #include "Subsystem.h"
-#include "Component.h"
 #include "Entity.h"
+#include "Component.h"
 #include <vector>
 
 int main(int argc, char** argv)
@@ -30,12 +30,13 @@ int main(int argc, char** argv)
 
 	/********************* BEGIN TEMPORARY CODE *********************/
 	
-	u32 id = 0;
-	std::vector<Framework::Entity> ents;
+	std::vector<framework::Entity> ents;
 
 	while (true) {
 
-		
+		framework::Entity ent = framework::Entity();
+		framework::Component* comp = framework::CreateComponent("Bob");
+		ent.AttachComponent("Bob", *comp);
 
 	}
 	

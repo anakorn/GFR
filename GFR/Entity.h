@@ -1,21 +1,21 @@
 #ifndef GFR_ENTITY_H
 #define GFR_ENTITY_H
 #include "Common.h"
-#include <vector>
+#include <string>
 
-namespace Framework
+namespace framework
 {
 	class Component;
 
 	class Entity // : boost::noncopyable()
 	{
-
 	public:
 		Entity();
 		~Entity();
 
-		void AttachComponent(const Component& component);
-		bool ContainsComponents(const u64 componentMask) const;
+		void		AttachComponent			(const std::string componentName, Component& component);
+		bool		ContainsComponents		(const u64 componentsMask) const;
+		const u64	GetComponentsMask		() const;
 
 	private:
 		struct EntityImpl;
@@ -23,7 +23,6 @@ namespace Framework
 		EntityImpl* m_pimpl;
 		
 	};
-
 };
 
 

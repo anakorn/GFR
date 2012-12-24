@@ -76,7 +76,7 @@
     <ClInclude Include="ComponentMask.h" />
     <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="KeyInput.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="SystemBase.h" />

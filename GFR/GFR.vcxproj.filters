@@ -49,7 +49,7 @@
     <ClInclude Include="Entity.h">
       <Filter>framework\entity</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
+    <ClInclude Include="KeyInput.h">
       <Filter>framework\input</Filter>
     </ClInclude>
   </ItemGroup>

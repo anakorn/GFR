@@ -5,7 +5,7 @@
 #include "MovementSystem.h"
 #include "Entity.h"
 #include "ComponentBase.h"
-#include "ComponentDerived.h"
+#include "PhysicsComponent.h"
 #include <vector>
 
 int main(int argc, char** argv)

@@ -6,7 +6,7 @@ namespace framework
 	class KeyInput
 	{
 	public:
-
+		//bool 
 
 	};
 };

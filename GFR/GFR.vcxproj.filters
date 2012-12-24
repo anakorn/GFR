@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="framework">
+      <UniqueIdentifier>{048441ff-54d3-4bba-b608-237b2f931c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\component">
+      <UniqueIdentifier>{e7845678-6e76-4ecb-8444-03aa788bc796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\subsystem">
+      <UniqueIdentifier>{35eb12e1-0731-47c9-8924-a9f3bd4b96e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="ComponentBase.h">
+      <Filter>framework\component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentDerived.h">
+      <Filter>framework\component</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemDerived.h">
+      <Filter>framework\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemBase.h">
+      <Filter>framework\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentDetail.h">
+      <Filter>framework\component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentMask.h">
+      <Filter>framework\component</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gfr_main.cpp" />
+    <ClCompile Include="ComponentBase.cpp">
+      <Filter>framework\component</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemDerived.cpp">
+      <Filter>framework\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemBase.cpp">
+      <Filter>framework\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

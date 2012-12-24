@@ -72,19 +72,21 @@
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="ComponentBase.h" />
-    <ClInclude Include="ComponentDerived.h" />
     <ClInclude Include="ComponentDetail.h" />
     <ClInclude Include="ComponentMask.h" />
+    <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="SystemBase.h" />
-    <ClInclude Include="SystemDerived.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="gfr_main.cpp" />
+    <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="SystemBase.cpp" />
-    <ClCompile Include="SystemDerived.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

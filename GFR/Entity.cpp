@@ -33,7 +33,8 @@ void Entity::AttachComponent(const std::string& componentName)
 	Component* comp = CreateComponent(componentName);
 	if (!comp)
 	{
-		// Do something about component == nullptr
+		// TODO: Handle comp == nullptr
+		assert(false);
 	}
 
 	m_pimpl->m_ComponentsRegistry.insert(std::pair<const std::string, Component*>(componentName, comp));
@@ -43,6 +44,7 @@ void Entity::AttachComponent(const std::string& componentName)
 Component* Entity::GetComponent(const std::string& componentName)
 {
 	auto componentIter = m_pimpl->m_ComponentsRegistry.find(componentName);
+	// TODO: Handle map value (component) not found
 	assert(componentIter != m_pimpl->m_ComponentsRegistry.end());
 	return componentIter->second;
 }

@@ -7,23 +7,26 @@
     <Filter Include="framework\component">
       <UniqueIdentifier>{e7845678-6e76-4ecb-8444-03aa788bc796}</UniqueIdentifier>
     </Filter>
-    <Filter Include="framework\subsystem">
+    <Filter Include="framework\system">
       <UniqueIdentifier>{35eb12e1-0731-47c9-8924-a9f3bd4b96e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\component\base">
+      <UniqueIdentifier>{42a7786d-5fa0-4c97-8460-5036398bf048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\component\derivations">
+      <UniqueIdentifier>{6b00503d-b94f-4ac5-becf-254c5dc9b5e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\entity">
+      <UniqueIdentifier>{1389d1d8-5bba-4181-97cf-dd8cf0eb6bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\input">
+      <UniqueIdentifier>{abe7d686-2590-405d-b000-fb044f4c4cd6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
-    <ClInclude Include="ComponentBase.h">
-      <Filter>framework\component</Filter>
-    </ClInclude>
-    <ClInclude Include="ComponentDerived.h">
-      <Filter>framework\component</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemDerived.h">
-      <Filter>framework\subsystem</Filter>
-    </ClInclude>
     <ClInclude Include="SystemBase.h">
-      <Filter>framework\subsystem</Filter>
+      <Filter>framework\system</Filter>
     </ClInclude>
     <ClInclude Include="ComponentDetail.h">
       <Filter>framework\component</Filter>
@@ -31,23 +34,38 @@
     <ClInclude Include="ComponentMask.h">
       <Filter>framework\component</Filter>
     </ClInclude>
+    <ClInclude Include="MovementSystem.h">
+      <Filter>framework\system</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentBase.h">
+      <Filter>framework\component\base</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>framework\component\derivations</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawComponent.h">
+      <Filter>framework\component\derivations</Filter>
+    </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>framework</Filter>
+      <Filter>framework\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>framework\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
-    <ClCompile Include="ComponentBase.cpp">
-      <Filter>framework\component</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemDerived.cpp">
-      <Filter>framework\subsystem</Filter>
-    </ClCompile>
     <ClCompile Include="SystemBase.cpp">
-      <Filter>framework\subsystem</Filter>
+      <Filter>framework\system</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementSystem.cpp">
+      <Filter>framework\system</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentBase.cpp">
+      <Filter>framework\component\base</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>framework</Filter>
+      <Filter>framework\entity</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

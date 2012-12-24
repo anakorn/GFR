@@ -2,7 +2,7 @@
 #include <allegro5/allegro.h>
 
 #include "SystemBase.h"
-#include "SystemDerived.h"
+#include "MovementSystem.h"
 #include "Entity.h"
 #include "ComponentBase.h"
 #include "ComponentDerived.h"
@@ -46,6 +46,8 @@ int main(int argc, char** argv)
 			if (sys->IsEntityCompatible(currEnt)) {
 				sys->ProcessEntity(currEnt);
 			}
+			
+			fprintf(stdout, "%f.00\n", ((framework::PhysicsComponent*)ent.GetComponent("PhysicsComponent"))->x);
 		}
 	}
 	

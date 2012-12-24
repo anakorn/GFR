@@ -46,18 +46,14 @@ namespace framework
 					CreateComponentFuncRegistry& reg = GetComponentRegistry();
 					CreateComponentFunc func = CreateComponent<T>;
 
-					// # of bits in mask limits # of possible components
-					/*if (s_CurrentComponentMask != (1 << (sizeof(s_CurrentComponentMask) - 1 ) ))
-					{*/
-						std::pair<CreateComponentFuncRegistry::iterator, bool> ret =
-							reg.insert(CreateComponentFuncRegistry::value_type(name, func));
+					std::pair<CreateComponentFuncRegistry::iterator, bool> ret =
+						reg.insert(CreateComponentFuncRegistry::value_type(name, func));
 
-						assert(ret.second);
-						//if (!ret.second)
-						//{
-							// Component already registered.
-						//}
-					//}
+					if (!ret.second)
+					{
+						// TODO: Handle component already registered.
+						assert(false);
+					}
 				}
 
 			};

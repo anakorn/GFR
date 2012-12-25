@@ -5,6 +5,8 @@
 #include "PhysicsComponent.h"
 #include "DrawComponent.h"
 
+#include "Box2D\Box2D.h"
+
 using namespace framework;
 
 MovementSystem::MovementSystem()

@@ -22,6 +22,9 @@
     <Filter Include="framework\input">
       <UniqueIdentifier>{abe7d686-2590-405d-b000-fb044f4c4cd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\allegro">
+      <UniqueIdentifier>{775b3379-870f-402d-941b-99f554557d33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -49,8 +52,17 @@
     <ClInclude Include="Entity.h">
       <Filter>framework\entity</Filter>
     </ClInclude>
-    <ClInclude Include="KeyInput.h">
+    <ClInclude Include="InputMgr.h">
       <Filter>framework\input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputKeyNums.h">
+      <Filter>framework\input</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlSystem.h">
+      <Filter>framework\system</Filter>
+    </ClInclude>
+    <ClInclude Include="GFR_AL.h">
+      <Filter>framework\allegro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,5 +79,20 @@
     <ClCompile Include="Entity.cpp">
       <Filter>framework\entity</Filter>
     </ClCompile>
+    <ClCompile Include="InputMgr.cpp">
+      <Filter>framework\input</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlSystem.cpp">
+      <Filter>framework\system</Filter>
+    </ClCompile>
+    <ClCompile Include="GFR_AL.cpp">
+      <Filter>framework\allegro</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="gfr_icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="gfr_icon.ico" />
   </ItemGroup>
 </Project>

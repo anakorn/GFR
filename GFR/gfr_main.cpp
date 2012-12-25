@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <allegro5/allegro.h>
+#include "GFR_AL.h"
 
+#include "InputMgr.h"
 #include "SystemBase.h"
 #include "MovementSystem.h"
 #include "Entity.h"
@@ -10,52 +10,58 @@
 
 int main(int argc, char** argv)
 {
-	ALLEGRO_DISPLAY* display = NULL;
-
-	/* Systems Initialization */
-	if (!al_init()) {
-		fprintf(stderr, "failed to initialize allegro!\n");
+	if (!framework::GFR_AL::Create()) {
 		return -1;
 	}
-	
-	display = al_create_display(640, 480);
-	if (!display) {
-		fprintf(stderr, "failed to create display!\n");
-		return -1;
-	}
+	int drawCount = 0, updateCount = 0;
+	bool redraw = false;
+	while (1) {
 
-	al_set_window_title(display, "Godfighter");
-	
-	/* Begin game loop */
-	al_clear_to_color(al_map_rgb(0,0,0));
-	al_flip_display();
+		// GAME LOOP //
+		ALLEGRO_EVENT ev;
+		al_wait_for_event(framework::GFR_AL::s_EventQueue, &ev);
 
-	/********************* BEGIN TEMPORARY CODE *********************/
-	
-	framework::System* sys = new framework::MovementSystem();
-
-	std::vector<framework::Entity> ents;
-	framework::Entity ent = framework::Entity();
-	ent.AttachComponent("PhysicsComponent");
-	ent.AttachComponent("DrawComponent");
-	ents.push_back(ent);
-
-	while (true) {
-		for (auto it = ents.begin(); it != ents.end(); ++it) {
-			framework::Entity& currEnt = *it;
-			if (sys->IsEntityCompatible(currEnt)) {
-				sys->ProcessEntity(currEnt);
+		if (ev.type == ALLEGRO_EVENT_TIMER) 
+		{
+			if (ev.any.source == al_get_timer_event_source(framework::GFR_AL::s_UpdateTimer)) {
+				updateCount++;
 			}
-			
-			fprintf(stdout, "%f.00\n", ((framework::PhysicsComponent*)ent.GetComponent("PhysicsComponent"))->x);
+			else if (ev.any.source == al_get_timer_event_source(framework::GFR_AL::s_DrawTimer)) {
+				redraw = true;
+				drawCount++;
+			}
+		}
+		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+			break;
+		}
+
+		if (redraw && al_is_event_queue_empty(framework::GFR_AL::s_EventQueue)) {
+			redraw = false;
+			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_flip_display();
 		}
 	}
-	
-	/********************* END TEMPORARY CODE **********************/
 
-	al_rest(5.0);
-	
-	/* End game loop */
-	al_destroy_display(display);
+	framework::GFR_AL::Destroy();
 	return 0;
 }
+		/********************* BEGIN TEMPORARY CODE *********************/
+	
+		/*framework::System* sys = new framework::MovementSystem();
+
+		std::vector<framework::Entity> ents;
+		framework::Entity ent = framework::Entity();
+		ent.AttachComponent("PhysicsComponent");
+		ent.AttachComponent("DrawComponent");
+		ents.push_back(ent);
+
+		while (true) {
+			for (auto it = ents.begin(); it != ents.end(); ++it) {
+				framework::Entity& currEnt = *it;
+				if (sys->IsEntityCompatible(currEnt)) {
+					sys->ProcessEntity(currEnt);
+				}
+			}
+		}*/
+	
+		/********************* END TEMPORARY CODE **********************/

@@ -4,7 +4,7 @@
 // There can be at most 64 masks total! No more than 64 unique components allowed.
 #define MASK_PHYSICS_COMPONENT	(1 << 0)
 #define MASK_DRAW_COMPONENT		(1 << 1)
-//#define MASK_	(1 << 2)
+#define MASK_INPUT_COMPONENT	(1 << 2)
 //#define MASK_	(1 << 3)
 //#define MASK_	(1 << 4)
 //#define MASK_	(1 << 5)

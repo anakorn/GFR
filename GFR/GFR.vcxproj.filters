@@ -25,6 +25,18 @@
     <Filter Include="framework\allegro">
       <UniqueIdentifier>{775b3379-870f-402d-941b-99f554557d33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\gui">
+      <UniqueIdentifier>{a1f8a7d5-2b18-49ee-a5d8-6c536307878d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\gamestate">
+      <UniqueIdentifier>{4f3f728e-07b2-4111-9beb-6f31fd4c88a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\gui\guis">
+      <UniqueIdentifier>{1deabfbd-a8f3-43ee-b234-ae8a418eaa73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\gamestate\states">
+      <UniqueIdentifier>{8babb77a-d29a-471e-8a6f-7b40b303f24f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -64,6 +76,30 @@
     <ClInclude Include="GFR_AL.h">
       <Filter>framework\allegro</Filter>
     </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>framework\allegro</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIBase.h">
+      <Filter>framework\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>framework\gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>framework\gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>framework\gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuGUI.h">
+      <Filter>framework\gui\guis</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsGUI.h">
+      <Filter>framework\gui\guis</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>framework\gamestate\states</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -87,6 +123,27 @@
     </ClCompile>
     <ClCompile Include="GFR_AL.cpp">
       <Filter>framework\allegro</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration.cpp">
+      <Filter>framework\allegro</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIBase.cpp">
+      <Filter>framework\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>framework\gamestate</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>framework\gamestate</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuGUI.cpp">
+      <Filter>framework\gui\guis</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsGUI.cpp">
+      <Filter>framework\gui\guis</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>framework\gamestate\states</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

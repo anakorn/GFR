@@ -147,6 +147,14 @@ keyName keyNames[] =
 	NAME_KEY( MAX )
 };
 
+bool InputMgr::Initialize(void)
+{
+	bool keyboardInstalled = al_install_keyboard();
+	bool mouseInstalled = al_install_mouse();
+
+	return keyboardInstalled && mouseInstalled;
+}
+
 void InputMgr::Update(void)
 {
 	

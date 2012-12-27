@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	if (!framework::GFR_AL::Create()) {
 		return -1;
 	}
-	int drawCount = 0, updateCount = 0;
+	/*int drawCount = 0, updateCount = 0;
 	bool redraw = false;
 	while (1) {
 
@@ -40,7 +40,9 @@ int main(int argc, char** argv)
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			al_flip_display();
 		}
-	}
+	}*/
+
+	framework::GFR_AL::RunGameLoop();
 
 	framework::GFR_AL::Destroy();
 	return 0;

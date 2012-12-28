@@ -147,10 +147,13 @@ keyName keyNames[] =
 	NAME_KEY( MAX )
 };
 
-bool InputMgr::Initialize(void)
+bool InputMgr::Initialize(ALLEGRO_EVENT_QUEUE* queue)
 {
 	bool keyboardInstalled = al_install_keyboard();
 	bool mouseInstalled = al_install_mouse();
+
+	al_register_event_source(queue, al_get_keyboard_event_source());
+	al_register_event_source(queue, al_get_mouse_event_source());
 
 	return keyboardInstalled && mouseInstalled;
 }

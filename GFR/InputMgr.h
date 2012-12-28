@@ -1,6 +1,8 @@
 #ifndef GFR_INPUT_MGR_H
 #define GFR_INPUT_MGR_H
+
 #include "Common.h"
+#include "allegro5\allegro.h"
 
 namespace framework
 {
@@ -10,7 +12,7 @@ namespace framework
 		// AL installs moved to InputMgr so that we can write
 		// a different InputMgr or initialize function for each control type
 		// ex. one for mouse/keyboard, another for controller
-		static bool		Initialize	(void);
+		static bool		Initialize	(ALLEGRO_EVENT_QUEUE* queue);
 		static void		Update		(void);
 		static bool		IsDown		(const u32 keyNum);
 		static void		BindKey		(const u32 keyNum, const u32 keyBind);

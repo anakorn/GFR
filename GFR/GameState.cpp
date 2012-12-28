@@ -18,6 +18,11 @@ StateTypes::State GameState::GetStateType()
 	return m_StateType;
 }
 
+void GameState::ProcessEvent(ALLEGRO_EVENT event)
+{
+	m_Gui->ProcessEvent(event);
+}
+
 void GameState::Update()
 {
 	m_Gui->Update();

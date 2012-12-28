@@ -27,6 +27,7 @@ namespace gui
 		void AddWidget(agui::Widget* widget);
 		void RemoveWidget(agui::Widget* widget);
 
+		void ProcessEvent(ALLEGRO_EVENT event);
 		void Update();
 		void Render();
 
@@ -34,7 +35,6 @@ namespace gui
 		agui::Gui*				m_GUI;
 		agui::Allegro5Input*	m_InputHandler;
 		agui::Allegro5Graphics* m_GraphicsHandler;
-		agui::Font*				m_defaultFont;
 	};
 };
 

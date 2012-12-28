@@ -14,6 +14,13 @@ namespace gui
 
 		void InitializeGUIComponents() override;
 	};
+
+	class GFButtonListener : public agui::ActionListener
+	{
+	public:
+		virtual void actionPerformed(const agui::ActionEvent &evt) override;
+	};
+
 };
 
 #endif

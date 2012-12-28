@@ -73,6 +73,12 @@ void GameStateManager::RemoveGameState(StateTypes::State type)
 	}
 }
 
+// Only top active state gets input
+void GameStateManager::ProcessEvent(ALLEGRO_EVENT event)
+{
+	m_ActiveStates.back()->ProcessEvent(event);
+}
+
 void GameStateManager::Update()
 {
 	for (std::vector<GameState*>::iterator it = m_ActiveStates.begin(); it != m_ActiveStates.end(); ++it)

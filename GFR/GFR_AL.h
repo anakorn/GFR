@@ -33,6 +33,7 @@ namespace framework
 
 	private:
 		static void					InitializeGUI			(void);
+		static void					CalculateStretchScale	(void);
 		static void					CalculateScale			(void);
 
 	};

@@ -12,13 +12,12 @@ using namespace framework;
 
 ALLEGRO_EVENT_QUEUE*	GFR_AL::s_EventQueue;
 ALLEGRO_DISPLAY*		GFR_AL::s_Display;
-ALLEGRO_BITMAP*			GFR_AL::s_Buffer;
 ALLEGRO_TIMER*			GFR_AL::s_UpdateTimer;
 ALLEGRO_TIMER*			GFR_AL::s_DrawTimer;
 f32						GFR_AL::s_UpdateRate;
 f32						GFR_AL::s_DrawRate;
 
-// TARGET_SCREEN_WIDTH and TARGET_SCREEN_WIDTH are for target screen size
+// Target resolution is what the game will be built around
 // Will scale to other resolutions and letterbox if other aspect ratio is used
 const u32					TARGET_SCREEN_WIDTH = 1920;
 const u32					TARGET_SCREEN_HEIGHT = 1080;
@@ -40,11 +39,6 @@ bool GFR_AL::Create(void)
 		PrintConsole("GFR_AL::Create() call al_init() failed.\n");
 		return false;
 	}
-	
-	if (!InputMgr::Initialize()) {
-		PrintConsole("InputMgr::Initialize() failed.\n");
-		return false;
-	}
 
 	s_EventQueue = al_create_event_queue();
 	if (!s_EventQueue) {
@@ -52,20 +46,27 @@ bool GFR_AL::Create(void)
 		return false;
 	}
 
-	s_Display = al_create_display(640, 480);
+	if (!InputMgr::Initialize(s_EventQueue)) {
+		PrintConsole("InputMgr::Initialize() failed.\n");
+		return false;
+	}
+
+	// Recreate config file if it doesn't exist or is corrupted
+	if(!config->LoadConfigFile("settings.cfg"))
+		config->ResetConfigFile("settings.cfg");
+
+	if(config->GetBoolValue("SCREEN", "fullscreen"))
+		al_set_new_display_flags(ALLEGRO_FULLSCREEN);
+
+	windowWidth = config->GetIntValue("SCREEN", "width");
+	windowHeight = config->GetIntValue("SCREEN", "height");
+
+	CalculateStretchScale();
+	s_Display = al_create_display(windowWidth, windowHeight);
 	if (!s_Display) {
 		PrintConsole("GFR_AL::Create() call al_create_display() failed.\n");
 		return false;
 	}
-
-	s_Buffer = al_create_bitmap(TARGET_SCREEN_WIDTH, TARGET_SCREEN_HEIGHT);
-	if(!s_Buffer){
-		PrintConsole("GFR_AL::Create() call al_create_bitmap() failed.\n");
-		return false;
-	}
-
-	config->LoadConfigFile("settings.cfg");
-	CalculateScale();
 
 	// Retrieve max FPS from display refresh rate
 	s_DrawRate = (f32) al_get_display_refresh_rate(s_Display);
@@ -85,7 +86,6 @@ bool GFR_AL::Create(void)
 	stateManager = gamestate::GameStateManager();
 	stateManager.PushGameState(StateTypes::MAIN_MENU);
 	
-	al_register_event_source(s_EventQueue, al_get_keyboard_event_source());
 	al_register_event_source(s_EventQueue, al_get_display_event_source(s_Display));
 	al_register_event_source(s_EventQueue, al_get_timer_event_source(s_UpdateTimer));
 	al_register_event_source(s_EventQueue, al_get_timer_event_source(s_DrawTimer));
@@ -94,10 +94,6 @@ bool GFR_AL::Create(void)
 	al_start_timer(s_DrawTimer);
 
 	al_set_window_title(s_Display, "Godfighter");
-
-	/* Begin game loop */
-	al_clear_to_color(al_map_rgb(0, 0, 0));
-	al_flip_display();
 
 	return true;
 }
@@ -112,8 +108,6 @@ void GFR_AL::Destroy(void)
 		al_destroy_timer(s_UpdateTimer);
 	if (s_DrawTimer != NULL)
 		al_destroy_timer(s_DrawTimer);
-	if (s_Buffer != NULL)
-		al_destroy_bitmap(s_Buffer);
 
 	delete config;
 }
@@ -140,21 +134,32 @@ void GFR_AL::InitializeGUI(void)
 	agui::Widget::setGlobalFont(s_DefaultFont);
 }
 
+void GFR_AL::CalculateStretchScale()
+{
+	f32 sx = (f32)windowWidth / (f32)TARGET_SCREEN_WIDTH;
+	f32 sy = (f32)windowHeight / (f32)TARGET_SCREEN_HEIGHT;
+
+	ALLEGRO_TRANSFORM trans;
+	al_identity_transform(&trans);
+	al_scale_transform(&trans, sx, sy);
+	al_use_transform(&trans);
+}
+
 void GFR_AL::CalculateScale()
 {
-	ALLEGRO_DISPLAY_MODE dispData;
+	/*ALLEGRO_DISPLAY_MODE dispData;
 	al_get_display_mode(al_get_num_display_modes()-1, &dispData);
 	windowWidth = dispData.width;
-	windowHeight = dispData.height;
+	windowHeight = dispData.height;*/
 
-	f32 sx = windowWidth / TARGET_SCREEN_WIDTH;
-	f32 sy = windowHeight / TARGET_SCREEN_HEIGHT;
+	f32 sx = (f32)(windowWidth) / (f32)(TARGET_SCREEN_WIDTH);
+	f32 sy = (f32)(windowHeight) / (f32)(TARGET_SCREEN_HEIGHT);
 	f32 scale = sx < sy ? sx : sy;
 
 	scaleW = TARGET_SCREEN_WIDTH * scale;
 	scaleH = TARGET_SCREEN_HEIGHT * scale;
-	scaleX = (windowWidth - scaleW) / 2;
-	scaleY = (windowHeight - scaleH) / 2;
+	scaleX = (windowWidth - scaleW) / 2.0f;
+	scaleY = (windowHeight - scaleH) / 2.0f;
 }
 
 void GFR_AL::RunGameLoop(void)
@@ -167,6 +172,8 @@ void GFR_AL::RunGameLoop(void)
 		// screen dimensions when a display event occurs
 		ALLEGRO_EVENT event;
 		al_wait_for_event(s_EventQueue, &event);
+
+		stateManager.ProcessEvent(event);
 
 		switch(event.type)
 		{
@@ -200,7 +207,7 @@ void GFR_AL::RunGameLoop(void)
 
 			// Can't get scaled drawing to work yet. Force resolution for now
 			/*al_set_target_bitmap(s_Buffer);
-			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_clear_to_color(al_map_rgb(240, 240, 240));
 
 			stateManager.Render();
 

@@ -16,7 +16,6 @@ GUIBase::~GUIBase()
 {
 	m_GUI->getTop()->clear();
 
-	delete m_defaultFont;
 	delete m_GraphicsHandler;
 	delete m_GUI;
 	delete m_InputHandler;
@@ -30,6 +29,11 @@ void GUIBase::AddWidget(agui::Widget* widget)
 void GUIBase::RemoveWidget(agui::Widget* widget)
 {
 	m_GUI->remove(widget);
+}
+
+void GUIBase::ProcessEvent(ALLEGRO_EVENT event)
+{
+	m_InputHandler->processEvent(event);
 }
 
 void GUIBase::Update()

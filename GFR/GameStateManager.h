@@ -19,6 +19,7 @@ namespace gamestate
 		void PushGameState(StateTypes::State type);
 		void RemoveGameState(StateTypes::State type);
 
+		void ProcessEvent(ALLEGRO_EVENT event);
 		void Update();
 		void Render();
 	private:

@@ -15,6 +15,7 @@ namespace gamestate
 
 		StateTypes::State GetStateType();
 
+		void ProcessEvent(ALLEGRO_EVENT event);
 		// Make base calls to these functions LAST
 		// when overriding so that GUI gets drawn on top
 		virtual void Update();

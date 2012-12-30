@@ -3,6 +3,10 @@
 #define MAINMENUGUI_H
 
 #include "GUIBase.h"
+#include "Agui/FlowLayout.hpp"
+#include "Agui/Widgets/TextField/TextField.hpp"
+#include "Agui/Widgets/Frame/Frame.hpp"
+#include "Agui/Widgets/Button/Button.hpp"
 
 namespace gui
 {
@@ -13,12 +17,10 @@ namespace gui
 		~MainMenuGUI();
 
 		void InitializeGUIComponents() override;
-	};
-
-	class GFButtonListener : public agui::ActionListener
-	{
-	public:
-		virtual void actionPerformed(const agui::ActionEvent &evt) override;
+	private:
+		agui::FlowLayout layout;
+		agui::TextField textField;
+		agui::Frame frame;
 	};
 
 };

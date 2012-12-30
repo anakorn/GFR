@@ -1,14 +1,17 @@
 #include "GameStateManager.h"
 #include "MainMenu.h"
+#include "Options.h"
 #include <vector>
 
 using namespace gamestate;
 
-std::vector<GameState*> m_ActiveStates;
+static std::vector<GameState*> s_ActiveStates;
+static std::queue<StateTypes::State> s_RemovedStates;
+static StateTypes::State s_SetState;
 
 GameStateManager::GameStateManager()
 {
-
+	s_SetState = StateTypes::NONE;
 }
 
 GameStateManager::~GameStateManager()
@@ -29,6 +32,7 @@ GameState* GameStateManager::LoadGameState(StateTypes::State type)
 	case StateTypes::LOBBY:
 		break;
 	case StateTypes::OPTIONS:
+		gameState = new Options();
 		break;
 	case StateTypes::GAMEPLAY:
 		break;
@@ -43,45 +47,71 @@ GameState* GameStateManager::LoadGameState(StateTypes::State type)
 
 void GameStateManager::SetGameState(StateTypes::State type)
 {
-	for (std::vector<GameState*>::iterator it = m_ActiveStates.begin(); it != m_ActiveStates.end(); ++it)
+	for (std::vector<GameState*>::iterator it = s_ActiveStates.begin(); it != s_ActiveStates.end(); ++it)
 	{
-		delete *it;
-		m_ActiveStates.erase(it);
+		s_RemovedStates.push((*it)->GetStateType());
 	}
 
-	PushGameState(type);
+	s_SetState = type;
 }
 
 void GameStateManager::PushGameState(StateTypes::State type)
 {
-	GameState* state = LoadGameState(type);
-	m_ActiveStates.push_back(state);
+	if(s_SetState != StateTypes::NONE || s_ActiveStates.size() == 0)
+	{
+		GameState* state = LoadGameState(type);
+		s_ActiveStates.push_back(state);
+		s_SetState = StateTypes::NONE;
+	}
+	else
+		s_SetState = type;
+}
+
+void GameStateManager::PopGameState()
+{
+	s_RemovedStates.push(s_ActiveStates.back()->GetStateType());
+}
+
+void GameStateManager::RemoveGameState(StateTypes::State type)
+{
+	s_RemovedStates.push(type);
 }
 
 // Max active states at any given time is probably 2
 // so O(n) search to delete is ok(maybe even fastest)
-void GameStateManager::RemoveGameState(StateTypes::State type)
+void GameStateManager::RemoveStateProcess(StateTypes::State type)
 {
-	for (std::vector<GameState*>::iterator it = m_ActiveStates.begin(); it != m_ActiveStates.end(); ++it)
+	std::vector<GameState*>::iterator it = s_ActiveStates.begin();
+	while (it != s_ActiveStates.end())
 	{
 		if((*it)->GetStateType() == type)
 		{
 			delete *it;
-			m_ActiveStates.erase(it);
-			return;
+			it = s_ActiveStates.erase(it);
 		}
+		else
+			++it;
 	}
 }
 
 // Only top active state gets input
 void GameStateManager::ProcessEvent(ALLEGRO_EVENT event)
 {
-	m_ActiveStates.back()->ProcessEvent(event);
+	s_ActiveStates.back()->ProcessEvent(event);
 }
 
 void GameStateManager::Update()
 {
-	for (std::vector<GameState*>::iterator it = m_ActiveStates.begin(); it != m_ActiveStates.end(); ++it)
+	while(s_RemovedStates.size() > 0)
+	{
+		RemoveStateProcess(s_RemovedStates.front());
+		s_RemovedStates.pop();
+	}
+
+	if(s_SetState != StateTypes::NONE)
+		PushGameState(s_SetState);
+
+	for (std::vector<GameState*>::iterator it = s_ActiveStates.begin(); it != s_ActiveStates.end(); ++it)
 	{
 		(*it)->Update();
 	}
@@ -89,8 +119,5 @@ void GameStateManager::Update()
 
 void GameStateManager::Render()
 {
-	for (std::vector<GameState*>::iterator it = m_ActiveStates.begin(); it != m_ActiveStates.end(); ++it)
-	{
-		(*it)->Render();
-	}
+	s_ActiveStates.back()->Render();
 }

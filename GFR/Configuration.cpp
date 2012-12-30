@@ -64,11 +64,11 @@ void Configuration::ResetConfigFile(const char* filename)
 	m_ConfigFile = al_create_config();
 
 	// SCREEN VALUES
-	// fullscreen: true
+	// fullscreen: false(make true in release version)
 	// width, height: current screen resolution
 	al_add_config_section(m_ConfigFile, "SCREEN");
 
-	SetValue("SCREEN", "fullscreen", "true");
+	SetValue("SCREEN", "fullscreen", "false");
 	std::string width = std::to_string(resWidth);
 	SetValue("SCREEN", "width", width.c_str());
 	std::string height = std::to_string(resHeight);

@@ -45,15 +45,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\external\agui\include;$(SolutionDir)\external\allegro\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\external\enet\include;$(SolutionDir)\external\agui\include;$(SolutionDir)\external\allegro\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\external\agui\lib\Debug;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro-5.0.8-monolith-md-debug.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\agui\lib\Debug;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>enet.lib;allegro-5.0.8-monolith-md-debug.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
@@ -64,15 +64,15 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\external\agui\include;$(SolutionDir)\external\allegro\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\external\enet\include;$(SolutionDir)\external\agui\include;$(SolutionDir)\external\allegro\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\external\agui\lib\Release;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro-5.0.8-monolith-md.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\agui\lib\Release;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>enet.lib;allegro-5.0.8-monolith-md.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -93,6 +93,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MainMenuGUI.h" />
     <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="Options.h" />
     <ClInclude Include="OptionsGUI.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="States.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MainMenuGUI.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="OptionsGUI.cpp" />
     <ClCompile Include="SystemBase.cpp" />
   </ItemGroup>

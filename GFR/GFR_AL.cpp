@@ -25,7 +25,7 @@ u32							windowWidth, windowHeight;
 f32							scaleX, scaleY, scaleW, scaleH;
 
 gamestate::GameStateManager stateManager;
-Configuration*				config;
+static bool					s_IsRunning;
 
 bool GFR_AL::Create(void)
 {
@@ -52,14 +52,14 @@ bool GFR_AL::Create(void)
 	}
 
 	// Recreate config file if it doesn't exist or is corrupted
-	if(!config->LoadConfigFile("settings.cfg"))
-		config->ResetConfigFile("settings.cfg");
+	if(!Configuration::LoadConfigFile("settings.cfg"))
+		Configuration::ResetConfigFile("settings.cfg");
 
-	if(config->GetBoolValue("SCREEN", "fullscreen"))
+	if(Configuration::GetBoolValue("SCREEN", "fullscreen"))
 		al_set_new_display_flags(ALLEGRO_FULLSCREEN);
 
-	windowWidth = config->GetIntValue("SCREEN", "width");
-	windowHeight = config->GetIntValue("SCREEN", "height");
+	windowWidth = Configuration::GetIntValue("SCREEN", "width");
+	windowHeight = Configuration::GetIntValue("SCREEN", "height");
 
 	CalculateStretchScale();
 	s_Display = al_create_display(windowWidth, windowHeight);
@@ -84,7 +84,6 @@ bool GFR_AL::Create(void)
 	InitializeGUI();
 
 	stateManager = gamestate::GameStateManager();
-	stateManager.PushGameState(StateTypes::MAIN_MENU);
 	
 	al_register_event_source(s_EventQueue, al_get_display_event_source(s_Display));
 	al_register_event_source(s_EventQueue, al_get_timer_event_source(s_UpdateTimer));
@@ -108,8 +107,6 @@ void GFR_AL::Destroy(void)
 		al_destroy_timer(s_UpdateTimer);
 	if (s_DrawTimer != NULL)
 		al_destroy_timer(s_DrawTimer);
-
-	delete config;
 }
 
 void GFR_AL::PrintConsole(const char* str)
@@ -147,11 +144,6 @@ void GFR_AL::CalculateStretchScale()
 
 void GFR_AL::CalculateScale()
 {
-	/*ALLEGRO_DISPLAY_MODE dispData;
-	al_get_display_mode(al_get_num_display_modes()-1, &dispData);
-	windowWidth = dispData.width;
-	windowHeight = dispData.height;*/
-
 	f32 sx = (f32)(windowWidth) / (f32)(TARGET_SCREEN_WIDTH);
 	f32 sy = (f32)(windowHeight) / (f32)(TARGET_SCREEN_HEIGHT);
 	f32 scale = sx < sy ? sx : sy;
@@ -164,9 +156,12 @@ void GFR_AL::CalculateScale()
 
 void GFR_AL::RunGameLoop(void)
 {
+	stateManager.PushGameState(StateTypes::MAIN_MENU);
+
+	s_IsRunning = true;
 	bool redraw = true;
 
-	while(true)
+	while(s_IsRunning)
 	{
 		// Wait for next frame update or recalculate
 		// screen dimensions when a display event occurs
@@ -212,8 +207,14 @@ void GFR_AL::RunGameLoop(void)
 			stateManager.Render();
 
 			al_set_target_backbuffer(s_Display);
-			al_clear_to_color(al_map_rgb(0, 0, 0));
-			al_draw_scaled_bitmap(s_Buffer, 0, 0, TARGET_SCREEN_WIDTH, TARGET_SCREEN_HEIGHT, scaleX, scaleY, scaleW, scaleH, 0);*/
+			al_clear_to_color(al_map_rgb(240, 240, 240));
+			al_draw_scaled_bitmap(s_Buffer, 0, 0, TARGET_SCREEN_WIDTH, TARGET_SCREEN_HEIGHT, scaleX, scaleY, scaleW, scaleH, 0);
+			al_flip_display();*/
 		}
 	}
+}
+
+void GFR_AL::EndGame()
+{
+	s_IsRunning = false;
 }

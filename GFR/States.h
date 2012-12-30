@@ -13,7 +13,8 @@ namespace StateTypes
 		LOBBY,
 		OPTIONS,
 		GAMEPLAY,
-		PAUSE
+		PAUSE,
+		NONE
 	};
 }
 

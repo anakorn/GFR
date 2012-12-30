@@ -18,6 +18,7 @@ namespace framework
 		static void					Destroy					(void);
 
 		static void					RunGameLoop				(void);
+		static void					EndGame					(void);
 
 		static void					PrintConsole			(const char* str);
 
@@ -28,9 +29,8 @@ namespace framework
 		static ALLEGRO_TIMER*		s_DrawTimer;
 		static f32					s_UpdateRate;
 		static f32					s_DrawRate;
-
 		static agui::Font*			s_DefaultFont;
-
+			 
 	private:
 		static void					InitializeGUI			(void);
 		static void					CalculateStretchScale	(void);

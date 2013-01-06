@@ -3,7 +3,6 @@
 #define OPTIONSGUI_H
 
 #include "GUIBase.h"
-#include "Agui/GridLayout.hpp"
 #include "Agui/Widgets/Label/Label.hpp"
 #include "Agui/Widgets/CheckBox/CheckBox.hpp"
 #include "Agui/Widgets/DropDown/DropDown.hpp"
@@ -20,8 +19,6 @@ namespace gui
 
 		void InitializeGUIComponents() override;
 	private:
-		agui::GridLayout layout;
-
 		agui::Label fullScreenLabel;
 		agui::CheckBox fullScreenCheckbox;
 

@@ -10,7 +10,8 @@ namespace StateTypes
 	enum State : char
 	{
 		MAIN_MENU,
-		LOBBY,
+		SERVER_LOBBY,
+		CLIENT_LOBBY,
 		OPTIONS,
 		GAMEPLAY,
 		PAUSE,

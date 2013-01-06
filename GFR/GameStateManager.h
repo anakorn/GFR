@@ -15,8 +15,10 @@ namespace gamestate
 
 		// Loads state and removes all other active states
 		static void SetGameState(StateTypes::State type);
+		static void SetGameState(GameState* state);
 		// Loads state and places it on top of all other active states
 		static void PushGameState(StateTypes::State type);
+		static void PushGameState(GameState* state);
 		// Removes the top-most state
 		static void PopGameState();
 		static void RemoveGameState(StateTypes::State type);

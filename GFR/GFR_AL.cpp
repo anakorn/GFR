@@ -29,6 +29,8 @@ static bool					s_IsRunning;
 
 bool GFR_AL::Create(void)
 {
+	atexit(EndGame);
+
 	s_Display = NULL;
 	s_UpdateTimer = NULL;
 	s_DrawTimer = NULL;

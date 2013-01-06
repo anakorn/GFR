@@ -29,7 +29,9 @@ GameState* GameStateManager::LoadGameState(StateTypes::State type)
 	case StateTypes::MAIN_MENU:
 		gameState = new MainMenu();
 		break;
-	case StateTypes::LOBBY:
+	case StateTypes::SERVER_LOBBY:
+		break;
+	case StateTypes::CLIENT_LOBBY:
 		break;
 	case StateTypes::OPTIONS:
 		gameState = new Options();

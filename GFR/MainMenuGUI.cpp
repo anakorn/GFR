@@ -39,13 +39,13 @@ void MainMenuGUI::InitializeGUIComponents()
 	frame.setText("Example Frame");
 	layout.add(&frame);
 
-	optionsButton.setSize(300, 100);
 	optionsButton.setText("Options");
+	optionsButton.resizeToContents();
 	optionsButton.addActionListener(&buttonListener);
 	layout.add(&optionsButton);
 
-	exitButton.setSize(300, 100);
 	exitButton.setText("Exit");
+	exitButton.resizeToContents();
 	exitButton.addActionListener(&buttonListener);
 	layout.add(&exitButton);
 }

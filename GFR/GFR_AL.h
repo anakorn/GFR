@@ -6,7 +6,8 @@
 namespace framework
 {
 	/*	Creates and initializes Allegro systems, manages events,
-		I/O, timers, threads, displays.
+		I/O, timers, threads, displays. Acts as a layer of abstraction
+		between GFR framework and the Allegro library.
 	*/
 	class GFR_AL
 	{

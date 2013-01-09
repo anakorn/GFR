@@ -5,12 +5,10 @@
 #include "PhysicsComponent.h"
 //#include "InputComponent.h"
 
-#include "Box2D\Box2D.h"
-
 using namespace framework;
 
 ControlSystem::ControlSystem()
-	: System( MASK_PHYSICS_COMPONENT | MASK_INPUT_COMPONENT )
+	: System( /*MASK_STATE |*/ MASK_INPUT )
 { }
 
 void ControlSystem::ProcessEntity(Entity& entity)

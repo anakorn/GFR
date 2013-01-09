@@ -19,26 +19,38 @@
     <Filter Include="framework\entity">
       <UniqueIdentifier>{1389d1d8-5bba-4181-97cf-dd8cf0eb6bcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="framework\input">
-      <UniqueIdentifier>{abe7d686-2590-405d-b000-fb044f4c4cd6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="framework\allegro">
       <UniqueIdentifier>{775b3379-870f-402d-941b-99f554557d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\system\base">
+      <UniqueIdentifier>{7e475745-c172-42dd-9a1d-7826282fa4e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\system\derivations">
+      <UniqueIdentifier>{8cdf6479-5729-427c-a6ef-4e66af36d426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\managers">
+      <UniqueIdentifier>{d4be1b6a-8e95-426b-b3dc-7d37bcb9e7bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\managers\entityMgr">
+      <UniqueIdentifier>{73edc7df-8cb6-4ab1-b1fd-af1845ff5dd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\managers\inputMgr">
+      <UniqueIdentifier>{abe7d686-2590-405d-b000-fb044f4c4cd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{36663d84-09dd-44a4-a21c-5ca58601447d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\managers\physicsMgr">
+      <UniqueIdentifier>{93bfbd1e-3ba3-4bb4-a0b9-931259711b40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
-    <ClInclude Include="SystemBase.h">
-      <Filter>framework\system</Filter>
-    </ClInclude>
     <ClInclude Include="ComponentDetail.h">
       <Filter>framework\component</Filter>
     </ClInclude>
     <ClInclude Include="ComponentMask.h">
       <Filter>framework\component</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementSystem.h">
-      <Filter>framework\system</Filter>
     </ClInclude>
     <ClInclude Include="ComponentBase.h">
       <Filter>framework\component\base</Filter>
@@ -53,26 +65,29 @@
       <Filter>framework\entity</Filter>
     </ClInclude>
     <ClInclude Include="InputMgr.h">
-      <Filter>framework\input</Filter>
+      <Filter>framework\managers\inputMgr</Filter>
     </ClInclude>
     <ClInclude Include="InputKeyNums.h">
-      <Filter>framework\input</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlSystem.h">
-      <Filter>framework\system</Filter>
+      <Filter>framework\managers\inputMgr</Filter>
     </ClInclude>
     <ClInclude Include="GFR_AL.h">
       <Filter>framework\allegro</Filter>
     </ClInclude>
+    <ClInclude Include="SystemBase.h">
+      <Filter>framework\system\base</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlSystem.h">
+      <Filter>framework\system\derivations</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSystem.h">
+      <Filter>framework\system\derivations</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsMgr.h">
+      <Filter>framework\managers\physicsMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
-    <ClCompile Include="SystemBase.cpp">
-      <Filter>framework\system</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementSystem.cpp">
-      <Filter>framework\system</Filter>
-    </ClCompile>
     <ClCompile Include="ComponentBase.cpp">
       <Filter>framework\component\base</Filter>
     </ClCompile>
@@ -80,13 +95,25 @@
       <Filter>framework\entity</Filter>
     </ClCompile>
     <ClCompile Include="InputMgr.cpp">
-      <Filter>framework\input</Filter>
-    </ClCompile>
-    <ClCompile Include="ControlSystem.cpp">
-      <Filter>framework\system</Filter>
+      <Filter>framework\managers\inputMgr</Filter>
     </ClCompile>
     <ClCompile Include="GFR_AL.cpp">
       <Filter>framework\allegro</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemBase.cpp">
+      <Filter>framework\system\base</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlSystem.cpp">
+      <Filter>framework\system\derivations</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementSystem.cpp">
+      <Filter>framework\system\derivations</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>framework\component\derivations</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsMgr.cpp">
+      <Filter>framework\managers\physicsMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

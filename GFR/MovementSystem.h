@@ -10,7 +10,6 @@ namespace framework
 		MovementSystem();
 		virtual void ProcessEntity(Entity& entity);
 
-		// TODO: ANIMATION state to be set here (anim. based on physics)
 	};
 };
 

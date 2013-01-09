@@ -18,7 +18,7 @@ namespace framework
 
 	private:
 		struct EntityImpl;
-		// Ptr to entity implementation
+		// Entity implementation
 		EntityImpl* m_pimpl;
 		
 	};

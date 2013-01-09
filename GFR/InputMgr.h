@@ -4,6 +4,9 @@
 
 namespace framework
 {
+	/*	Wrapper/manager class for Allegro input events. Also handles
+		loading and setting of keybinds.
+	*/
 	class InputMgr
 	{
 	public:

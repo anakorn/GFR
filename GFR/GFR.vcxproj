@@ -82,6 +82,7 @@
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="PhysicsMgr.h" />
     <ClInclude Include="SystemBase.h" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +93,8 @@
     <ClCompile Include="gfr_main.cpp" />
     <ClCompile Include="InputMgr.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="PhysicsMgr.cpp" />
     <ClCompile Include="SystemBase.cpp" />
   </ItemGroup>
   <ItemGroup>

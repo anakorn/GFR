@@ -15,6 +15,10 @@ namespace Testing
 	protected:
 		virtual void setup() override;
 		virtual void tear_down() override;
+
+	private:
+		void TestClientConnect();
+		void TestPacketIO();
 	};
 };
 

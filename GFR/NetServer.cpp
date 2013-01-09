@@ -14,3 +14,18 @@ NetServer::NetServer(const u32 &port, const u32 &maxPlayers)
 NetServer::~NetServer()
 {
 }
+
+void NetServer::HandleConnect(const ENetPacket &packet, const ENetPeer &peer)
+{
+
+}
+
+void NetServer::HandleData(const ENetPacket &packet, const ENetPeer &peer)
+{
+
+}
+
+void NetServer::HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer)
+{
+
+}

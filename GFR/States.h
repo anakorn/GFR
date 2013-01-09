@@ -7,7 +7,7 @@ namespace StateTypes
 	// List all game states(screens) here
 	// Used for adding networking listeners for each state
 	// and switching between states
-	enum State : char
+	enum State : unsigned char
 	{
 		MAIN_MENU,
 		SERVER_LOBBY,

@@ -11,6 +11,11 @@ namespace networking
 	public:
 		NetServer(const u32 &port, const u32 &maxPlayers);
 		~NetServer();
+
+	protected:
+		virtual void HandleConnect(const ENetPacket &packet, const ENetPeer &peer) override;
+		virtual void HandleData(const ENetPacket &packet, const ENetPeer &peer) override;
+		virtual void HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer) override;
 	};
 };
 

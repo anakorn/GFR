@@ -49,7 +49,7 @@ GameState* GameStateManager::LoadGameState(StateTypes::State type)
 
 void GameStateManager::SetGameState(StateTypes::State type)
 {
-	for (std::vector<GameState*>::iterator it = s_ActiveStates.begin(); it != s_ActiveStates.end(); ++it)
+	for (auto it = s_ActiveStates.begin(); it != s_ActiveStates.end(); ++it)
 	{
 		s_RemovedStates.push((*it)->GetStateType());
 	}
@@ -113,7 +113,7 @@ void GameStateManager::Update()
 	if(s_SetState != StateTypes::NONE)
 		PushGameState(s_SetState);
 
-	for (std::vector<GameState*>::iterator it = s_ActiveStates.begin(); it != s_ActiveStates.end(); ++it)
+	for (auto it = s_ActiveStates.begin(); it != s_ActiveStates.end(); ++it)
 	{
 		(*it)->Update();
 	}

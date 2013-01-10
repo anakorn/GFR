@@ -11,6 +11,9 @@ namespace framework
 	class PhysicsMgr
 	{
 	public:
+		// TODO: This class probably should not have static members, since physics only
+		//	needs to be accounted for during in-game.
+	
 		// Steps through physics World by 'deltaTime' seconds.
 		// Last 2 parameters determine # of constraint solver iterations;
 		//		higher numbers = lower performance = more accurate physics.

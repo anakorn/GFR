@@ -1,19 +1,9 @@
 #include "OptionsGUI.h"
-#include "allegro5/allegro5.h"
+#include <allegro5/allegro5.h>
 #include "Configuration.h"
-#include "GameStateManager.h"
+#include "GFR_AL.h"
 
 using namespace gui;
-
-class OptionsButtonListener : public agui::ActionListener
-{
-public:
-	virtual void actionPerformed(const agui::ActionEvent &evt) override;
-};
-
-agui::Button backButton;
-agui::Button applyChangesButton;
-OptionsButtonListener buttonListener;
 
 // Floats (0.0f-1.0f) given as percentages of screen dimensions
 const f32 FIRST_COL_X = 0.30f;
@@ -34,55 +24,52 @@ OptionsGUI::~OptionsGUI()
 
 void OptionsGUI::InitializeGUIComponents()
 {
-	u32 screenWidth = framework::Configuration::GetIntValue("SCREEN", "width");
-	u32 screenHeight = framework::Configuration::GetIntValue("SCREEN", "height");
+	u32 screenWidth = framework::GFR_AL::GetScreenWidth();
+	u32 screenHeight = framework::GFR_AL::GetScreenHeight();
 
-	fullScreenLabel.setText("Fullscreen");
-	fullScreenLabel.setLocation(screenWidth * FIRST_COL_X, screenHeight * FIRST_ROW_Y);
-	m_GUI->add(&fullScreenLabel);
+	m_FullScreenLabel.setText("Fullscreen");
+	m_FullScreenLabel.setLocation(screenWidth * FIRST_COL_X, screenHeight * FIRST_ROW_Y);
+	m_GUI->add(&m_FullScreenLabel);
 
-	fullScreenCheckbox.setChecked(framework::Configuration::GetBoolValue("SCREEN", "fullscreen"));
-	fullScreenCheckbox.setLocation(screenWidth * SECOND_COL_X, screenHeight * FIRST_ROW_Y);
-	fullScreenCheckbox.setCheckBoxSize(agui::Dimension(ROW_GAP * 0.5f * screenHeight, ROW_GAP * 0.5f * screenHeight));
-	fullScreenCheckbox.setAutosizing(true);
-	m_GUI->add(&fullScreenCheckbox);
+	m_FullScreenCheckbox.setChecked(framework::Configuration::GetBoolValue("SCREEN", "fullscreen"));
+	m_FullScreenCheckbox.setLocation(screenWidth * SECOND_COL_X, screenHeight * FIRST_ROW_Y);
+	m_FullScreenCheckbox.setCheckBoxSize(agui::Dimension(ROW_GAP * 0.5f * screenHeight, ROW_GAP * 0.5f * screenHeight));
+	m_FullScreenCheckbox.setAutosizing(true);
+	m_GUI->add(&m_FullScreenCheckbox);
 
-	resolutionLabel.setText("Resolution");
-	resolutionLabel.setLocation(screenWidth * FIRST_COL_X, screenHeight * (FIRST_ROW_Y + ROW_GAP));
-	m_GUI->add(&resolutionLabel);
+	m_ResolutionLabel.setText("Resolution");
+	m_ResolutionLabel.setLocation(screenWidth * FIRST_COL_X, screenHeight * (FIRST_ROW_Y + ROW_GAP));
+	m_GUI->add(&m_ResolutionLabel);
 
-	resolutionDropdown.addItem("testing1");
-	resolutionDropdown.addItem("testing2");
-	resolutionDropdown.setSize(0.1f * screenWidth, ROW_GAP * 0.5f * screenHeight);
-	resolutionDropdown.setLocation(screenWidth * SECOND_COL_X, screenHeight * (FIRST_ROW_Y + ROW_GAP));
-	m_GUI->add(&resolutionDropdown);
+	m_ResolutionDropdown.addItem("testing1");
+	m_ResolutionDropdown.addItem("testing2");
+	m_ResolutionDropdown.setSize(0.1f * screenWidth, ROW_GAP * 0.5f * screenHeight);
+	m_ResolutionDropdown.setLocation(screenWidth * SECOND_COL_X, screenHeight * (FIRST_ROW_Y + ROW_GAP));
+	m_GUI->add(&m_ResolutionDropdown);
 
-	backButton.setText("Back");
-	backButton.addActionListener(&buttonListener);
-	backButton.resizeToContents();
-	backButton.setLocation(screenWidth * FIRST_COL_X, screenHeight * (FIRST_ROW_Y + 2 * ROW_GAP));
-	m_GUI->add(&backButton);
+	m_BackButton.setText("Back");
+	m_BackButton.addActionListener(&m_ButtonListener);
+	m_BackButton.resizeToContents();
+	m_BackButton.setLocation(screenWidth * FIRST_COL_X, screenHeight * (FIRST_ROW_Y + 2 * ROW_GAP));
+	m_GUI->add(&m_BackButton);
 
-	applyChangesButton.setText("Apply Changes");
-	applyChangesButton.addActionListener(&buttonListener);
-	applyChangesButton.resizeToContents();
-	applyChangesButton.setLocation(screenWidth * SECOND_COL_X, screenHeight * (FIRST_ROW_Y + 2 * ROW_GAP));
-	m_GUI->add(&applyChangesButton);
+	m_ApplyChangesButton.setText("Apply Changes");
+	m_ApplyChangesButton.addActionListener(&m_ButtonListener);
+	m_ApplyChangesButton.resizeToContents();
+	m_ApplyChangesButton.setLocation(screenWidth * SECOND_COL_X, screenHeight * (FIRST_ROW_Y + 2 * ROW_GAP));
+	m_GUI->add(&m_ApplyChangesButton);
 }
 
-void OptionsGUI::ApplyChanges()
+void OptionsGUI::OptionsButtonListener::ApplyChanges()
 {
-
 }
 
-void OptionsButtonListener::actionPerformed(const agui::ActionEvent &evt)
+void OptionsGUI::OptionsButtonListener::actionPerformed(const agui::ActionEvent &evt)
 {
 	agui::Widget* source = evt.getSource();
 
-	if(source == &backButton)
-		gamestate::GameStateManager::PopGameState();
-	else if(source == &applyChangesButton)
-	{
-
-	}
+	if(source == &m_Container->m_BackButton)
+		framework::GFR_AL::PopGameState();
+	else if(source == &m_Container->m_ApplyChangesButton)
+		ApplyChanges();
 }

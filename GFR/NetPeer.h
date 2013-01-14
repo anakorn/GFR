@@ -4,10 +4,11 @@
 
 #include "Common.h"
 #include "States.h"
-#include "PacketTypes.h"
+#include "NetworkEnums.h"
 #include "PacketHandler.h"
-#include "enet/enet.h"
+#include <enet/enet.h>
 #include <map>
+#include <thread>
 
 namespace networking
 {
@@ -26,6 +27,7 @@ namespace networking
 		void RemoveAllActivePacketHandlers();
 
 		PacketHandler* GetPacketHandler(StateTypes::State state);
+		NetworkStatus GetNetworkStatus();
 
 		ENetPacket* CreatePacket(PacketTypes type, const bool &isReliable = false);
 		// Sends packet to all peers
@@ -38,13 +40,14 @@ namespace networking
 		ENetAddress m_Address;
 		ENetEvent m_Event;
 
+		NetworkStatus m_Status;
+
 		std::map<StateTypes::State, PacketHandler*> m_Handlers;
 
 		void BeginListening();
 		void Listen();
 
 		virtual void HandleConnect(const ENetPacket &packet, const ENetPeer &peer) = 0;
-		virtual void HandleData(const ENetPacket &packet, const ENetPeer &peer) = 0;
 		virtual void HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer) = 0;
 
 	private:

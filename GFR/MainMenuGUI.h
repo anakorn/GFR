@@ -3,10 +3,10 @@
 #define MAINMENUGUI_H
 
 #include "GUIBase.h"
-#include "Agui/FlowLayout.hpp"
-#include "Agui/Widgets/TextField/TextField.hpp"
-#include "Agui/Widgets/Frame/Frame.hpp"
-#include "Agui/Widgets/Button/Button.hpp"
+#include <Agui/FlowLayout.hpp>
+#include <Agui/Widgets/TextField/TextField.hpp>
+#include <Agui/Widgets/Frame/Frame.hpp>
+#include <Agui/Widgets/Button/Button.hpp>
 
 namespace gui
 {

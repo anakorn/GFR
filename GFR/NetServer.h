@@ -14,7 +14,6 @@ namespace networking
 
 	protected:
 		virtual void HandleConnect(const ENetPacket &packet, const ENetPeer &peer) override;
-		virtual void HandleData(const ENetPacket &packet, const ENetPeer &peer) override;
 		virtual void HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer) override;
 	};
 };

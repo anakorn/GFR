@@ -19,13 +19,13 @@ f32						GFR_AL::s_DrawRate;
 
 // Target resolution is what the game will be built around
 // Will scale to other resolutions and letterbox if other aspect ratio is used
-const u32					TARGET_SCREEN_WIDTH = 1920;
-const u32					TARGET_SCREEN_HEIGHT = 1080;
-u32							windowWidth, windowHeight;
-f32							scaleX, scaleY, scaleW, scaleH;
+const u32				TARGET_SCREEN_WIDTH = 1920;
+const u32				TARGET_SCREEN_HEIGHT = 1080;
+u32						m_WindowWidth, m_WindowHeight;
+f32						m_ScaleX, m_ScaleY, m_ScaleW, m_ScaleH;
 
-gamestate::GameStateManager stateManager;
-static bool					s_IsRunning;
+static gamestate::GameStateManager s_StateManager;
+static bool				s_IsRunning;
 
 bool GFR_AL::Create(void)
 {
@@ -54,17 +54,17 @@ bool GFR_AL::Create(void)
 	}
 
 	// Recreate config file if it doesn't exist or is corrupted
-	if(!Configuration::LoadConfigFile("settings.cfg"))
+	if (!Configuration::LoadConfigFile("settings.cfg"))
 		Configuration::ResetConfigFile("settings.cfg");
 
-	if(Configuration::GetBoolValue("SCREEN", "fullscreen"))
+	if (Configuration::GetBoolValue("SCREEN", "fullscreen"))
 		al_set_new_display_flags(ALLEGRO_FULLSCREEN);
 
-	windowWidth = Configuration::GetIntValue("SCREEN", "width");
-	windowHeight = Configuration::GetIntValue("SCREEN", "height");
+	m_WindowWidth = Configuration::GetIntValue("SCREEN", "width");
+	m_WindowHeight = Configuration::GetIntValue("SCREEN", "height");
 
 	CalculateStretchScale();
-	s_Display = al_create_display(windowWidth, windowHeight);
+	s_Display = al_create_display(m_WindowWidth, m_WindowHeight);
 	if (!s_Display) {
 		PrintConsole("GFR_AL::Create() call al_create_display() failed.\n");
 		return false;
@@ -85,7 +85,7 @@ bool GFR_AL::Create(void)
 
 	InitializeGUI();
 
-	stateManager = gamestate::GameStateManager();
+	s_StateManager = gamestate::GameStateManager();
 	
 	al_register_event_source(s_EventQueue, al_get_display_event_source(s_Display));
 	al_register_event_source(s_EventQueue, al_get_timer_event_source(s_UpdateTimer));
@@ -135,8 +135,8 @@ void GFR_AL::InitializeGUI(void)
 
 void GFR_AL::CalculateStretchScale()
 {
-	f32 sx = (f32)windowWidth / (f32)TARGET_SCREEN_WIDTH;
-	f32 sy = (f32)windowHeight / (f32)TARGET_SCREEN_HEIGHT;
+	f32 sx = (f32)m_WindowWidth / (f32)TARGET_SCREEN_WIDTH;
+	f32 sy = (f32)m_WindowHeight / (f32)TARGET_SCREEN_HEIGHT;
 
 	ALLEGRO_TRANSFORM trans;
 	al_identity_transform(&trans);
@@ -146,19 +146,55 @@ void GFR_AL::CalculateStretchScale()
 
 void GFR_AL::CalculateScale()
 {
-	f32 sx = (f32)(windowWidth) / (f32)(TARGET_SCREEN_WIDTH);
-	f32 sy = (f32)(windowHeight) / (f32)(TARGET_SCREEN_HEIGHT);
+	f32 sx = (f32)(m_WindowWidth) / (f32)(TARGET_SCREEN_WIDTH);
+	f32 sy = (f32)(m_WindowHeight) / (f32)(TARGET_SCREEN_HEIGHT);
 	f32 scale = sx < sy ? sx : sy;
 
-	scaleW = TARGET_SCREEN_WIDTH * scale;
-	scaleH = TARGET_SCREEN_HEIGHT * scale;
-	scaleX = (windowWidth - scaleW) / 2.0f;
-	scaleY = (windowHeight - scaleH) / 2.0f;
+	m_ScaleW = TARGET_SCREEN_WIDTH * scale;
+	m_ScaleH = TARGET_SCREEN_HEIGHT * scale;
+	m_ScaleX = (m_WindowWidth - m_ScaleW) / 2.0f;
+	m_ScaleY = (m_WindowHeight - m_ScaleH) / 2.0f;
+}
+
+void GFR_AL::ResizeWindow(const u32 &width, const u32 &height)
+{
+	m_WindowWidth = width;
+	m_WindowHeight = height;
+}
+
+u32 GFR_AL::GetScreenWidth()
+{
+	return m_WindowWidth;
+}
+
+u32 GFR_AL::GetScreenHeight()
+{
+	return m_WindowHeight;
+}
+
+void GFR_AL::SetGameState(StateTypes::State type, std::vector<void*> args)
+{
+	s_StateManager.SetGameState(type, args);
+}
+
+void GFR_AL::PushGameState(StateTypes::State type, std::vector<void*> args)
+{
+	s_StateManager.PushGameState(type, args);
+}
+
+void GFR_AL::PopGameState()
+{
+	s_StateManager.PopGameState();
+}
+
+void GFR_AL::RemoveGameState(StateTypes::State type)
+{
+	s_StateManager.RemoveGameState(type);
 }
 
 void GFR_AL::RunGameLoop(void)
 {
-	stateManager.PushGameState(StateTypes::MAIN_MENU);
+	PushGameState(StateTypes::MAIN_MENU);
 
 	s_IsRunning = true;
 	bool redraw = true;
@@ -170,21 +206,21 @@ void GFR_AL::RunGameLoop(void)
 		ALLEGRO_EVENT event;
 		al_wait_for_event(s_EventQueue, &event);
 
-		stateManager.ProcessEvent(event);
+		s_StateManager.ProcessEvent(event);
 
 		switch(event.type)
 		{
 		case ALLEGRO_EVENT_TIMER:
-			if(event.timer.source == s_UpdateTimer)
+			if (event.timer.source == s_UpdateTimer)
 			{
-				stateManager.Update();
+				s_StateManager.Update();
 			}
 			else if(event.timer.source == s_DrawTimer)
-			{
 				redraw = true;
-			}
 			break;
-		case ALLEGRO_EVENT_DISPLAY_RESIZE: case ALLEGRO_EVENT_DISPLAY_FOUND: case ALLEGRO_EVENT_DISPLAY_SWITCH_IN:
+		case ALLEGRO_EVENT_DISPLAY_RESIZE: 
+		case ALLEGRO_EVENT_DISPLAY_FOUND: 
+		case ALLEGRO_EVENT_DISPLAY_SWITCH_IN:
 			CalculateScale();
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
@@ -193,13 +229,13 @@ void GFR_AL::RunGameLoop(void)
 			break;
 		}
 
-		if(redraw && al_is_event_queue_empty(s_EventQueue))
+		if (redraw && al_is_event_queue_empty(s_EventQueue))
 		{
 			redraw = false; 
 
 			// Normal drawing. Temporary
 			al_clear_to_color(al_map_rgb(240,240,240));
-			stateManager.Render();
+			s_StateManager.Render();
 			al_flip_display();
 
 			// Can't get scaled drawing to work yet. Force resolution for now

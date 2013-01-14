@@ -27,9 +27,10 @@ void PacketHandler::Update()
 	}
 }
 
-void PacketHandler::EnqueuePacket(ENetPacket* packet)
+bool PacketHandler::EnqueuePacket(ENetPacket* packet, ENetPeer* sender)
 {
 	m_PacketQueue.push(packet);
+	return true;
 }
 
 void PacketHandler::SendPacket(ENetPacket* packet, const u32 &channel)
@@ -51,11 +52,11 @@ void PacketHandler::WriteValue(ENetPacket &packet, void* src)
 	memcpy(&packet.data[packetSize], src, valueSize);
 }
 
-void PacketHandler::WriteString(ENetPacket &packet, char* src)
+void PacketHandler::WriteString(ENetPacket &packet, std::string &src)
 {
-	int size = sizeof(src);
+	int size = sizeof(&src);
 	WriteValue(packet, &size);
-	WriteValue(src);
+	WriteValue(packet, &src);
 }
 
 void PacketHandler::ReadValue(const ENetPacket &packet, void* dst, u32 size)
@@ -92,10 +93,10 @@ int PacketHandler::ReadInt(const ENetPacket &packet)
 	return value;
 }
 
-char* PacketHandler::ReadString(const ENetPacket &packet)
+std::string PacketHandler::ReadString(const ENetPacket &packet)
 {
 	int size = ReadInt(packet);
-	char* stringValue;
-	ReadValue(packet, stringValue, size);
-	return stringValue;
+	std::string value;
+	ReadValue(packet, &value, size);
+	return value;
 }

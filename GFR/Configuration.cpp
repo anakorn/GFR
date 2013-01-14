@@ -74,6 +74,12 @@ void Configuration::ResetConfigFile(const char* filename)
 	std::string height = std::to_string(resHeight);
 	SetValue("SCREEN", "height", height.c_str());
 
+	// SAVED FIELD VALUES
+	// ip: 127.0.0.1
+	// port: 24184
+	SetValue("SAVEDFIELD", "ip", "127.0.0.1");
+	SetValue("SAVEDFIELD", "port", "24184");
+
 	std::string path = std::string(CONFIG_PATH);
 	path += filename;
 	al_save_config_file(path.c_str(), m_ConfigFile);

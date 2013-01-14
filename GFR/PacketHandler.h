@@ -4,11 +4,12 @@
 
 #include "Common.h"
 #include "NetPeer.h"
-#include "enet/enet.h"
+#include <enet/enet.h>
+#include <string>
 
 namespace networking
 {
-	class NetPeer; 
+	class NetPeer;
 
 	class PacketHandler
 	{
@@ -22,7 +23,7 @@ namespace networking
 		// of each update cycle
 		void Update();
 
-		void EnqueuePacket(ENetPacket* packet);
+		bool EnqueuePacket(ENetPacket* packet, ENetPeer* sender);
 		// Sends packet to all peers
 		void SendPacket(ENetPacket* packet, const u32 &channel = 0);
 		// Sends packet to specific peers
@@ -34,14 +35,14 @@ namespace networking
 		virtual void HandlePacket(const ENetPacket &packet) = 0;
 
 		void WriteValue(ENetPacket &packet, void* src);
-		void WriteString(ENetPacket &packet, char* src);
+		void WriteString(ENetPacket &packet, std::string &src);
 
 		void ReadValue(const ENetPacket &packet, void* dst, u32 size);
 		bool ReadBool(const ENetPacket &packet);
 		char ReadChar(const ENetPacket &packet);
 		int ReadInt(const ENetPacket &packet);
 		float ReadFloat(const ENetPacket &packet);
-		char* ReadString(const ENetPacket &packet);
+		std::string ReadString(const ENetPacket &packet);
 	private:
 		NetPeer* m_Net;
 	};

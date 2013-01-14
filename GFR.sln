@@ -8,7 +8,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2D", "Box2D\Box2D.vcxpro
 		{A0716E7B-82A6-4146-A0E7-C33C802E5C5F} = {A0716E7B-82A6-4146-A0E7-C33C802E5C5F}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Unit Testing", "Unit Testing\Unit Testing.vcxproj", "{36D84C76-30E7-4EB9-984D-E683FC88FAC3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Unit Testing", "Unit Testing\Unit Testing.vcxproj", "{1C827305-FFBD-46A8-9E37-F23456322EE0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A0716E7B-82A6-4146-A0E7-C33C802E5C5F} = {A0716E7B-82A6-4146-A0E7-C33C802E5C5F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +32,11 @@ Global
 		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Release|Win32.Deploy.0 = Release|Win32
 		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Template|Win32.ActiveCfg = Release|Win32
 		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Template|Win32.Build.0 = Release|Win32
-		{36D84C76-30E7-4EB9-984D-E683FC88FAC3}.Debug|Win32.ActiveCfg = Debug|Win32
-		{36D84C76-30E7-4EB9-984D-E683FC88FAC3}.Debug|Win32.Build.0 = Debug|Win32
-		{36D84C76-30E7-4EB9-984D-E683FC88FAC3}.Release|Win32.ActiveCfg = Release|Win32
-		{36D84C76-30E7-4EB9-984D-E683FC88FAC3}.Release|Win32.Build.0 = Release|Win32
-		{36D84C76-30E7-4EB9-984D-E683FC88FAC3}.Template|Win32.ActiveCfg = Release|Win32
-		{36D84C76-30E7-4EB9-984D-E683FC88FAC3}.Template|Win32.Build.0 = Release|Win32
+		{1C827305-FFBD-46A8-9E37-F23456322EE0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1C827305-FFBD-46A8-9E37-F23456322EE0}.Release|Win32.ActiveCfg = Release|Win32
+		{1C827305-FFBD-46A8-9E37-F23456322EE0}.Release|Win32.Build.0 = Release|Win32
+		{1C827305-FFBD-46A8-9E37-F23456322EE0}.Template|Win32.ActiveCfg = Release|Win32
+		{1C827305-FFBD-46A8-9E37-F23456322EE0}.Template|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

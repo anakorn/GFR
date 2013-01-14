@@ -10,6 +10,7 @@ namespace networking
 	{
 	public:
 		NetClient(const u32 &port);
+		NetClient();
 		~NetClient();
 		
 		bool Connect(const char* &ip, const u32 &timeout);
@@ -17,8 +18,9 @@ namespace networking
 
 		void ShutDown() override;
 	protected:
+		void ConnectThread(const char* &ip, const u32 &timeout);
+
 		virtual void HandleConnect(const ENetPacket &packet, const ENetPeer &peer) override;
-		virtual void HandleData(const ENetPacket &packet, const ENetPeer &peer) override;
 		virtual void HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer) override;
 	private:
 		ENetPeer* m_Server;

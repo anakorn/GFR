@@ -14,21 +14,19 @@ namespace gamestate
 		~GameStateManager();
 
 		// Loads state and removes all other active states
-		static void SetGameState(StateTypes::State type);
-		static void SetGameState(GameState* state);
+		void SetGameState(StateTypes::State type, std::vector<void*> args);
 		// Loads state and places it on top of all other active states
-		static void PushGameState(StateTypes::State type);
-		static void PushGameState(GameState* state);
+		void PushGameState(StateTypes::State type, std::vector<void*> args);
 		// Removes the top-most state
-		static void PopGameState();
-		static void RemoveGameState(StateTypes::State type);
+		void PopGameState();
+		void RemoveGameState(StateTypes::State type);
 
 		void ProcessEvent(ALLEGRO_EVENT event);
 		void Update();
 		void Render();
 	private:
-		static GameState* LoadGameState(StateTypes::State type);
-		static void RemoveStateProcess(StateTypes::State type);
+		GameState* LoadGameState(StateTypes::State type, std::vector<void*> args);
+		void RemoveStateProcess(StateTypes::State type);
 	};
 };
 

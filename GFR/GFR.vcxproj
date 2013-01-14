@@ -50,6 +50,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -78,6 +79,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ClientLobby.h" />
+    <ClInclude Include="ClientLobbyGUI.h" />
+    <ClInclude Include="ClientLobbySetup.h" />
+    <ClInclude Include="ClientLobbySetupGUI.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
@@ -101,13 +105,16 @@
     <ClInclude Include="Options.h" />
     <ClInclude Include="OptionsGUI.h" />
     <ClInclude Include="PacketHandler.h" />
-    <ClInclude Include="PacketTypes.h" />
+    <ClInclude Include="NetworkEnums.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="SystemBase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientLobby.cpp" />
+    <ClCompile Include="ClientLobbyGUI.cpp" />
+    <ClCompile Include="ClientLobbySetup.cpp" />
+    <ClCompile Include="ClientLobbySetupGUI.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="ControlSystem.cpp" />

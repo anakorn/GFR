@@ -20,11 +20,6 @@ void NetServer::HandleConnect(const ENetPacket &packet, const ENetPeer &peer)
 
 }
 
-void NetServer::HandleData(const ENetPacket &packet, const ENetPeer &peer)
-{
-
-}
-
 void NetServer::HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer)
 {
 

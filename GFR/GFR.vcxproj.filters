@@ -124,7 +124,16 @@
     <ClInclude Include="ClientLobby.h">
       <Filter>framework\gamestate\states</Filter>
     </ClInclude>
-    <ClInclude Include="PacketTypes.h">
+    <ClInclude Include="ClientLobbyGUI.h">
+      <Filter>framework\gui\guis</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientLobbySetup.h">
+      <Filter>framework\gamestate\states</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientLobbySetupGUI.h">
+      <Filter>framework\gui\guis</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkEnums.h">
       <Filter>framework\networking</Filter>
     </ClInclude>
   </ItemGroup>
@@ -189,6 +198,15 @@
     </ClCompile>
     <ClCompile Include="ClientLobby.cpp">
       <Filter>framework\gamestate\states</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientLobbyGUI.cpp">
+      <Filter>framework\gui\guis</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientLobbySetup.cpp">
+      <Filter>framework\gamestate\states</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientLobbySetupGUI.cpp">
+      <Filter>framework\gui\guis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

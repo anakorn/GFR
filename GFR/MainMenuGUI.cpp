@@ -1,6 +1,5 @@
 #include "MainMenuGUI.h"
 #include "GFR_AL.h"
-#include "GameStateManager.h"
 
 using namespace gui;
 
@@ -10,6 +9,8 @@ public:
 	virtual void actionPerformed(const agui::ActionEvent &evt) override;
 };
 
+agui::Button hostGameButton;
+agui::Button joinGameButton;
 agui::Button optionsButton;
 agui::Button exitButton;
 MainMenuButtonListener buttonListener;
@@ -39,6 +40,16 @@ void MainMenuGUI::InitializeGUIComponents()
 	frame.setText("Example Frame");
 	layout.add(&frame);
 
+	hostGameButton.setText("Host Game");
+	hostGameButton.resizeToContents();
+	hostGameButton.addActionListener(&buttonListener);
+	layout.add(&hostGameButton);
+
+	joinGameButton.setText("Join Game");
+	joinGameButton.resizeToContents();
+	joinGameButton.addActionListener(&buttonListener);
+	layout.add(&joinGameButton);
+
 	optionsButton.setText("Options");
 	optionsButton.resizeToContents();
 	optionsButton.addActionListener(&buttonListener);
@@ -54,8 +65,12 @@ void MainMenuButtonListener::actionPerformed(const agui::ActionEvent &evt)
 {
 	agui::Widget* source = evt.getSource();
 
-	if(source == &optionsButton)
-		gamestate::GameStateManager::PushGameState(StateTypes::OPTIONS);
-	else if(source == &exitButton)
+	if (source == &hostGameButton)
+		;
+	else if (source == &joinGameButton)
+		framework::GFR_AL::PushGameState(StateTypes::CLIENT_LOBBY_SETUP);
+	else if (source == &optionsButton)
+		framework::GFR_AL::PushGameState(StateTypes::OPTIONS);
+	else if (source == &exitButton)
 		framework::GFR_AL::EndGame();
 }

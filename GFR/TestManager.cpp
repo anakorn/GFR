@@ -2,32 +2,31 @@
 // Run all testing suites here
 // to ensure all systems are functional
 
-#include "NetworkingSuite.h"
+#include <cpptest/cpptest-suite.h>
 #include <cpptest/cpptest-textoutput.h>
+#include <cpptest/cpptest-htmloutput.h>
+#include "TestManager.h"
+#include "NetworkingSuite.h"
 
-using namespace std;
 using namespace UnitTesting;
+using namespace std;
 
 Test::Suite testCollection;
 
 // Add all test suites to the testCollection object here
-void AddTests()
+void TestManager::AddTests()
 {
 	testCollection.add(auto_ptr<NetworkingSuite>(new NetworkingSuite));
 }
 
-void RunTests()
+bool TestManager::RunTests()
 {
 	Test::TextOutput output(Test::TextOutput::Verbose);
-	testCollection.run(output);
+	return testCollection.run(output);
 }
 
-int main(int argc, char** argv)
+bool TestManager::Execute()
 {
 	AddTests();
-	RunTests();
-
-	cout << "Press any key to exit.";
-	system("pause");
-	return 0;
+	return RunTests();
 }

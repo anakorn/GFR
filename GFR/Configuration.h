@@ -3,7 +3,7 @@
 #define CONFIGURATION_H
 
 #include "Common.h"
-#include "allegro5/allegro5.h"
+#include <allegro5/allegro5.h>
 
 namespace framework
 {

@@ -1,17 +1,18 @@
 #include "GameStateManager.h"
 #include "MainMenu.h"
+#include "ClientLobby.h"
+#include "ClientLobbySetup.h"
 #include "Options.h"
 #include <vector>
 
 using namespace gamestate;
 
-static std::vector<GameState*> s_ActiveStates;
-static std::queue<StateTypes::State> s_RemovedStates;
-static StateTypes::State s_SetState;
+std::vector<GameState*> m_ActiveStates;
+std::queue<StateTypes::State> m_RemovedStates;
+std::queue<GameState*> m_StatesToAdd;
 
 GameStateManager::GameStateManager()
 {
-	s_SetState = StateTypes::NONE;
 }
 
 GameStateManager::~GameStateManager()
@@ -19,12 +20,12 @@ GameStateManager::~GameStateManager()
 
 }
 
-GameState* GameStateManager::LoadGameState(StateTypes::State type)
+GameState* GameStateManager::LoadGameState(StateTypes::State type, std::vector<void*> args)
 {
 	GameState* gameState = NULL;
 
 	// Create new game state here
-	switch(type)
+	switch (type)
 	{
 	case StateTypes::MAIN_MENU:
 		gameState = new MainMenu();
@@ -32,6 +33,14 @@ GameState* GameStateManager::LoadGameState(StateTypes::State type)
 	case StateTypes::SERVER_LOBBY:
 		break;
 	case StateTypes::CLIENT_LOBBY:
+		{
+			char* ip = static_cast<char*>(args[0]);
+			u32 port = *static_cast<u32*>(args[1]);
+			gameState = new ClientLobby(ip, port);
+		}
+		break;
+	case StateTypes::CLIENT_LOBBY_SETUP:
+		gameState = new ClientLobbySetup();
 		break;
 	case StateTypes::OPTIONS:
 		gameState = new Options();
@@ -47,49 +56,48 @@ GameState* GameStateManager::LoadGameState(StateTypes::State type)
 	return gameState;
 }
 
-void GameStateManager::SetGameState(StateTypes::State type)
+void GameStateManager::SetGameState(StateTypes::State type, std::vector<void*> args)
 {
-	for (auto it = s_ActiveStates.begin(); it != s_ActiveStates.end(); ++it)
+	for (auto it = m_ActiveStates.begin(); it != m_ActiveStates.end(); ++it)
 	{
-		s_RemovedStates.push((*it)->GetStateType());
+		m_RemovedStates.push((*it)->GetStateType());
 	}
 
-	s_SetState = type;
+	GameState* state = LoadGameState(type, args);
+	m_StatesToAdd.push(state);
 }
 
-void GameStateManager::PushGameState(StateTypes::State type)
+void GameStateManager::PushGameState(StateTypes::State type, std::vector<void*> args)
 {
-	if(s_SetState != StateTypes::NONE || s_ActiveStates.size() == 0)
-	{
-		GameState* state = LoadGameState(type);
-		s_ActiveStates.push_back(state);
-		s_SetState = StateTypes::NONE;
-	}
+	GameState* state = LoadGameState(type, args);
+	if (m_ActiveStates.size())
+		m_StatesToAdd.push(state);
 	else
-		s_SetState = type;
+		m_ActiveStates.push_back(state);
 }
 
 void GameStateManager::PopGameState()
 {
-	s_RemovedStates.push(s_ActiveStates.back()->GetStateType());
+	m_RemovedStates.push(m_ActiveStates.back()->GetStateType());
 }
 
 void GameStateManager::RemoveGameState(StateTypes::State type)
 {
-	s_RemovedStates.push(type);
+	m_RemovedStates.push(type);
 }
 
 // Max active states at any given time is probably 2
 // so O(n) search to delete is ok(maybe even fastest)
 void GameStateManager::RemoveStateProcess(StateTypes::State type)
 {
-	std::vector<GameState*>::iterator it = s_ActiveStates.begin();
-	while (it != s_ActiveStates.end())
+	auto it = m_ActiveStates.begin();
+	while (it != m_ActiveStates.end())
 	{
-		if((*it)->GetStateType() == type)
+		if ((*it)->GetStateType() == type)
 		{
 			delete *it;
-			it = s_ActiveStates.erase(it);
+			it = m_ActiveStates.erase(it);
+			return;
 		}
 		else
 			++it;
@@ -99,21 +107,24 @@ void GameStateManager::RemoveStateProcess(StateTypes::State type)
 // Only top active state gets input
 void GameStateManager::ProcessEvent(ALLEGRO_EVENT event)
 {
-	s_ActiveStates.back()->ProcessEvent(event);
+	m_ActiveStates.back()->ProcessEvent(event);
 }
 
 void GameStateManager::Update()
 {
-	while(s_RemovedStates.size() > 0)
+	while (m_RemovedStates.size() > 0)
 	{
-		RemoveStateProcess(s_RemovedStates.front());
-		s_RemovedStates.pop();
+		RemoveStateProcess(m_RemovedStates.front());
+		m_RemovedStates.pop();
 	}
 
-	if(s_SetState != StateTypes::NONE)
-		PushGameState(s_SetState);
+	while (m_StatesToAdd.size() > 0)
+	{
+		m_ActiveStates.push_back(m_StatesToAdd.front());
+		m_StatesToAdd.pop();
+	}
 
-	for (auto it = s_ActiveStates.begin(); it != s_ActiveStates.end(); ++it)
+	for (auto it = m_ActiveStates.begin(); it != m_ActiveStates.end(); ++it)
 	{
 		(*it)->Update();
 	}
@@ -121,5 +132,5 @@ void GameStateManager::Update()
 
 void GameStateManager::Render()
 {
-	s_ActiveStates.back()->Render();
+	m_ActiveStates.back()->Render();
 }

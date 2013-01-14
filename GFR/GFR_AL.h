@@ -5,6 +5,7 @@
 
 #include "Agui/Agui.hpp"
 #include "Agui/Backends/Allegro5/Allegro5.hpp"
+#include "States.h"
 
 namespace framework
 {
@@ -19,6 +20,16 @@ namespace framework
 
 		static void					RunGameLoop				(void);
 		static void					EndGame					(void);
+
+		static void					ResizeWindow			(const u32 &width, const u32 &height);
+		static u32					GetScreenWidth			(void);
+		static u32					GetScreenHeight			(void);
+
+		// State Manager Functions
+		static void					SetGameState			(StateTypes::State type, std::vector<void*> args = std::vector<void*>());
+		static void					PushGameState			(StateTypes::State type, std::vector<void*> args = std::vector<void*>());
+		static void					PopGameState			(void);
+		static void					RemoveGameState			(StateTypes::State type);
 
 		static void					PrintConsole			(const char* str);
 

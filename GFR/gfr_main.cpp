@@ -19,6 +19,7 @@ int main(int argc, char** argv)
 	framework::GFR_AL::Destroy();
 	return 0;
 }
+
 		/********************* BEGIN TEMPORARY CODE *********************/
 	
 		/*framework::System* sys = new framework::MovementSystem();

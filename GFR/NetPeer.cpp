@@ -1,11 +1,11 @@
 #include "NetPeer.h"
-#include <thread>
 
 using namespace networking;
 
 NetPeer::NetPeer()
 {
 	enet_initialize();
+	m_Status = IDLE;
 }
 
 NetPeer::~NetPeer()
@@ -37,6 +37,11 @@ void NetPeer::RemoveAllActivePacketHandlers()
 PacketHandler* NetPeer::GetPacketHandler(StateTypes::State state)
 {
 	return m_Handlers[state];
+}
+
+NetworkStatus NetPeer::GetNetworkStatus()
+{
+	return m_Status;
 }
 
 ENetPacket* NetPeer::CreatePacket(PacketTypes type, const bool &isReliable)
@@ -74,15 +79,22 @@ void NetPeer::BeginListening()
 
 void NetPeer::Listen()
 {
-	while(enet_host_service(m_Net, &m_Event, 1000))
+	while (enet_host_service(m_Net, &m_Event, 1000))
 	{
-		switch(m_Event.type)
+		switch (m_Event.type)
 		{
 		case ENET_EVENT_TYPE_CONNECT:
 			this->HandleConnect(*m_Event.packet, *m_Event.peer);
 			break;
 		case ENET_EVENT_TYPE_RECEIVE:
-			this->HandleData(*m_Event.packet, *m_Event.peer);
+			{
+				auto iter = m_Handlers.begin();
+				while(iter != m_Handlers.end())
+				{
+					if(!iter->second->EnqueuePacket(m_Event.packet, m_Event.peer))
+						continue;
+				}
+			}
 			break;
 		case ENET_EVENT_TYPE_DISCONNECT:
 			this->HandleDisconnect(*m_Event.packet, *m_Event.peer);
@@ -99,4 +111,5 @@ void NetPeer::ShutDown()
 {
 	enet_host_destroy(m_Net);
 	enet_deinitialize();
+	m_Status = SHUTDOWN;
 }

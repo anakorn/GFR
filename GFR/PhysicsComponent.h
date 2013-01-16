@@ -12,15 +12,12 @@ namespace framework
 
 		const f32	GetX			(void);
 		const f32	GetY			(void);
-		void		CreateBody		(bool isStatic, f32 originX, f32 originY, f32 angleRadians, 
-										f32 linearDamping, f32 angularDamping, f32 gravityScale, 
-										bool allowSleep, bool isAwake, bool isRotationFixed, bool isBullet = false, 
-										void* userData = nullptr);
+		void		SetBody			(b2Body* body);
 
 		virtual const u64 GetMask() const { return MASK_PHYSICS; }
 
 	private:
-		b2Body* m_Body;
+		b2Body*		m_Body;
 
 	};
 	COMPONENT_REGISTER(PhysicsComponent, "PhysicsComponent")

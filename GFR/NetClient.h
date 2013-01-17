@@ -13,12 +13,12 @@ namespace networking
 		NetClient();
 		~NetClient();
 		
-		bool Connect(const char* &ip, const u32 &timeout);
+		void Connect(const char* &ip, const u32 &timeout);
 		void Disconnect();
 
 		void ShutDown() override;
 	protected:
-		void ConnectThread(const char* &ip, const u32 &timeout);
+		void ConnectFunc(const char* &ip, const u32 &timeout);
 
 		virtual void HandleConnect(const ENetPacket &packet, const ENetPeer &peer) override;
 		virtual void HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer) override;

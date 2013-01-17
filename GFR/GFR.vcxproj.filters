@@ -136,6 +136,18 @@
     <ClInclude Include="NetworkEnums.h">
       <Filter>framework\networking</Filter>
     </ClInclude>
+    <ClInclude Include="ServerLobbySetup.h">
+      <Filter>framework\gamestate\states</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerLobby.h">
+      <Filter>framework\gamestate\states</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerLobbyGUI.h">
+      <Filter>framework\gui\guis</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerLobbySetupGUI.h">
+      <Filter>framework\gui\guis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -206,6 +218,18 @@
       <Filter>framework\gamestate\states</Filter>
     </ClCompile>
     <ClCompile Include="ClientLobbySetupGUI.cpp">
+      <Filter>framework\gui\guis</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerLobby.cpp">
+      <Filter>framework\gamestate\states</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerLobbySetup.cpp">
+      <Filter>framework\gamestate\states</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerLobbyGUI.cpp">
+      <Filter>framework\gui\guis</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerLobbySetupGUI.cpp">
       <Filter>framework\gui\guis</Filter>
     </ClCompile>
   </ItemGroup>

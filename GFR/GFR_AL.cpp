@@ -256,3 +256,8 @@ void GFR_AL::EndGame()
 {
 	s_IsRunning = false;
 }
+
+bool GFR_AL::IsRunning()
+{
+	return s_IsRunning;
+}

@@ -3,9 +3,9 @@
 using namespace networking;
 
 NetPeer::NetPeer()
+	: m_Status(IDLE)
 {
 	enet_initialize();
-	m_Status = IDLE;
 }
 
 NetPeer::~NetPeer()
@@ -73,37 +73,41 @@ void NetPeer::Update()
 	}
 }
 
-void NetPeer::BeginListening()
-{
-}
-
 void NetPeer::Listen()
 {
-	while (enet_host_service(m_Net, &m_Event, 1000))
-	{
-		switch (m_Event.type)
-		{
-		case ENET_EVENT_TYPE_CONNECT:
-			this->HandleConnect(*m_Event.packet, *m_Event.peer);
-			break;
-		case ENET_EVENT_TYPE_RECEIVE:
-			{
-				auto iter = m_Handlers.begin();
-				while(iter != m_Handlers.end())
-				{
-					if(!iter->second->EnqueuePacket(m_Event.packet, m_Event.peer))
-						continue;
-				}
-			}
-			break;
-		case ENET_EVENT_TYPE_DISCONNECT:
-			this->HandleDisconnect(*m_Event.packet, *m_Event.peer);
-			break;
-		default:
-			break;
-		}
+	std::thread t(&NetPeer::ListenFunc, this);
+	t.detach();
+}
 
-		enet_packet_destroy(m_Event.packet);
+void NetPeer::ListenFunc()
+{
+	while (m_Status != SHUTDOWN && framework::GFR_AL::IsRunning())
+	{
+		if (enet_host_service(m_Net, &m_Event, 1000))
+		{
+			switch (m_Event.type)
+			{
+			case ENET_EVENT_TYPE_CONNECT:
+				HandleConnect(*m_Event.packet, *m_Event.peer);
+				break;
+			case ENET_EVENT_TYPE_RECEIVE:
+				{
+					for(auto iter = m_Handlers.begin(); iter != m_Handlers.end(); ++iter)
+					{
+						if(iter->second->EnqueuePacket(m_Event.packet, m_Event.peer))
+							break;
+					}
+				}
+				break;
+			case ENET_EVENT_TYPE_DISCONNECT:
+				HandleDisconnect(*m_Event.packet, *m_Event.peer);
+				break;
+			default:
+				break;
+			}
+
+			enet_packet_destroy(m_Event.packet);
+		}
 	}
 }
 

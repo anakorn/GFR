@@ -2,6 +2,8 @@
 #include "MainMenu.h"
 #include "ClientLobby.h"
 #include "ClientLobbySetup.h"
+#include "ServerLobby.h"
+#include "ServerLobbySetup.h"
 #include "Options.h"
 #include <vector>
 
@@ -31,6 +33,14 @@ GameState* GameStateManager::LoadGameState(StateTypes::State type, std::vector<v
 		gameState = new MainMenu();
 		break;
 	case StateTypes::SERVER_LOBBY:
+		{
+			u32 port = *static_cast<u32*>(args[0]);
+			char* gameName = static_cast<char*>(args[1]);
+			gameState = new ServerLobby(port, gameName);
+		}
+		break;
+	case StateTypes::SERVER_LOBBY_SETUP:
+		gameState = new ServerLobbySetup();
 		break;
 	case StateTypes::CLIENT_LOBBY:
 		{

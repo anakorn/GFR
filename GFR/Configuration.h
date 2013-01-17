@@ -21,6 +21,7 @@ namespace framework
 		static const u32 GetIntValue(const char* section, const char* key);
 
 		static void SetValue(const char* section, const char* key, const char* value);
+		static void SaveNewValues();
 
 		// Programmatically set all default values
 		static void ResetConfigFile(const char* filename);

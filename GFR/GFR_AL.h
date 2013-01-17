@@ -20,6 +20,7 @@ namespace framework
 
 		static void					RunGameLoop				(void);
 		static void					EndGame					(void);
+		static bool					IsRunning				(void);
 
 		static void					ResizeWindow			(const u32 &width, const u32 &height);
 		static u32					GetScreenWidth			(void);

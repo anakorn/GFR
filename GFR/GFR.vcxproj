@@ -107,6 +107,10 @@
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="NetworkEnums.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="ServerLobby.h" />
+    <ClInclude Include="ServerLobbyGUI.h" />
+    <ClInclude Include="ServerLobbySetup.h" />
+    <ClInclude Include="ServerLobbySetupGUI.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="SystemBase.h" />
   </ItemGroup>
@@ -134,6 +138,10 @@
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="OptionsGUI.cpp" />
     <ClCompile Include="PacketHandler.cpp" />
+    <ClCompile Include="ServerLobby.cpp" />
+    <ClCompile Include="ServerLobbyGUI.cpp" />
+    <ClCompile Include="ServerLobbySetup.cpp" />
+    <ClCompile Include="ServerLobbySetupGUI.cpp" />
     <ClCompile Include="SystemBase.cpp" />
   </ItemGroup>
   <ItemGroup>

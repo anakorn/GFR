@@ -13,7 +13,7 @@ const f32 FIRST_ROW_Y = 0.25f;
 const f32 ROW_GAP = 0.05f;
 
 OptionsGUI::OptionsGUI()
-	: GUIBase()
+	: GUIBase(), m_ButtonListener(this)
 {
 
 }

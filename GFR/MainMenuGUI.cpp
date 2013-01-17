@@ -66,7 +66,7 @@ void MainMenuButtonListener::actionPerformed(const agui::ActionEvent &evt)
 	agui::Widget* source = evt.getSource();
 
 	if (source == &hostGameButton)
-		;
+		framework::GFR_AL::PushGameState(StateTypes::SERVER_LOBBY_SETUP);
 	else if (source == &joinGameButton)
 		framework::GFR_AL::PushGameState(StateTypes::CLIENT_LOBBY_SETUP);
 	else if (source == &optionsButton)

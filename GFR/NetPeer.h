@@ -9,6 +9,7 @@
 #include <enet/enet.h>
 #include <map>
 #include <thread>
+#include "GFR_AL.h"
 
 namespace networking
 {
@@ -44,13 +45,11 @@ namespace networking
 
 		std::map<StateTypes::State, PacketHandler*> m_Handlers;
 
-		void BeginListening();
-		void Listen();
+		virtual void Listen();
+		virtual void ListenFunc();
 
 		virtual void HandleConnect(const ENetPacket &packet, const ENetPeer &peer) = 0;
 		virtual void HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer) = 0;
-
-	private:
 	};
 };
 

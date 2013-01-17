@@ -5,6 +5,7 @@ using namespace framework;
 
 static ALLEGRO_CONFIG* m_ConfigFile;
 const static char* CONFIG_PATH = "assets/Config/";
+const static char* m_FullPath;
 
 Configuration::Configuration()
 {
@@ -15,13 +16,16 @@ Configuration::~Configuration()
 {
 	al_destroy_config(m_ConfigFile);
 	delete CONFIG_PATH;
+	delete m_FullPath;
 }
 
 bool Configuration::LoadConfigFile(const char* filename)
 {
 	std::string path = std::string(CONFIG_PATH);
 	path += filename;
-	m_ConfigFile = al_load_config_file(path.c_str());
+
+	m_FullPath = path.c_str();
+	m_ConfigFile = al_load_config_file(m_FullPath);
 
 	return m_ConfigFile != NULL;
 }
@@ -54,6 +58,16 @@ void Configuration::SetValue(const char* section, const char* key, const char* v
 	al_set_config_value(m_ConfigFile, section, key, value);
 }
 
+void Configuration::SaveNewValues()
+{
+	ALLEGRO_CONFIG* newConfig = al_create_config();
+	al_merge_config_into(newConfig, m_ConfigFile);
+
+	al_destroy_config(m_ConfigFile);
+	al_save_config_file(m_FullPath, newConfig);
+	m_ConfigFile = newConfig;
+}
+
 void Configuration::ResetConfigFile(const char* filename)
 {
 	ALLEGRO_DISPLAY_MODE dispData;
@@ -66,8 +80,6 @@ void Configuration::ResetConfigFile(const char* filename)
 	// SCREEN VALUES
 	// fullscreen: false(make true in release version)
 	// width, height: current screen resolution
-	al_add_config_section(m_ConfigFile, "SCREEN");
-
 	SetValue("SCREEN", "fullscreen", "false");
 	std::string width = std::to_string(resWidth);
 	SetValue("SCREEN", "width", width.c_str());
@@ -75,8 +87,10 @@ void Configuration::ResetConfigFile(const char* filename)
 	SetValue("SCREEN", "height", height.c_str());
 
 	// SAVED FIELD VALUES
+	// gameName: My Game
 	// ip: 127.0.0.1
 	// port: 24184
+	SetValue("SAVEDFIELD", "gameName", "My Game");
 	SetValue("SAVEDFIELD", "ip", "127.0.0.1");
 	SetValue("SAVEDFIELD", "port", "24184");
 

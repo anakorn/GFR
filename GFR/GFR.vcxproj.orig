@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A0716E7B-82A6-4146-A0E7-C33C802E5C5F}</ProjectGuid>
+    <RootNamespace>GFR</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)\external\enet\include;$(SolutionDir)\external\agui\include;$(SolutionDir)\external\allegro\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Debug;$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\agui\lib\Debug;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>enet.lib;ws2_32.lib;winmm.lib;Box2D.lib;allegro-5.0.8-monolith-md-debug.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\external\enet\include;$(SolutionDir)\external\agui\include;$(SolutionDir)\external\allegro\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Release;$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\agui\lib\Release;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>enet.lib;ws2_32.lib;winmm.lib;Box2D.lib;allegro-5.0.8-monolith-md.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="ClientLobby.h" />
+    <ClInclude Include="ClientLobbyGUI.h" />
+    <ClInclude Include="ClientLobbySetup.h" />
+    <ClInclude Include="ClientLobbySetupGUI.h" />
+    <ClInclude Include="Configuration.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="GFR_AL.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="ComponentBase.h" />
+    <ClInclude Include="ComponentDetail.h" />
+    <ClInclude Include="ComponentMask.h" />
+    <ClInclude Include="ControlSystem.h" />
+    <ClInclude Include="DrawComponent.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="GUIBase.h" />
+    <ClInclude Include="InputKeyNums.h" />
+    <ClInclude Include="InputMgr.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MainMenuGUI.h" />
+    <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="NetClient.h" />
+    <ClInclude Include="NetPeer.h" />
+    <ClInclude Include="NetServer.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="OptionsGUI.h" />
+    <ClInclude Include="PacketHandler.h" />
+    <ClInclude Include="NetworkEnums.h" />
+    <ClInclude Include="PhysicsComponent.h" />
+<<<<<<< HEAD
+    <ClInclude Include="PhysicsMgr.h" />
+=======
+    <ClInclude Include="ServerLobby.h" />
+    <ClInclude Include="PhysicsMgr.h" />
+    <ClInclude Include="ServerLobbyGUI.h" />
+    <ClInclude Include="ServerLobbySetup.h" />
+    <ClInclude Include="ServerLobbySetupGUI.h" />
+    <ClInclude Include="States.h" />
+>>>>>>> origin/networking
+    <ClInclude Include="SystemBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ClientLobby.cpp" />
+    <ClCompile Include="ClientLobbyGUI.cpp" />
+    <ClCompile Include="ClientLobbySetup.cpp" />
+    <ClCompile Include="ClientLobbySetupGUI.cpp" />
+    <ClCompile Include="ComponentBase.cpp" />
+    <ClCompile Include="Configuration.cpp" />
+    <ClCompile Include="ControlSystem.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="GFR_AL.cpp" />
+    <ClCompile Include="gfr_main.cpp" />
+    <ClCompile Include="GUIBase.cpp" />
+    <ClCompile Include="InputMgr.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MainMenuGUI.cpp" />
+    <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="PhysicsMgr.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="NetClient.cpp" />
+    <ClCompile Include="NetPeer.cpp" />
+    <ClCompile Include="NetServer.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="OptionsGUI.cpp" />
+    <ClCompile Include="PacketHandler.cpp" />
+    <ClCompile Include="ServerLobby.cpp" />
+    <ClCompile Include="ServerLobbyGUI.cpp" />
+    <ClCompile Include="ServerLobbySetup.cpp" />
+    <ClCompile Include="ServerLobbySetupGUI.cpp" />
+>>>>>>> origin/networking
+    <ClCompile Include="SystemBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="gfr_icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="gfr_icon.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

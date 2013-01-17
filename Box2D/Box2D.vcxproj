@@ -64,7 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\Desktop\Box2D_v2.2.1\Box2D\Rope\b2Rope.h" />
+    <ClInclude Include="Rope\b2Rope.h" />
     <ClInclude Include="Box2D.h" />
     <ClInclude Include="Collision\b2BroadPhase.h" />
     <ClInclude Include="Collision\b2Collision.h" />
@@ -112,7 +112,7 @@
     <ClInclude Include="Dynamics\Joints\b2WheelJoint.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Desktop\Box2D_v2.2.1\Box2D\Rope\b2Rope.cpp" />
+    <ClCompile Include="Rope\b2Rope.cpp" />
     <ClCompile Include="Collision\b2BroadPhase.cpp" />
     <ClCompile Include="Collision\b2CollideCircle.cpp" />
     <ClCompile Include="Collision\b2CollideEdge.cpp" />

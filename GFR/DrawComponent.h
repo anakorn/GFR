@@ -9,7 +9,8 @@ namespace framework
 	public:
 		void		SetAnimationState	();
 
-		virtual const u64 GetMask() const { return MASK_DRAW_COMPONENT; }
+		virtual const u64 GetMask() const { return MASK_DRAW; }
+
 	};
 	COMPONENT_REGISTER(DrawComponent, "DrawComponent")
 };

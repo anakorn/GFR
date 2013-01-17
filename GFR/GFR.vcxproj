@@ -54,8 +54,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\agui\lib\Debug;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>enet.lib;ws2_32.lib;winmm.lib;allegro-5.0.8-monolith-md-debug.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Debug;$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\agui\lib\Debug;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>enet.lib;ws2_32.lib;winmm.lib;Box2D.lib;allegro-5.0.8-monolith-md-debug.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
@@ -73,8 +73,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\agui\lib\Release;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>enet.lib;ws2_32.lib;winmm.lib;allegro-5.0.8-monolith-md.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Release;$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\agui\lib\Release;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>enet.lib;ws2_32.lib;winmm.lib;Box2D.lib;allegro-5.0.8-monolith-md.lib;agui.lib;agui_allegro5.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -108,6 +108,7 @@
     <ClInclude Include="NetworkEnums.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="ServerLobby.h" />
+    <ClInclude Include="PhysicsMgr.h" />
     <ClInclude Include="ServerLobbyGUI.h" />
     <ClInclude Include="ServerLobbySetup.h" />
     <ClInclude Include="ServerLobbySetupGUI.h" />
@@ -132,6 +133,8 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MainMenuGUI.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="PhysicsMgr.cpp" />
     <ClCompile Include="NetClient.cpp" />
     <ClCompile Include="NetPeer.cpp" />
     <ClCompile Include="NetServer.cpp" />

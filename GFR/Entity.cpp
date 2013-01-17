@@ -15,6 +15,7 @@ public:
 
 	u64 m_ComponentsMask;
 	std::map<const std::string, Component*> m_ComponentsRegistry;
+
 };
 
 Entity::Entity()
@@ -26,6 +27,7 @@ Entity::Entity()
 Entity::~Entity()
 {
 	delete m_pimpl;
+	m_pimpl = NULL;
 }
 
 void Entity::AttachComponent(const std::string& componentName)

@@ -5,12 +5,10 @@
 #include "PhysicsComponent.h"
 #include "DrawComponent.h"
 
-#include "Box2D\Box2D.h"
-
 using namespace framework;
 
 MovementSystem::MovementSystem()
-	: System( MASK_PHYSICS_COMPONENT | MASK_DRAW_COMPONENT )
+	: System( MASK_PHYSICS | MASK_DRAW )
 { }
 
 void MovementSystem::ProcessEntity(Entity& entity)

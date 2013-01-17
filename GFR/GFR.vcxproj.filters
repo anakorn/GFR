@@ -28,20 +28,41 @@
     <Filter Include="framework\gui">
       <UniqueIdentifier>{a1f8a7d5-2b18-49ee-a5d8-6c536307878d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\system\base">
+      <UniqueIdentifier>{7e475745-c172-42dd-9a1d-7826282fa4e2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="framework\gamestate">
       <UniqueIdentifier>{4f3f728e-07b2-4111-9beb-6f31fd4c88a6}</UniqueIdentifier>
+	</Filter>
+    <Filter Include="framework\system\derivations">
+      <UniqueIdentifier>{8cdf6479-5729-427c-a6ef-4e66af36d426}</UniqueIdentifier>
     </Filter>
     <Filter Include="framework\gui\guis">
       <UniqueIdentifier>{1deabfbd-a8f3-43ee-b234-ae8a418eaa73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\managers">
+      <UniqueIdentifier>{d4be1b6a-8e95-426b-b3dc-7d37bcb9e7bd}</UniqueIdentifier>
+    </Filter>
     <Filter Include="framework\gamestate\states">
       <UniqueIdentifier>{8babb77a-d29a-471e-8a6f-7b40b303f24f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\managers\entityMgr">
+      <UniqueIdentifier>{73edc7df-8cb6-4ab1-b1fd-af1845ff5dd5}</UniqueIdentifier>
     </Filter>
     <Filter Include="framework\networking">
       <UniqueIdentifier>{a508dd54-31ae-4be8-a525-c24d31a7cf48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\managers\inputMgr">
+      <UniqueIdentifier>{abe7d686-2590-405d-b000-fb044f4c4cd6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="framework\networking\packet handlers">
       <UniqueIdentifier>{300eb7a8-72ca-40b1-a964-2216269a40c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{36663d84-09dd-44a4-a21c-5ca58601447d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\managers\physicsMgr">
+      <UniqueIdentifier>{93bfbd1e-3ba3-4bb4-a0b9-931259711b40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,10 +92,10 @@
       <Filter>framework\entity</Filter>
     </ClInclude>
     <ClInclude Include="InputMgr.h">
-      <Filter>framework\input</Filter>
+      <Filter>framework\managers\inputMgr</Filter>
     </ClInclude>
     <ClInclude Include="InputKeyNums.h">
-      <Filter>framework\input</Filter>
+      <Filter>framework\managers\inputMgr</Filter>
     </ClInclude>
     <ClInclude Include="ControlSystem.h">
       <Filter>framework\system</Filter>
@@ -85,14 +106,26 @@
     <ClInclude Include="Configuration.h">
       <Filter>framework\allegro</Filter>
     </ClInclude>
+    <ClInclude Include="SystemBase.h">
+      <Filter>framework\system\base</Filter>
+    </ClInclude>
     <ClInclude Include="GUIBase.h">
-      <Filter>framework\gui</Filter>
+      <Filter>framework\gui</Filter>     
+    </ClInclude> 
+    <ClInclude Include="ControlSystem.h">
+      <Filter>framework\system\derivations</Filter>
     </ClInclude>
     <ClInclude Include="GameStateManager.h">
       <Filter>framework\gamestate</Filter>
     </ClInclude>
+    <ClInclude Include="MovementSystem.h">
+      <Filter>framework\system\derivations</Filter>
+    </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>framework\gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsMgr.h">
+      <Filter>framework\managers\physicsMgr</Filter>
     </ClInclude>
     <ClInclude Include="States.h">
       <Filter>framework\gamestate</Filter>
@@ -164,7 +197,7 @@
       <Filter>framework\entity</Filter>
     </ClCompile>
     <ClCompile Include="InputMgr.cpp">
-      <Filter>framework\input</Filter>
+      <Filter>framework\managers\inputMgr</Filter>
     </ClCompile>
     <ClCompile Include="ControlSystem.cpp">
       <Filter>framework\system</Filter>
@@ -175,17 +208,32 @@
     <ClCompile Include="Configuration.cpp">
       <Filter>framework\allegro</Filter>
     </ClCompile>
+    <ClCompile Include="SystemBase.cpp">
+      <Filter>framework\system\base</Filter>
+    </ClCompile>
     <ClCompile Include="GUIBase.cpp">
       <Filter>framework\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlSystem.cpp">
+      <Filter>framework\system\derivations</Filter>
     </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
       <Filter>framework\gamestate</Filter>
     </ClCompile>
+    <ClCompile Include="MovementSystem.cpp">
+      <Filter>framework\system\derivations</Filter>
+    </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>framework\gamestate</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>framework\component\derivations</Filter>
+    </ClCompile>
     <ClCompile Include="MainMenuGUI.cpp">
       <Filter>framework\gui\guis</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsMgr.cpp">
+      <Filter>framework\managers\physicsMgr</Filter>
     </ClCompile>
     <ClCompile Include="OptionsGUI.cpp">
       <Filter>framework\gui\guis</Filter>

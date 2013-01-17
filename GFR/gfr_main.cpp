@@ -1,12 +1,17 @@
 #include "GFR_AL.h"
 
+// begin temp
 #include "InputMgr.h"
+
+#include "ComponentBase.h"
+#include "DrawComponent.h"
+#include "PhysicsComponent.h"
+
+#include "Entity.h"
 #include "SystemBase.h"
 #include "MovementSystem.h"
-#include "Entity.h"
-#include "ComponentBase.h"
-#include "PhysicsComponent.h"
-#include <vector>
+
+// end temp
 
 int main(int argc, char** argv)
 {

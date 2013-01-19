@@ -1,6 +1,5 @@
-#pragma once
-#ifndef SERVERLOBBY_H
-#define SERVERLOBBY_H
+#ifndef GFR_GAME_GAMESTATE_STATES_SERVERLOBBY_H
+#define GFR_GAME_GAMESTATE_STATES_SERVERLOBBY_H
 
 #include "State.h"
 #include <string>

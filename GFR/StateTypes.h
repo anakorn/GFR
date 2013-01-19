@@ -1,6 +1,5 @@
-#pragma once
-#ifndef STATES_H
-#define STATES_H
+#ifndef GFR_GAME_GAMESTATE_STATETYPES_H
+#define GFR_GAME_GAMESTATE_STATETYPES_H
 
 namespace game
 {

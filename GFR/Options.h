@@ -1,6 +1,5 @@
-#pragma once
-#ifndef OPTIONS_H
-#define MAINMENU_H
+#ifndef GFR_GAME_GAMESTATE_STATES_OPTIONS_H
+#define GFR_GAME_GAMESTATE_STATES_OPTIONS_H
 
 #include "State.h"
 

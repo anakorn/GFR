@@ -1,6 +1,5 @@
-#pragma once
 #ifndef GFR_GAME_GAMESTATE_STATEMANAGER_H
-#define gameStateMANAGER_H
+#define GFR_GAME_GAMESTATE_STATEMANAGER_H
 
 #include "State.h"
 #include "StateTypes.h"

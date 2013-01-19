@@ -9,4 +9,20 @@ MainMenu::MainMenu()
 {
 	m_Gui = new gui::MainMenuGUI();
 	m_Gui->InitializeGUIComponents();
+
+
+}
+
+void MainMenu::Update()
+{
+	
+
+	State::Update();
+}
+
+void MainMenu::Render()
+{
+	
+
+	State::Render();
 }

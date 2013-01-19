@@ -1,6 +1,5 @@
-#pragma once
-#ifndef CLIENTLOBBY_H
-#define CLIENTLOBBY_H
+#ifndef GFR_GAME_GAMESTATE_STATES_CLIENTLOBBY_H
+#define GFR_GAME_GAMESTATE_STATES_CLIENTLOBBY_H
 
 #include "State.h"
 

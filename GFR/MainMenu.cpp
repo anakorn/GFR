@@ -1,10 +1,11 @@
 #include "MainMenu.h"
 #include "MainMenuGUI.h"
 
-using namespace gamestate;
+using namespace game;
+using namespace gameState;
 
 MainMenu::MainMenu()
-	: GameState(StateTypes::MAIN_MENU)
+	: State(stateTypes::MAIN_MENU)
 {
 	m_Gui = new gui::MainMenuGUI();
 	m_Gui->InitializeGUIComponents();

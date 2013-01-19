@@ -1,5 +1,6 @@
 #include "ServerLobbyGUI.h"
 
+using namespace game;
 using namespace gui;
 
 ServerLobbyGUI::ServerLobbyGUI(networking::NetServer &server)

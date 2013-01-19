@@ -1,10 +1,11 @@
 #include "ClientLobbySetup.h"
 #include "ClientLobbySetupGUI.h"
 
-using namespace gamestate;
+using namespace game;
+using namespace gameState;
 
 ClientLobbySetup::ClientLobbySetup()
-	: GameState(StateTypes::CLIENT_LOBBY_SETUP)
+	: State(stateTypes::CLIENT_LOBBY_SETUP)
 {
 	m_Gui = new gui::ClientLobbySetupGUI();
 	m_Gui->InitializeGUIComponents();

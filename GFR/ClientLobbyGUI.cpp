@@ -1,5 +1,6 @@
 #include "ClientLobbyGUI.h"
 
+using namespace game;
 using namespace gui;
 
 ClientLobbyGUI::ClientLobbyGUI(networking::NetClient &client)

@@ -1,9 +1,8 @@
-#pragma once
-#ifndef NETPEER_H
-#define NETPEER_H
+#ifndef GFR_FRAMEWORK_NETWORKING_NETPEER_H
+#define GFR_FRAMEWORK_NETWORKING_NETPEER_H
 
 #include "Common.h"
-#include "States.h"
+#include "StateTypes.h"
 #include "NetworkEnums.h"
 #include "PacketHandler.h"
 #include <enet/enet.h>
@@ -23,11 +22,11 @@ namespace networking
 
 		virtual void ShutDown();
 
-		void AddPacketHandler(StateTypes::State state, PacketHandler* handler);
-		void RemovePacketHandler(StateTypes::State state);
+		void AddPacketHandler(game::stateTypes::Type state, PacketHandler* handler);
+		void RemovePacketHandler(game::stateTypes::Type state);
 		void RemoveAllActivePacketHandlers();
 
-		PacketHandler* GetPacketHandler(StateTypes::State state);
+		PacketHandler* GetPacketHandler(game::stateTypes::Type state);
 		NetworkStatus GetNetworkStatus();
 
 		ENetPacket* CreatePacket(PacketTypes type, const bool &isReliable = false);
@@ -43,7 +42,7 @@ namespace networking
 
 		NetworkStatus m_Status;
 
-		std::map<StateTypes::State, PacketHandler*> m_Handlers;
+		std::map<game::stateTypes::Type, PacketHandler*> m_Handlers;
 
 		virtual void Listen();
 		virtual void ListenFunc();

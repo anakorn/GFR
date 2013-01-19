@@ -1,47 +1,29 @@
 #include "GFR_AL.h"
 
-// begin temp
-#include "InputMgr.h"
-
-#include "ComponentBase.h"
-#include "DrawComponent.h"
-#include "PhysicsComponent.h"
-
-#include "Entity.h"
-#include "SystemBase.h"
-#include "MovementSystem.h"
-
-// end temp
+/*
+   ______            __ ______ _         __     __             
+  / ____/____   ____/ // ____/(_)____ _ / /_   / /_ ___   _____
+ / / __ / __ \ / __  // /_   / // __ `// __ \ / __// _ \ / ___/
+/ /_/ // /_/ // /_/ // __/  / // /_/ // / / // /_ /  __// /    
+\____/ \____/ \__,_//_/    /_/ \__, //_/ /_/ \__/ \___//_/     
+							  /____/                           
+*/
 
 int main(int argc, char** argv)
 {
-	if (!framework::GFR_AL::Create()) {
+	// Set up Allegro systems
+	if (!framework::GFR_AL::InitSystems()) {
 		return -1;
 	}
 
+	// Set up game-specific systems
+	framework::GFR_AL::InitGame(game::stateTypes::MAIN_MENU);
+
+	// Main game loop
 	framework::GFR_AL::RunGameLoop();
 
-	framework::GFR_AL::Destroy();
+	// Cleanup
+	framework::GFR_AL::DestroySystems();
+
 	return 0;
 }
-
-		/********************* BEGIN TEMPORARY CODE *********************/
-	
-		/*framework::System* sys = new framework::MovementSystem();
-
-		std::vector<framework::Entity> ents;
-		framework::Entity ent = framework::Entity();
-		ent.AttachComponent("PhysicsComponent");
-		ent.AttachComponent("DrawComponent");
-		ents.push_back(ent);
-
-		while (true) {
-			for (auto it = ents.begin(); it != ents.end(); ++it) {
-				framework::Entity& currEnt = *it;
-				if (sys->IsEntityCompatible(currEnt)) {
-					sys->ProcessEntity(currEnt);
-				}
-			}
-		}*/
-	
-		/********************* END TEMPORARY CODE **********************/

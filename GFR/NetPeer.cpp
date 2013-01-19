@@ -13,13 +13,13 @@ NetPeer::~NetPeer()
 	ShutDown();
 }
 
-void NetPeer::AddPacketHandler(StateTypes::State state, PacketHandler* handler)
+void NetPeer::AddPacketHandler(game::stateTypes::Type state, PacketHandler* handler)
 {
 	handler->SetNetPeer(this);
 	m_Handlers.insert(std::make_pair(state, handler));
 }
 
-void NetPeer::RemovePacketHandler(StateTypes::State state)
+void NetPeer::RemovePacketHandler(game::stateTypes::Type state)
 {
 	delete m_Handlers.at(state);
 	m_Handlers.erase(state);
@@ -34,7 +34,7 @@ void NetPeer::RemoveAllActivePacketHandlers()
 	}
 }
 
-PacketHandler* NetPeer::GetPacketHandler(StateTypes::State state)
+PacketHandler* NetPeer::GetPacketHandler(game::stateTypes::Type state)
 {
 	return m_Handlers[state];
 }

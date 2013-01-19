@@ -2,15 +2,18 @@
 #ifndef SERVERLOBBYSETUP_H
 #define SERVERLOBBYSETUP_H
 
-#include "GameState.h"
+#include "State.h"
 
-namespace gamestate
+namespace game
 {
-	class ServerLobbySetup : public GameState
+	namespace gameState
 	{
-	public:
-		ServerLobbySetup();
-		~ServerLobbySetup();
+		class ServerLobbySetup : public State
+		{
+		public:
+			ServerLobbySetup();
+			~ServerLobbySetup();
+		};
 	};
 };
 

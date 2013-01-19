@@ -1,22 +1,24 @@
-#pragma once
-#ifndef SERVERLOBBYGUI_H
-#define SERVERLOBBYGUI_H
+#ifndef GFR_GAME_GUI_GUIS_SERVERLOBBYGUI_H
+#define GFR_GAME_GUI_GUIS_SERVERLOBBYGUI_H
 
 #include "NetServer.h"
 #include "GUIBase.h"
 
-namespace gui
+namespace game
 {
-	class ServerLobbyGUI : public GUIBase
+	namespace gui
 	{
-	public:
-		ServerLobbyGUI(networking::NetServer &server);
-		~ServerLobbyGUI();
+		class ServerLobbyGUI : public GUIBase
+		{
+		public:
+			ServerLobbyGUI(networking::NetServer &server);
+			~ServerLobbyGUI();
 
-		void InitializeGUIComponents() override;
-		void Update() override;
-	private:
-		networking::NetServer m_Server;
+			void InitializeGUIComponents() override;
+			void Update() override;
+		private:
+			networking::NetServer m_Server;
+		};
 	};
 };
 

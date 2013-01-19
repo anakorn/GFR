@@ -1,6 +1,5 @@
-#pragma once
-#ifndef MAINMENUGUI_H
-#define MAINMENUGUI_H
+#ifndef GFR_GAME_GUI_GUIS_MAINMENUGUI_H
+#define GFR_GAME_GUI_GUIS_MAINMENUGUI_H
 
 #include "GUIBase.h"
 #include <Agui/FlowLayout.hpp>
@@ -8,21 +7,23 @@
 #include <Agui/Widgets/Frame/Frame.hpp>
 #include <Agui/Widgets/Button/Button.hpp>
 
-namespace gui
+namespace game
 {
-	class MainMenuGUI : public GUIBase
+	namespace gui
 	{
-	public:
-		MainMenuGUI();
-		~MainMenuGUI();
+		class MainMenuGUI : public GUIBase
+		{
+		public:
+			MainMenuGUI();
+			~MainMenuGUI();
 
-		void InitializeGUIComponents() override;
-	private:
-		agui::FlowLayout layout;
-		agui::TextField textField;
-		agui::Frame frame;
+			void InitializeGUIComponents() override;
+		private:
+			agui::FlowLayout layout;
+			agui::TextField textField;
+			agui::Frame frame;
+		};
 	};
-
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef GFR_INPUT_MGR_H
-#define GFR_INPUT_MGR_H
+#ifndef GFR_FRAMEWORK_MANAGERS_INPUTMGR_INPUTMGR_H
+#define GFR_FRAMEWORK_MANAGERS_INPUTMGR_INPUTMGR_H
 
 #include "Common.h"
 #include "allegro5\allegro.h"

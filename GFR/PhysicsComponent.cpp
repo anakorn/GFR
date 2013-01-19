@@ -1,5 +1,4 @@
 #include "PhysicsComponent.h"
-#include "PhysicsMgr.h"
 
 using namespace framework;
 
@@ -9,7 +8,12 @@ PhysicsComponent::~PhysicsComponent()
 	//m_Body->DeathTag;
 };
 
-void PhysicsComponent::SetBody(b2Body* body)
+const f32 PhysicsComponent::GetX(void)
 {
-	m_Body = body;
+	return m_Body->GetPosition().x;
+};
+
+const f32 PhysicsComponent::GetY(void)
+{
+	return m_Body->GetPosition().y;
 };

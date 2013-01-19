@@ -1,5 +1,5 @@
-#ifndef GFR_ENTITY_H
-#define GFR_ENTITY_H
+#ifndef GFR_FRAMEWORK_ENTITY_ENTITY_H
+#define GFR_FRAMEWORK_ENTITY_ENTITY_H
 #include "Common.h"
 #include <string>
 

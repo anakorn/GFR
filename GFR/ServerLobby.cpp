@@ -2,10 +2,11 @@
 #include "ServerLobby.h"
 #include "ServerLobbyGUI.h"
 
-using namespace gamestate;
+using namespace game;
+using namespace gameState;
 
 ServerLobby::ServerLobby(const u32 &port, const std::string &gameName)
-	: GameState(StateTypes::SERVER_LOBBY)
+	: State(stateTypes::SERVER_LOBBY)
 {
 	networking::NetServer* server = new networking::NetServer(port, 3);
 	server->Launch();

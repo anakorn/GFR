@@ -2,16 +2,19 @@
 #ifndef SERVERLOBBY_H
 #define SERVERLOBBY_H
 
-#include "GameState.h"
+#include "State.h"
 #include <string>
 
-namespace gamestate
+namespace game
 {
-	class ServerLobby : public GameState
+	namespace gameState
 	{
-	public:
-		ServerLobby(const u32 &port, const std::string &gameName);
-		~ServerLobby();
+		class ServerLobby : public State
+		{
+		public:
+			ServerLobby(const u32 &port, const std::string &gameName);
+			~ServerLobby();
+		};
 	};
 };
 

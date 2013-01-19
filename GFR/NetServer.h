@@ -1,6 +1,5 @@
-#pragma once
-#ifndef NETSERVER_H
-#define NETSERVER_H
+#ifndef GFR_FRAMEWORK_NETWORKING_NETSERVER_H
+#define GFR_FRAMEWORK_NETWORKING_NETSERVER_H
 
 #include "NetPeer.h"
 

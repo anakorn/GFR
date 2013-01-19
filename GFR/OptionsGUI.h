@@ -1,6 +1,5 @@
-#pragma once
-#ifndef OPTIONSGUI_H
-#define OPTIONSGUI_H
+#ifndef GFR_GAME_GUI_GUIS_OPTIONSGUI_H
+#define GFR_GAME_GUI_GUIS_OPTIONSGUI_H
 
 #include "GUIBase.h"
 #include <Agui/Widgets/Label/Label.hpp>
@@ -8,38 +7,40 @@
 #include <Agui/Widgets/DropDown/DropDown.hpp>
 #include <Agui/Widgets/Button/Button.hpp>
 
-namespace gui
+namespace game
 {
-
-	class OptionsGUI : public GUIBase
+	namespace gui
 	{
-	public:
-		OptionsGUI();
-		~OptionsGUI();
-
-		void InitializeGUIComponents() override;
-
-		class OptionsButtonListener : public agui::ActionListener
+		class OptionsGUI : public GUIBase
 		{
 		public:
-			OptionsButtonListener() {}
-			OptionsButtonListener(OptionsGUI* container)
-				: m_Container(container) {}
-			virtual void actionPerformed(const agui::ActionEvent &evt) override;
+			OptionsGUI();
+			~OptionsGUI();
+
+			void InitializeGUIComponents() override;
+
+			class OptionsButtonListener : public agui::ActionListener
+			{
+			public:
+				OptionsButtonListener() {}
+				OptionsButtonListener(OptionsGUI* container)
+					: m_Container(container) {}
+				virtual void actionPerformed(const agui::ActionEvent &evt) override;
+			private:
+				OptionsGUI* m_Container;
+				void ApplyChanges();
+			};
 		private:
-			OptionsGUI* m_Container;
-			void ApplyChanges();
+			agui::Label m_FullScreenLabel;
+			agui::CheckBox m_FullScreenCheckbox;
+
+			agui::Label m_ResolutionLabel;
+			agui::DropDown m_ResolutionDropdown;
+
+			agui::Button m_BackButton;
+			agui::Button m_ApplyChangesButton;
+			OptionsButtonListener m_ButtonListener;
 		};
-	private:
-		agui::Label m_FullScreenLabel;
-		agui::CheckBox m_FullScreenCheckbox;
-
-		agui::Label m_ResolutionLabel;
-		agui::DropDown m_ResolutionDropdown;
-
-		agui::Button m_BackButton;
-		agui::Button m_ApplyChangesButton;
-		OptionsButtonListener m_ButtonListener;
 	};
 };
 

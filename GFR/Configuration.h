@@ -1,6 +1,6 @@
 #pragma once 
-#ifndef CONFIGURATION_H
-#define CONFIGURATION_H
+#ifndef GFR_FRAMEWORK_ALLEGRO_CONFIGURATION_H
+#define GFR_FRAMEWORK_ALLEGRO_CONFIGURATION_H
 
 #include "Common.h"
 #include <allegro5/allegro5.h>

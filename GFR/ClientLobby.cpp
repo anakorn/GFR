@@ -2,10 +2,11 @@
 #include "ClientLobby.h"
 #include "ClientLobbyGUI.h"
 
-using namespace gamestate;
+using namespace game;
+using namespace gameState;
 
 ClientLobby::ClientLobby(const char* ip, const u32 &port)
-	: GameState(StateTypes::CLIENT_LOBBY)
+	: State(stateTypes::CLIENT_LOBBY)
 {
 	networking::NetClient* client = new	networking::NetClient(port);
 	client->Connect(ip, 5000);

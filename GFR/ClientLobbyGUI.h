@@ -1,22 +1,24 @@
-#pragma once
-#ifndef CLIENTLOBBYGUI_H
-#define CLIENTLOBBYGUI_H
+#ifndef GFR_GAME_GUI_GUIS_CLIENTLOBBYGUI_H
+#define GFR_GAME_GUI_GUIS_CLIENTLOBBYGUI_H
 
 #include "NetClient.h"
 #include "GUIBase.h"
 
-namespace gui
+namespace game
 {
-	class ClientLobbyGUI : public GUIBase
+	namespace gui
 	{
-	public:
-		ClientLobbyGUI(networking::NetClient &client);
-		~ClientLobbyGUI();
+		class ClientLobbyGUI : public GUIBase
+		{
+		public:
+			ClientLobbyGUI(networking::NetClient &client);
+			~ClientLobbyGUI();
 
-		void InitializeGUIComponents() override;
-		void Update() override;
-	private:
-		networking::NetClient m_Client;
+			void InitializeGUIComponents() override;
+			void Update() override;
+		private:
+			networking::NetClient m_Client;
+		};
 	};
 };
 

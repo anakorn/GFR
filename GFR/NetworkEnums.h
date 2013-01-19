@@ -1,6 +1,5 @@
-#pragma once
-#ifndef NETWORKENUMS_H
-#define NETWORKENUMS_H
+#ifndef GFR_FRAMEWORK_NETWORKING_NETWORKENUMS_H
+#define GFR_FRAMEWORK_NETWORKING_NETWORKENUMS_H
 
 namespace networking
 {

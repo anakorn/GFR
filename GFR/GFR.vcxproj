@@ -83,8 +83,8 @@
     <ClInclude Include="ClientLobbySetup.h" />
     <ClInclude Include="ClientLobbySetupGUI.h" />
     <ClInclude Include="Configuration.h" />
-    <ClInclude Include="GameState.h" />
-    <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="GFR_AL.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="ComponentBase.h" />
@@ -112,7 +112,7 @@
     <ClInclude Include="ServerLobbyGUI.h" />
     <ClInclude Include="ServerLobbySetup.h" />
     <ClInclude Include="ServerLobbySetupGUI.h" />
-    <ClInclude Include="States.h" />
+    <ClInclude Include="StateTypes.h" />
     <ClInclude Include="SystemBase.h" />
   </ItemGroup>
   <ItemGroup>
@@ -124,8 +124,8 @@
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="ControlSystem.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="GameState.cpp" />
-    <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="GFR_AL.cpp" />
     <ClCompile Include="gfr_main.cpp" />
     <ClCompile Include="GUIBase.cpp" />

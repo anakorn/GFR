@@ -2,15 +2,18 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include "GameState.h"
+#include "State.h"
 
-namespace gamestate
+namespace game
 {
-	class MainMenu : public GameState
+	namespace gameState
 	{
-	public:
-		MainMenu();
-		~MainMenu();
+		class MainMenu : public State
+		{
+		public:
+			MainMenu();
+			~MainMenu();
+		};
 	};
 };
 

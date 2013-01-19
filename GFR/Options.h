@@ -2,15 +2,18 @@
 #ifndef OPTIONS_H
 #define MAINMENU_H
 
-#include "GameState.h"
+#include "State.h"
 
-namespace gamestate
+namespace game
 {
-	class Options : public GameState
+	namespace gameState
 	{
-	public:
-		Options();
-		~Options();
+		class Options : public State
+		{
+		public:
+			Options();
+			~Options();
+		};
 	};
 };
 

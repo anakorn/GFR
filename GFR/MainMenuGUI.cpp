@@ -1,6 +1,7 @@
 #include "MainMenuGUI.h"
 #include "GFR_AL.h"
 
+using namespace game;
 using namespace gui;
 
 class MainMenuButtonListener : public agui::ActionListener
@@ -66,11 +67,11 @@ void MainMenuButtonListener::actionPerformed(const agui::ActionEvent &evt)
 	agui::Widget* source = evt.getSource();
 
 	if (source == &hostGameButton)
-		framework::GFR_AL::PushGameState(StateTypes::SERVER_LOBBY_SETUP);
+		framework::GFR_AL::s_StateManager.PushState(stateTypes::SERVER_LOBBY_SETUP);
 	else if (source == &joinGameButton)
-		framework::GFR_AL::PushGameState(StateTypes::CLIENT_LOBBY_SETUP);
+		framework::GFR_AL::s_StateManager.PushState(stateTypes::CLIENT_LOBBY_SETUP);
 	else if (source == &optionsButton)
-		framework::GFR_AL::PushGameState(StateTypes::OPTIONS);
+		framework::GFR_AL::s_StateManager.PushState(stateTypes::OPTIONS);
 	else if (source == &exitButton)
 		framework::GFR_AL::EndGame();
 }

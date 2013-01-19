@@ -1,5 +1,5 @@
-#ifndef GFR_COMPONENT_BASE_H
-#define GFR_COMPONENT_BASE_H
+#ifndef GFR_FRAMEWORK_COMPONENT_BASE_COMPONENTBASE_H
+#define GFR_FRAMEWORK_COMPONENT_BASE_COMPONENTBASE_H
 #include "Common.h"
 #include "ComponentDetail.h"
 #include "ComponentMask.h"

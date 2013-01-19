@@ -1,10 +1,11 @@
 #include "Options.h"
 #include "OptionsGUI.h"
 
-using namespace gamestate;
+using namespace game;
+using namespace gameState;
 
 Options::Options()
-	: GameState(StateTypes::OPTIONS)
+	: State(stateTypes::OPTIONS)
 {
 	m_Gui = new gui::OptionsGUI();
 	m_Gui->InitializeGUIComponents();

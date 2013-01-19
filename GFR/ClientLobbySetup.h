@@ -2,15 +2,18 @@
 #ifndef CLIENTLOBBYSETUP_H
 #define CLIENTLOBBYSETUP_H
 
-#include "GameState.h"
+#include "State.h"
 
-namespace gamestate
+namespace game
 {
-	class ClientLobbySetup : public GameState
+	namespace gameState
 	{
-	public:
-		ClientLobbySetup();
-		~ClientLobbySetup();
+		class ClientLobbySetup : public State
+		{
+		public:
+			ClientLobbySetup();
+			~ClientLobbySetup();
+		};
 	};
 };
 

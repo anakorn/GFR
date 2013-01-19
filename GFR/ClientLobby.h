@@ -2,16 +2,19 @@
 #ifndef CLIENTLOBBY_H
 #define CLIENTLOBBY_H
 
-#include "GameState.h"
+#include "State.h"
 
-namespace gamestate
+namespace game
 {
-	class ClientLobby : public GameState
+	namespace gameState
 	{
-	public:
-		// IP and port of server to connect to
-		ClientLobby(const char* ip, const u32 &port);
-		~ClientLobby();
+		class ClientLobby : public State
+		{
+		public:
+			// IP and port of server to connect to
+			ClientLobby(const char* ip, const u32 &port);
+			~ClientLobby();
+		};
 	};
 };
 

@@ -2,6 +2,7 @@
 #include "Configuration.h"
 #include "GFR_AL.h"
 
+using namespace game;
 using namespace gui;
 
 // Floats (0.0f-1.0f) given as percentages of screen dimensions
@@ -79,14 +80,14 @@ void ServerLobbySetupGUI::SetupButtonListener::actionPerformed(const agui::Actio
 			framework::Configuration::SetValue("SAVEDFIELD", "port", std::to_string(port).c_str());
 			framework::Configuration::SaveNewValues();
 
-			framework::GFR_AL::PopGameState();
-			framework::GFR_AL::PushGameState(StateTypes::State::SERVER_LOBBY, args);
+			framework::GFR_AL::s_StateManager.PopState();
+			framework::GFR_AL::s_StateManager.PushState(stateTypes::SERVER_LOBBY, args);
 		}
 		else
 			m_Container->ShowErrorMessage("Invalid input");
 	}
 	else if (source == &m_Container->m_BackButton)
-		framework::GFR_AL::PopGameState();
+		framework::GFR_AL::s_StateManager.PopState();
 }
 
 bool ServerLobbySetupGUI::SetupButtonListener::ValidateInput(const int &port)

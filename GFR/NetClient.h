@@ -1,6 +1,5 @@
-#pragma once
-#ifndef NETCLIENT_H
-#define NETCLIENT_H
+#ifndef GFR_FRAMEWORK_NETWORKING_NETCLIENT_H
+#define GFR_FRAMEWORK_NETWORKING_NETCLIENT_H
 
 #include "NetPeer.h"
 

@@ -2,6 +2,7 @@
 #include "GFR_AL.h"
 #include "Configuration.h"
 
+using namespace game;
 using namespace gui;
 
 // Floats (0.0f-1.0f) given as percentages of screen dimensions
@@ -69,7 +70,7 @@ void ClientLobbySetupGUI::SetupButtonListener::actionPerformed(const agui::Actio
 		std::string ip = m_Container->m_IPField.getText();
 		int port = atoi(m_Container->m_PortField.getText().c_str());
 
-		if(ValidateInput(ip, port))
+		if (ValidateInput(ip, port))
 		{
 			std::vector<void*> args;
 			args.push_back(&ip);
@@ -79,14 +80,14 @@ void ClientLobbySetupGUI::SetupButtonListener::actionPerformed(const agui::Actio
 			framework::Configuration::SetValue("SAVEDFIELD", "port", std::to_string(port).c_str());
 			framework::Configuration::SaveNewValues();
 
-			framework::GFR_AL::PopGameState();
-			framework::GFR_AL::PushGameState(StateTypes::State::CLIENT_LOBBY, args);
+			framework::GFR_AL::s_StateManager.PopState();
+			framework::GFR_AL::s_StateManager.PushState(stateTypes::CLIENT_LOBBY, args);
 		}
 		else
 			m_Container->ShowErrorMessage("Invalid input");
 	}
 	else if (source == &m_Container->m_BackButton)
-		framework::GFR_AL::PopGameState();
+		framework::GFR_AL::s_StateManager.PopState();
 }
 
 bool ClientLobbySetupGUI::SetupButtonListener::ValidateInput(const std::string &ip, const int &port)

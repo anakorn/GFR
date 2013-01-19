@@ -3,6 +3,7 @@
 #include "Configuration.h"
 #include "GFR_AL.h"
 
+using namespace game;
 using namespace gui;
 
 // Floats (0.0f-1.0f) given as percentages of screen dimensions
@@ -69,7 +70,7 @@ void OptionsGUI::OptionsButtonListener::actionPerformed(const agui::ActionEvent 
 	agui::Widget* source = evt.getSource();
 
 	if(source == &m_Container->m_BackButton)
-		framework::GFR_AL::PopGameState();
+		framework::GFR_AL::s_StateManager.PopState();
 	else if(source == &m_Container->m_ApplyChangesButton)
 		ApplyChanges();
 }

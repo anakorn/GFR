@@ -1,5 +1,5 @@
-#ifndef GFR_PHYSICS_MGR_H
-#define GFR_PHYSICS_MGR_H
+#ifndef GFR_FRAMEWORK_MANAGERS_PHYSICSMGR_PHYSICSMGR_H
+#define GFR_FRAMEWORK_MANAGERS_PHYSICSMGR_PHYSICSMGR_H
 #include "Common.h"
 #include "Box2D\Box2D.h"
 
@@ -20,7 +20,6 @@ namespace framework
 												f32 linearDamping, f32 angularDamping, f32 gravityScale, 
 												bool allowSleep, bool isAwake, bool isRotationFixed, bool isBullet = false, 
 												void* userData = nullptr);
-		
 		static void		DestroyBody			(b2World &world, b2Body* body);
 
 		// Steps through physics World by 'deltaTime' seconds.

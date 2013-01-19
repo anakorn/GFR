@@ -1,5 +1,6 @@
 #include "GUIBase.h"
 
+using namespace game;
 using namespace gui;
 
 GUIBase::GUIBase()

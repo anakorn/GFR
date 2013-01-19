@@ -23,7 +23,7 @@ namespace game
 			virtual void Render();
 
 		private:
-			Physics
+			//Physics
 
 		};
 	};

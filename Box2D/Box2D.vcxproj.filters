@@ -134,9 +134,7 @@
     <ClInclude Include="Dynamics\Contacts\b2PolygonContact.h">
       <Filter>Dynamics\Contacts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Desktop\Box2D_v2.2.1\Box2D\Rope\b2Rope.h">
-      <Filter>Rope</Filter>
-    </ClInclude>
+    <ClInclude Include="Rope\b2Rope.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Collision">
@@ -294,8 +292,6 @@
     <ClCompile Include="Dynamics\Contacts\b2PolygonContact.cpp">
       <Filter>Dynamics\Contacts</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Desktop\Box2D_v2.2.1\Box2D\Rope\b2Rope.cpp">
-      <Filter>Rope</Filter>
-    </ClCompile>
+    <ClCompile Include="Rope\b2Rope.cpp" />
   </ItemGroup>
 </Project>

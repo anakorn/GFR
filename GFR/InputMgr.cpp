@@ -1,19 +1,20 @@
 #include "InputMgr.h"
+#include "InputKeyNums.h"
 #include "Common.h"
 #include "allegro5\allegro.h"
 
 using namespace framework;
 
-typedef struct
+struct KeyName
 {
 	const char* name;
 	const u32 num;
 	u32 binding;
-} keyName;
+};
 
 #define NAME_KEY(name) { #name, ALLEGRO_KEY_##name, ALLEGRO_KEY_##name }
 
-keyName keyNames[] = 
+KeyName keyNames[] = 
 {
 	{ "NULL", 0, 0 },
 	NAME_KEY( A ),
@@ -156,19 +157,19 @@ bool InputMgr::Initialize(ALLEGRO_EVENT_QUEUE* queue)
 	al_register_event_source(queue, al_get_mouse_event_source());
 
 	return keyboardInstalled && mouseInstalled;
-}
+};
 
 void InputMgr::Update(void)
 {
 	
-}
+};
 
 bool InputMgr::IsDown(const u32 keyNum)
 {
 
 
 	return false;
-}
+};
 
 void InputMgr::BindKey(const u32 keyNum, const u32 keyBind)
 {
@@ -178,11 +179,37 @@ void InputMgr::BindKey(const u32 keyNum, const u32 keyBind)
 	//TODO: uncomment after naming keys between 108 and ALLEGRO_KEY_MAX
 	//assert(keyBind >= ALLEGRO_KEY_A && keyBind < ALLEGRO_KEY_MAX);
 
-	keyNames[keyNum].binding = keyBind;
-}
+	// Reset any key currently bound to keyBind
+	for (int i = 0; i < KEY_MAX; ++i)
+	{
+		if (keyNames[i].binding == keyBind)
+		{
+			keyNames[i].binding = 0;
+		}
+	}
+
+	// Bind key, keyBind, to the given keyNum
+	for (int i = 0; i < KEY_MAX; ++i)
+	{
+		if (keyNames[i].num == keyNum)
+		{
+			keyNames[i].binding = keyBind;
+			return;
+		}
+	}
+};
 
 const char* GetBoundKeyName(const u32 keyNum)
 {
-	return "IMPLEMENT THIS FUNCTION";
-	//return keyNames[keyNum].
-}
+	const char* keyName = "None";
+
+	for (int i = 0; i < KEY_MAX; ++i)
+	{
+		if (keyNames[i].num == keyNum)
+		{
+			keyName = keyNames[i].name;
+		}
+	}
+
+	return keyName;
+};

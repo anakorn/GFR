@@ -1,11 +1,14 @@
 #include "GFR_AL.h"
 #include "Configuration.h"
 #include "InputMgr.h"
+#include "ContentMgr.h"
 #include <stdio.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 
 using namespace framework;
 
@@ -56,6 +59,19 @@ bool GFR_AL::InitSystems()
 		return false;
 	}
 
+	if (!al_install_audio()) {
+		PrintConsole("GFR_AL::Create() called al_install_audio() failed.\n");
+		return false;
+	}
+
+	if (!al_init_acodec_addon()) {
+		PrintConsole("GFR_AL::Create() called al_init_acodec_addon() failed.\n");
+	}
+
+	if (!al_reserve_samples(1)) {
+		PrintConsole("GFR_AL::Create() called al_reserve_samples(1) failed.\n");
+	}
+
 	s_EventQueue = al_create_event_queue();
 	if (!s_EventQueue) {
 		PrintConsole("GFR_AL::Create() call al_create_event_queue() failed.\n");
@@ -82,6 +98,15 @@ bool GFR_AL::InitSystems()
 	s_Display = al_create_display(s_WindowWidth, s_WindowHeight);
 	if (!s_Display) {
 		PrintConsole("GFR_AL::Create() call al_create_display() failed.\n");
+		return false;
+	}
+
+	// Initialize all content (must 
+	// come after display initialization)
+	ContentMgr::Initialize();
+	if (!ContentMgr::LoadAllContent())
+	{
+		PrintConsole("ContentMgr::LoadAllContent() failed!");
 		return false;
 	}
 
@@ -170,6 +195,7 @@ void GFR_AL::RunGameLoop()
 
 			// Normal drawing. Temporary
 			al_clear_to_color(al_map_rgb(240,240,240));
+
 			s_StateManager.Render();
 			al_flip_display();
 
@@ -247,7 +273,7 @@ void GFR_AL::InitializeGUI(void)
 	agui::Font::setFontLoader(new agui::Allegro5FontLoader());
 	agui::Color::setPremultiplyAlpha(true);
 
-	agui::Font* m_DefaultFont = agui::Font::load("assets/Fonts/PTSans.ttf", 16);
+	agui::Font* m_DefaultFont = agui::Font::load("Fonts/PTSans.ttf", 16);
 	//Setting a global font is required and failure to do so will crash.
 	agui::Widget::setGlobalFont(m_DefaultFont);
 }

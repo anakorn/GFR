@@ -61,6 +61,15 @@
     <Filter Include="game\gui\guis">
       <UniqueIdentifier>{1deabfbd-a8f3-43ee-b234-ae8a418eaa73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\managers\contentMgr">
+      <UniqueIdentifier>{0f38bf69-0a5d-4fb9-9291-a3d99c3a7d6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\types">
+      <UniqueIdentifier>{e1217a7a-96a6-4153-8a7b-99b32b2710ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\exceptions">
+      <UniqueIdentifier>{2b2e95df-cd7f-4d19-a57d-f63e6b0766f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -178,6 +187,21 @@
     <ClInclude Include="MovementSystem.h">
       <Filter>framework\system\derivations</Filter>
     </ClInclude>
+    <ClInclude Include="ContentMgr.h">
+      <Filter>framework\managers\contentMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>framework\types</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>framework\types</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentLoadFailedException.h">
+      <Filter>framework\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentUnloadFailedException.h">
+      <Filter>framework\exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -276,6 +300,18 @@
     </ClCompile>
     <ClCompile Include="MovementSystem.cpp">
       <Filter>framework\system\derivations</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentMgr.cpp">
+      <Filter>framework\managers\contentMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>framework\types</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>framework\types</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawComponent.cpp">
+      <Filter>framework\component\derivations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -11,9 +11,7 @@ namespace
 	void LoadContentMap(const char* subFolder, boost::unordered_map<std::string, Texture*>* textureMap)
 	{
 		ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
-		al_append_path_component(path, "..");
-		al_append_path_component(path, "GFR");
-		al_append_path_component(path, "Assets");
+		al_append_path_component(path, "assets");
 		al_append_path_component(path, subFolder);
 
 		std::string start = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
@@ -49,10 +47,7 @@ void ContentMgr::Initialize()
 	ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
 	// TODO: Resources path defaults to debug folder with exe inside
 	// of GFR. Figure out where our resources should go in deployment.
-	al_append_path_component(path, "..");
-	al_append_path_component(path, "GFR");
 	al_append_path_component(path, "assets");
-
 	al_change_directory(al_path_cstr(path, '/'));
 
 	al_destroy_path(path);

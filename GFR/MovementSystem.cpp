@@ -15,4 +15,6 @@ void MovementSystem::ProcessEntity(Entity& entity)
 {
 	PhysicsComponent* physComp = static_cast<PhysicsComponent*>(entity.GetComponent("PhysicsComponent"));
 	DrawComponent* drawComp = static_cast<DrawComponent*>(entity.GetComponent("DrawComponent"));
+
+	
 }

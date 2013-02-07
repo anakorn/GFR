@@ -14,3 +14,8 @@ Texture::~Texture()
 {
 	al_destroy_bitmap(bitmap);
 }
+
+ALLEGRO_BITMAP* getBitmap()
+{
+	return NULL;	
+}

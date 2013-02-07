@@ -13,6 +13,11 @@ public:
 	Texture(const char* fileName);
 	~Texture();
 
+	ALLEGRO_BITMAP* getBitmap()
+	{
+		return bitmap;
+	}
+
 private:
 	ALLEGRO_BITMAP* bitmap;
 

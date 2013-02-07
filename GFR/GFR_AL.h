@@ -3,6 +3,7 @@
 #include "Common.h"
 #include "allegro5\allegro.h"
 #include "StateManager.h"
+#include "Texture.h"
 
 namespace framework
 {
@@ -29,6 +30,8 @@ namespace framework
 		static u32					GetScreenWidth			();
 		static u32					GetScreenHeight			();
 		static void					PrintConsole			(const char* str);
+
+		static void					Draw					(Texture* texture, float x, float y);
 		
 		static game::gameState::StateManager s_StateManager;
 

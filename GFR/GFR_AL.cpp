@@ -277,3 +277,8 @@ void GFR_AL::InitializeGUI(void)
 	//Setting a global font is required and failure to do so will crash.
 	agui::Widget::setGlobalFont(m_DefaultFont);
 }
+
+void GFR_AL::Draw(Texture* texture, float x, float y)
+{
+	//al_draw_bitmap();
+}

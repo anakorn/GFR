@@ -2,13 +2,13 @@
 
 namespace fs = boost::filesystem;
 
-std::map<std::string, Texture*>* ContentMgr::textureMap = new std::map<std::string, Texture*>();
-std::map<std::string, Sound*>* ContentMgr::soundMap = new std::map<std::string, Sound*>();
+boost::unordered_map<std::string, Texture*>* ContentMgr::textureMap = new boost::unordered_map<std::string, Texture*>();
+boost::unordered_map<std::string, Sound*>* ContentMgr::soundMap = new boost::unordered_map<std::string, Sound*>();
 
 namespace
 {
 	// TODO: Figure out how to pass in different template maps as parameters.
-	void LoadContentMap(const char* subFolder, std::map<std::string, Texture*>* textureMap)
+	void LoadContentMap(const char* subFolder, boost::unordered_map<std::string, Texture*>* textureMap)
 	{
 		ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
 		al_append_path_component(path, "..");

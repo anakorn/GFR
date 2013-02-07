@@ -8,6 +8,7 @@
 #include "ContentLoadFailedException.h"
 #include "ContentUnloadFailedException.h"
 #include "boost/filesystem.hpp"
+#include "boost/unordered_map.hpp"
 
 class ContentMgr
 {
@@ -27,8 +28,8 @@ public:
 	static void UnloadContent(const std::string file);
 
 private:
-	static std::map<std::string, Texture*>* textureMap;
-	static std::map<std::string, Sound*>* soundMap;
+	static boost::unordered_map<std::string, Texture*>* textureMap;
+	static boost::unordered_map<std::string, Sound*>* soundMap;
 
 };
 

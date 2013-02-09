@@ -278,6 +278,27 @@ void GFR_AL::InitializeGUI(void)
 	agui::Widget::setGlobalFont(m_DefaultFont);
 }
 
+void GFR_AL::SetDefaultDirectory()
+{
+	ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+	al_append_path_component(path, "assets");
+	al_change_directory(al_path_cstr(path, '/'));
+
+	al_destroy_path(path);
+}
+
+std::string GFR_AL::GetContentDirectory(std::string subFolder)
+{
+	ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+	al_append_path_component(path, "assets");
+	al_append_path_component(path, subFolder.c_str());
+
+	std::string stringifiedPath = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
+	al_destroy_path(path);
+
+	return stringifiedPath;
+}
+
 void GFR_AL::Draw(Texture* texture, float x, float y)
 {
 	//al_draw_bitmap();

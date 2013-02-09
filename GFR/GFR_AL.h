@@ -31,6 +31,10 @@ namespace framework
 		static u32					GetScreenHeight			();
 		static void					PrintConsole			(const char* str);
 
+		// ContentMgr
+		static void					SetDefaultDirectory		();
+		static std::string			GetContentDirectory		(std::string subFolder);
+		
 		static void					Draw					(Texture* texture, float x, float y);
 		
 		static game::gameState::StateManager s_StateManager;

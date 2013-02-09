@@ -196,10 +196,10 @@
     <ClInclude Include="Texture.h">
       <Filter>framework\types</Filter>
     </ClInclude>
-    <ClInclude Include="ContentLoadFailedException.h">
+    <ClInclude Include="ContentLoadException.h">
       <Filter>framework\exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="ContentUnloadFailedException.h">
+    <ClInclude Include="ContentUnloadException.h">
       <Filter>framework\exceptions</Filter>
     </ClInclude>
   </ItemGroup>

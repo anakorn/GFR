@@ -1,5 +1,7 @@
 #include "ContentMgr.h"
 #include "GFR_AL.h"
+#include "ContentLoadException.h"
+#include "ContentUnloadException.h"
 
 namespace fs = boost::filesystem;
 
@@ -28,53 +30,80 @@ void ContentMgr::UnloadAllContent()
 }
 
 template<typename T>
-T& ContentMgr::LoadContent(const std::string filePath)
+T& ContentMgr::LoadContent(const std::string file)
 {
-	throw ContentLoadFailedException(filePath, "Content load failed. Non-existent content type! (ContentMgr::LoadContent)");
+	throw ContentLoadException(file);
 };
 
 template<>
-Texture& ContentMgr::LoadContent<Texture>(const std::string fileName)
+Texture& ContentMgr::LoadContent<Texture>(const std::string file)
 {
 	// If mapping does exists, return map value.
 	// Otherwise, load content from file system.
-	if (textureMap->find(fileName) != textureMap->end())
+	if (textureMap->find(file) != textureMap->end())
 	{
-		return textureMap->at(fileName);
+		return textureMap->at(file);
 	}
 	else
 	{
-		std::string path = framework::GFR_AL::GetContentDirectory("Textures") + fileName;
-		Texture* content = new Texture(path.c_str());
+		std::string path = framework::GFR_AL::GetContentDirectory("Textures") + file;
 
-		textureMap->insert(std::pair<const std::string, Texture&>(fileName, *content));
-		return *content;
+		try
+		{
+			Texture* content = new Texture(path.c_str());
+
+			textureMap->insert(std::pair<const std::string, Texture&>(file, *content));
+			return *content;
+		}
+		catch(ContentLoadException& e)
+		{
+			framework::GFR_AL::PrintConsole(e.getMessage().c_str());
+
+			// TEMP: To satisfy return until better solution found.
+			Texture* content = new Texture(path.c_str());
+			return *content;
+			// TEMP.
+		}
 	}
 };
 
 template<>
-Sound& ContentMgr::LoadContent<Sound>(const std::string fileName)
+Sound& ContentMgr::LoadContent<Sound>(const std::string file)
 {
 	// If mapping does exists, return map value.
 	// Otherwise, load content from file system.
-	if (textureMap->find(fileName) != textureMap->end())
+	if (soundMap->find(file) != soundMap->end())
 	{
-		return soundMap->at(fileName);
+		Sound& sound = soundMap->at(file);
+		return sound;
 	}
 	else
 	{
-		std::string path = framework::GFR_AL::GetContentDirectory("Sounds") + fileName;
-		Sound* content = new Sound(path.c_str());
+		std::string path = framework::GFR_AL::GetContentDirectory("Sounds") + file;
 
-		soundMap->insert(std::pair<const std::string, Sound&>(fileName, *content));
-		return *content;
+		try
+		{
+			Sound* content = new Sound(path.c_str());
+
+			soundMap->insert(std::pair<const std::string, Sound&>(file, *content));
+			return *content;
+		}
+		catch(ContentLoadException& e)
+		{
+			framework::GFR_AL::PrintConsole(e.getMessage().c_str());
+
+			// TEMP: To satisfy return until better solution found.
+			Sound* content = new Sound(path.c_str());
+			return *content;
+			// TEMP.
+		}
 	}
 };
 
 template<typename T>
 void ContentMgr::UnloadContent(const std::string file)
 {
-	return ContentUnLoadFailedException(filePath, "Content unload failed. Non-existent content type! (ContentMgr::UnloadContent");
+	return ContentUnLoadException(file);
 };
 
 template<>
@@ -113,6 +142,11 @@ void ContentMgr::LoadContentMap(const std::string subFolder, boost::unordered_ma
 		catch(fs::filesystem_error)
 		{
 			rdi.no_push();
+			++rdi;
+		}
+		catch(ContentLoadException& e)
+		{
+			framework::GFR_AL::PrintConsole(e.getMessage().c_str());
 			++rdi;
 		}
 	}

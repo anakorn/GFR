@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include "ContentLoadException.h"
 #include <iostream>
 
 Texture::Texture(const char* fileName)
@@ -6,7 +7,7 @@ Texture::Texture(const char* fileName)
 {
 	if (bitmap == NULL)
 	{
-		throw ContentLoadFailedException(fileName, "Texture not found. Texture::Texture() Ln 9.");
+		throw ContentLoadException(fileName);
 	}
 }
 

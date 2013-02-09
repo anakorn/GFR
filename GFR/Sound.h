@@ -13,8 +13,10 @@ public:
 	Sound(const char* soundFile);
 	~Sound();
 
-	void play();
-	void loop();
+	ALLEGRO_SAMPLE* getSound()
+	{
+		return sound;
+	}
 
 private:
 	ALLEGRO_SAMPLE* sound;

@@ -5,7 +5,6 @@
 #define GFR_FRAMEWORK_TYPES_TEXTURE_H
 
 #include <allegro5/allegro.h>
-#include "ContentLoadFailedException.h"
 
 class Texture
 {

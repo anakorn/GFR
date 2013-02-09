@@ -83,9 +83,9 @@
     <ClInclude Include="ClientLobbySetup.h" />
     <ClInclude Include="ClientLobbySetupGUI.h" />
     <ClInclude Include="Configuration.h" />
-    <ClInclude Include="ContentLoadFailedException.h" />
+    <ClInclude Include="ContentLoadException.h" />
     <ClInclude Include="ContentMgr.h" />
-    <ClInclude Include="ContentUnloadFailedException.h" />
+    <ClInclude Include="ContentUnloadException.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />

@@ -5,8 +5,6 @@
 #include <string>
 #include "Texture.h"
 #include "Sound.h"
-#include "ContentLoadFailedException.h"
-#include "ContentUnloadFailedException.h"
 #include "boost/filesystem.hpp"
 #include "boost/unordered_map.hpp"
 

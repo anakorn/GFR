@@ -1,22 +1,16 @@
 #include "Sound.h"
+#include "ContentLoadException.h"
 
-Sound::Sound(const char* soundFile)
-	: sound(NULL)
+Sound::Sound(const char* fileName)
+	: sound(al_load_sample(fileName))
 {
-	sound = al_load_sample(soundFile);
+	if (sound == NULL)
+	{
+		throw ContentLoadException(fileName);
+	}
 }
 
 Sound::~Sound()
 {
 	al_destroy_sample(sound);
-}
-
-void Sound::play()
-{
-	al_play_sample(sound, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-}
-
-void Sound::loop()
-{
-	al_play_sample(sound, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 }

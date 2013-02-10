@@ -2,7 +2,12 @@
 
 using namespace framework;
 
-b2Body* PhysicsMgr::CreateStaticBody(b2World &world, f32 originX, f32 originY, f32 angleRadians, 
+PhysicsMgr::~PhysicsMgr()
+{
+	delete m_World;
+}
+
+b2Body* PhysicsMgr::CreateStaticBody(f32 originX, f32 originY, f32 angleRadians, 
 								  f32 linearDamping, f32 angularDamping, f32 gravityScale, 
 								  bool allowSleep, bool isAwake, bool isRotationFixed, 
 								  void* userData)
@@ -19,15 +24,15 @@ b2Body* PhysicsMgr::CreateStaticBody(b2World &world, f32 originX, f32 originY, f
 	def.fixedRotation	= isRotationFixed;
 	def.userData		= userData;
 
-	return world.CreateBody(&def);
+	return m_World->CreateBody(&def);
 };
 
-b2Body* PhysicsMgr::CreateDynamicBody(b2World &world, f32 originX, f32 originY, f32 angleRadians, 
+b2Body* PhysicsMgr::CreateDynamicBody(f32 originX, f32 originY, f32 angleRadians, 
 								  f32 linearDamping, f32 angularDamping, f32 gravityScale, 
 								  bool allowSleep, bool isAwake, bool isRotationFixed, bool isBullet, 
 								  void* userData)
 {
-	b2Body* body = CreateStaticBody(world, originX, originY, angleRadians, linearDamping, angularDamping,
+	b2Body* body = CreateStaticBody(originX, originY, angleRadians, linearDamping, angularDamping,
 		gravityScale, allowSleep, isAwake, isRotationFixed, userData);
 	body->SetType(b2_dynamicBody);
 	body->SetBullet(isBullet);
@@ -35,9 +40,9 @@ b2Body* PhysicsMgr::CreateDynamicBody(b2World &world, f32 originX, f32 originY, 
 	return body;
 };
 
-void PhysicsMgr::DestroyBody(b2World &world, b2Body* body)
+void PhysicsMgr::DestroyBody(b2Body* body)
 {
-	world.DestroyBody(body);
+	m_World->DestroyBody(body);
 };
 
 void PhysicsMgr::Update(f32 deltaTime, u32 velocityIterations, u32 positionIterations)

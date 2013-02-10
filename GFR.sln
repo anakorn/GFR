@@ -2,11 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GFR", "GFR\GFR.vcxproj", "{A0716E7B-82A6-4146-A0E7-C33C802E5C5F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F} = {CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2D", "Box2D\Box2D.vcxproj", "{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Unit Testing", "Unit Testing\Unit Testing.vcxproj", "{1C827305-FFBD-46A8-9E37-F23456322EE0}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -26,13 +21,6 @@ Global
 		{A0716E7B-82A6-4146-A0E7-C33C802E5C5F}.Release|Win32.Build.0 = Release|Win32
 		{A0716E7B-82A6-4146-A0E7-C33C802E5C5F}.Template|Win32.ActiveCfg = Release|Win32
 		{A0716E7B-82A6-4146-A0E7-C33C802E5C5F}.Template|Win32.Build.0 = Release|Win32
-		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Debug|Win32.Build.0 = Debug|Win32
-		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Release|Win32.ActiveCfg = Release|Win32
-		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Release|Win32.Build.0 = Release|Win32
-		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Release|Win32.Deploy.0 = Release|Win32
-		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Template|Win32.ActiveCfg = Release|Win32
-		{CB267DC0-A354-4FE4-8CA0-D9BEA4380F7F}.Template|Win32.Build.0 = Release|Win32
 		{1C827305-FFBD-46A8-9E37-F23456322EE0}.Debug|Win32.ActiveCfg = Debug|Win32
 		{1C827305-FFBD-46A8-9E37-F23456322EE0}.Release|Win32.ActiveCfg = Release|Win32
 		{1C827305-FFBD-46A8-9E37-F23456322EE0}.Release|Win32.Build.0 = Release|Win32

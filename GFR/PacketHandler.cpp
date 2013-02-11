@@ -28,11 +28,10 @@ void PacketHandler::Update()
 	}
 }
 
-void PacketHandler::HandlePacket(ENetPacket* packet, ENetPeer* sender, PacketCallback callback)
+void PacketHandler::HandlePacket(ENetPacket* packet, ENetPeer* sender)
 {
 	PacketTypes type = (PacketTypes)ReadChar(*packet);
-
-	CALL_MEMBER_FN(*this, &m_PacketCallbacks[type]) (packet, sender);
+	m_PacketCallbacks[type] (packet, sender);
 }
 
 bool PacketHandler::EnqueuePacket(ENetPacket* packet, ENetPeer* sender)
@@ -59,49 +58,49 @@ void PacketHandler::SendPacket(ENetPacket* packet, ENetPeer* recipient, const u3
 	m_Net->SendPacket(packet, recipient, channel);
 }
 
-void PacketHandler::RegisterPacketType(PacketTypes type, PacketCallback callbackFunction)
+void PacketHandler::RegisterPacketType(PacketTypes type, std::function<void(ENetPacket*, ENetPeer*)> func)
 {
-	m_PacketCallbacks[type] = callbackFunction;
+	m_PacketCallbacks[type] = func;
 }
 
-void PacketHandler::WriteValue(ENetPacket &packet, void* value, const u32 &size)
+void PacketHandler::WriteValue(ENetPacket* packet, void* value, const u32 &size)
 {
-	int packetSize = packet.dataLength;
-	enet_packet_resize(&packet, packetSize + size);
-	memcpy(&packet.data[packetSize], value, size);
+	int packetSize = packet->dataLength;
+	enet_packet_resize(packet, packetSize + size);
+	memcpy(&packet->data[packetSize], value, size);
 }
 
-void PacketHandler::WriteBool(ENetPacket &packet, bool value)
+void PacketHandler::WriteBool(ENetPacket* packet, bool value)
 {
 	WriteValue(packet, &value, sizeof(bool));
 }
 
-void PacketHandler::WriteChar(ENetPacket &packet, char value)
+void PacketHandler::WriteChar(ENetPacket* packet, char value)
 {
 	WriteValue(packet, &value, sizeof(char));
 }
 
-void PacketHandler::WriteU16(ENetPacket &packet, u16 value)
+void PacketHandler::WriteU16(ENetPacket* packet, u16 value)
 {
 	WriteValue(packet, &value, sizeof(u16));
 }
 
-void PacketHandler::WriteInt(ENetPacket &packet, int value)
+void PacketHandler::WriteInt(ENetPacket* packet, int value)
 {
 	WriteValue(packet, &value, sizeof(int));
 }
 
-void PacketHandler::WriteU32(ENetPacket &packet, u32 value)
+void PacketHandler::WriteU32(ENetPacket* packet, u32 value)
 {
 	WriteValue(packet, &value, sizeof(u32));
 }
 
-void PacketHandler::WriteFloat(ENetPacket &packet, float value)
+void PacketHandler::WriteFloat(ENetPacket* packet, float value)
 {
 	WriteValue(packet, &value, sizeof(float));
 }
 
-void PacketHandler::WriteString(ENetPacket &packet, std::string src)
+void PacketHandler::WriteString(ENetPacket* packet, std::string src)
 {
 	int size = sizeof(&src);
 	WriteValue(packet, &size, sizeof(int));

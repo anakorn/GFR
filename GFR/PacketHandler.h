@@ -7,9 +7,9 @@
 #include <string>
 #include <map>
 #include <queue>
-#include <utility>
+#include <functional>
 
-#define CALL_MEMBER_FN(object, ptrToMember) ((object).*(ptrToMember))
+using namespace std::placeholders;
 
 namespace networking
 {
@@ -33,9 +33,6 @@ namespace networking
 		// Sends packet to specific peers
 		void SendPacket(ENetPacket* packet, ENetPeer* recipient, const u32 &channel = 0);
 	protected:
-		// For callback functions that are associated with packet types
-		typedef void (PacketHandler::*PacketCallback)(ENetPacket*, ENetPeer*);
-
 		NetPeer* m_Net;
 		// Pointer to current data being read in packet
 		u32 m_PacketPointer;
@@ -43,16 +40,16 @@ namespace networking
 		// Initialize all packet type/function callback pairs here
 		// (which functions are called for which packet headers)
 		virtual void RegisterPacketTypes() = 0;
-		void RegisterPacketType(PacketTypes type, PacketCallback* callbackFunction);
+		void RegisterPacketType(PacketTypes type, std::function<void(ENetPacket*, ENetPeer*)> func);
 
-		void WriteBool(ENetPacket &packet, bool value);
-		void WriteChar(ENetPacket &packet, char value);
-		void WriteShort(ENetPacket &packet, short value);
-		void WriteU16(ENetPacket &packet, u16 value);
-		void WriteInt(ENetPacket &packet, int value);
-		void WriteU32(ENetPacket &packet, u32 value);
-		void WriteFloat(ENetPacket &packet, float value);
-		void WriteString(ENetPacket &packet, std::string value);
+		void WriteBool(ENetPacket* packet, bool value);
+		void WriteChar(ENetPacket* packet, char value);
+		void WriteShort(ENetPacket* packet, short value);
+		void WriteU16(ENetPacket* packet, u16 value);
+		void WriteInt(ENetPacket* packet, int value);
+		void WriteU32(ENetPacket* packet, u32 value);
+		void WriteFloat(ENetPacket* packet, float value);
+		void WriteString(ENetPacket* packet, std::string value);
 
 		bool ReadBool(const ENetPacket &packet, const bool &peek = false);
 		char ReadChar(const ENetPacket &packet, const bool &peek = false);
@@ -63,10 +60,10 @@ namespace networking
 		float ReadFloat(const ENetPacket &packet, const bool &peek = false);
 		std::string ReadString(const ENetPacket &packet, const bool &peek = false);
 	private:
-		std::map<PacketTypes, PacketCallback*> m_PacketCallbacks;
+		std::map<PacketTypes, std::function<void(ENetPacket*, ENetPeer*)>> m_PacketCallbacks;
 		std::queue<std::pair<ENetPacket*, ENetPeer*>> m_PacketQueue;
 
-		void WriteValue(ENetPacket &packet, void* value, const u32 &size);
+		void WriteValue(ENetPacket* packet, void* value, const u32 &size);
 		void ReadValue(const ENetPacket &packet, void* dst, const u32 &size, const bool &peek);
 
 		void HandlePacket(ENetPacket* packet, ENetPeer* sender);

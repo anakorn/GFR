@@ -48,6 +48,8 @@
 #include "allegro5/bitmap_io.h"
 #include "allegro5/bitmap.h"
 
+#include <allegro5/allegro_audio.h>
+
 #include "allegro5/tls.h"
 
 #include "allegro5/file.h"

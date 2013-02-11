@@ -2,12 +2,12 @@
 
 using namespace framework;
 
-void DrawComponent::SetAnimationState()
+void DrawComponent::SetTexture(Texture& texture)
 {
+	m_Texture = &texture;
+};
 
-}
-
-Texture* DrawComponent::GetImage()
+const Texture& DrawComponent::GetTexture()
 {
-	return texture;
-}
+	return *m_Texture;
+};

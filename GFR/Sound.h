@@ -1,26 +1,24 @@
-// Sound.h
-// Wrapper for allegro (in progress)
-
 #ifndef GFR_FRAMEWORK_TYPES_SOUND_H
 #define GFR_FRAMEWORK_TYPES_SOUND_H
 
-#include <string>
 #include <allegro5/allegro_audio.h>
 
-class Sound
+namespace framework
 {
-public:
-	Sound(const char* soundFile);
-	~Sound();
-
-	ALLEGRO_SAMPLE* getSound()
+	/*	ALLEGRO_SAMPLE type abstraction.
+	*/
+	class Sound
 	{
-		return sound;
-	}
+	public:
+		Sound				(ALLEGRO_SAMPLE* sample);
+		~Sound				();
 
-private:
-	ALLEGRO_SAMPLE* sound;
+		ALLEGRO_SAMPLE*		GetSample() const { return m_Sample; }
 
+	private:
+		ALLEGRO_SAMPLE*		m_Sample;
+
+	};
 };
 
 #endif

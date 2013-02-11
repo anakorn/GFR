@@ -48,7 +48,7 @@ void PhysicsMgr::DestroyBody(b2Body* body)
 void PhysicsMgr::Update(f32 deltaTime, u32 velocityIterations, u32 positionIterations)
 {
 	// World must be created before physics can be updated.
-	assert(m_World == NULL);
+	assert(m_World);
 
 	m_World->Step(deltaTime, velocityIterations, positionIterations);
 	m_World->ClearForces();

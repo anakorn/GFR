@@ -3,7 +3,6 @@
 #include "Common.h"
 #include "allegro5\allegro.h"
 #include "StateManager.h"
-#include "Texture.h"
 
 namespace framework
 {
@@ -29,13 +28,21 @@ namespace framework
 		static void					ResizeWindow			(const u32 &width, const u32 &height);
 		static u32					GetScreenWidth			();
 		static u32					GetScreenHeight			();
+		static f32					GetUpdateRate			();
+		static f32					GetDrawRate				();
+
+
 		static void					PrintConsole			(const char* str);
 
 		// ContentMgr
 		static void					SetDefaultDirectory		();
-		static std::string			GetContentDirectory		(std::string subFolder);
+		static const std::string	GetContentDirectory		(const char* subFolder);
+		static ALLEGRO_BITMAP*		CreateBitmap			(const char* pathFile);
+		static void					DestroyBitmap			(ALLEGRO_BITMAP* bitmap);
+		static ALLEGRO_SAMPLE*		CreateSample			(const char* pathFile);
+		static void					DestroySample			(ALLEGRO_SAMPLE* sample);
 		
-		static void					Draw					(Texture* texture, float x, float y);
+		static void					DrawTexture				(ALLEGRO_BITMAP*, f32 dx, f32 dy, u32 flags = 0);
 		
 		static game::gameState::StateManager s_StateManager;
 

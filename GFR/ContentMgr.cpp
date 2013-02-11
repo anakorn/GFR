@@ -4,21 +4,22 @@
 #include "ContentUnloadException.h"
 
 namespace fs = boost::filesystem;
+using namespace framework;
 
-boost::unordered_map<std::string, Texture&>* ContentMgr::textureMap = new boost::unordered_map<std::string, Texture&>();
-boost::unordered_map<std::string, Sound&>* ContentMgr::soundMap = new boost::unordered_map<std::string, Sound&>();
+boost::unordered_map<std::string, Texture*>* ContentMgr::textureMap = new boost::unordered_map<std::string, Texture*>();
+boost::unordered_map<std::string, Sound*>* ContentMgr::soundMap = new boost::unordered_map<std::string, Sound*>();
 
 // Change working directory path to go straight
 // to assets folder to minimize key length.
 void ContentMgr::Initialize()
 {
-	framework::GFR_AL::SetDefaultDirectory();
+	GFR_AL::SetDefaultDirectory();
 };
 
 bool ContentMgr::LoadAllContent()
 {
 	LoadContentMap<Texture>("Textures", textureMap);
-	LoadContentMap<Sound>("Sounds", soundMap);
+	//LoadContentMap<Sound>("Sounds", soundMap);
 	
 	return true;
 };
@@ -30,13 +31,13 @@ void ContentMgr::UnloadAllContent()
 }
 
 template<typename T>
-T& ContentMgr::LoadContent(const std::string file)
+T* ContentMgr::LoadContent(const std::string file)
 {
 	throw ContentLoadException(file);
 };
 
 template<>
-Texture& ContentMgr::LoadContent<Texture>(const std::string file)
+Texture* ContentMgr::LoadContent<Texture>(const std::string file)
 {
 	// If mapping does exists, return map value.
 	// Otherwise, load content from file system.
@@ -46,55 +47,56 @@ Texture& ContentMgr::LoadContent<Texture>(const std::string file)
 	}
 	else
 	{
-		std::string path = framework::GFR_AL::GetContentDirectory("Textures") + file;
+		std::string pathfilename = GFR_AL::GetContentDirectory("Textures") + file;
 
 		try
 		{
-			Texture* content = new Texture(path.c_str());
+			ALLEGRO_BITMAP* bitmap = GFR_AL::CreateBitmap(pathfilename.c_str());
+			Texture* texture = new Texture(bitmap);
 
-			textureMap->insert(std::pair<const std::string, Texture&>(file, *content));
-			return *content;
+			textureMap->insert(std::pair<const std::string, Texture*>(file, texture));
+			return texture;
 		}
-		catch(ContentLoadException& e)
+		catch (ContentLoadException& e)
 		{
-			framework::GFR_AL::PrintConsole(e.getMessage().c_str());
+			GFR_AL::PrintConsole(e.getMessage().c_str());
 
 			// TEMP: To satisfy return until better solution found.
-			Texture* content = new Texture(path.c_str());
-			return *content;
+			assert(NULL);
+			return NULL;
 			// TEMP.
 		}
 	}
 };
 
 template<>
-Sound& ContentMgr::LoadContent<Sound>(const std::string file)
+Sound* ContentMgr::LoadContent<Sound>(const std::string file)
 {
 	// If mapping does exists, return map value.
 	// Otherwise, load content from file system.
 	if (soundMap->find(file) != soundMap->end())
 	{
-		Sound& sound = soundMap->at(file);
-		return sound;
+		return soundMap->at(file);
 	}
 	else
 	{
-		std::string path = framework::GFR_AL::GetContentDirectory("Sounds") + file;
+		std::string pathfilename = GFR_AL::GetContentDirectory("Sounds") + file;
 
 		try
 		{
-			Sound* content = new Sound(path.c_str());
+			ALLEGRO_SAMPLE* sample = GFR_AL::CreateSample(pathfilename.c_str());
+			Sound* sound = new Sound(sample);
 
-			soundMap->insert(std::pair<const std::string, Sound&>(file, *content));
-			return *content;
+			soundMap->insert(std::pair<const std::string, Sound*>(file, sound));
+			return sound;
 		}
-		catch(ContentLoadException& e)
+		catch (ContentLoadException& e)
 		{
-			framework::GFR_AL::PrintConsole(e.getMessage().c_str());
+			GFR_AL::PrintConsole(e.getMessage().c_str());
 
 			// TEMP: To satisfy return until better solution found.
-			Sound* content = new Sound(path.c_str());
-			return *content;
+			assert(NULL);
+			return NULL;
 			// TEMP.
 		}
 	}
@@ -120,10 +122,11 @@ void ContentMgr::UnloadContent<Sound>(const std::string file)
 
 // TODO: Figure out how to pass in different template maps as parameters.
 template <typename T>
-void ContentMgr::LoadContentMap(const std::string subFolder, boost::unordered_map<std::string, T&>* map)
+void ContentMgr::LoadContentMap(const std::string subFolder, boost::unordered_map<std::string, T*>* map)
 {
+	std::string contentPathDir = GFR_AL::GetContentDirectory(subFolder.c_str());
 	fs::recursive_directory_iterator end;
-	fs::recursive_directory_iterator rdi(framework::GFR_AL::GetContentDirectory(subFolder));
+	fs::recursive_directory_iterator rdi(contentPathDir);
 
 	while (rdi != end)
 	{
@@ -131,22 +134,24 @@ void ContentMgr::LoadContentMap(const std::string subFolder, boost::unordered_ma
 
 		try
 		{
-			T* content = new T(path.c_str());
 			// TODO fix this line to be more flexible & cross-platform.
 			// Plus 1 to the substr to get rid of directory separator for key.
 			const std::string key = path.substr(path.rfind(subFolder) + subFolder.length() + 1, path.length() - 1);
-			map->insert(std::pair<const std::string, T&>(key, *content));
+			
+			T* content = LoadContent<T>(key);
+			map->insert(std::pair<const std::string, T*>(key, content));
+			T* t = map->at(key);
 
 			++rdi;
 		}
-		catch(fs::filesystem_error)
+		catch (fs::filesystem_error)
 		{
 			rdi.no_push();
 			++rdi;
 		}
-		catch(ContentLoadException& e)
+		catch (ContentLoadException& e)
 		{
-			framework::GFR_AL::PrintConsole(e.getMessage().c_str());
+			GFR_AL::PrintConsole(e.getMessage().c_str());
 			++rdi;
 		}
 	}

@@ -20,17 +20,17 @@ public:
 	// LoadContent() checks the corresponding
 	// map for the filePath parameter as the key.
 	template<typename T>
-	static T& LoadContent(const std::string filePath);
+	static T* LoadContent(const std::string filePath);
 
 	template<typename T>
 	static void UnloadContent(const std::string file);
 
 private:
-	static boost::unordered_map<std::string, Texture&>* textureMap;
-	static boost::unordered_map<std::string, Sound&>* soundMap;
+	static boost::unordered_map<std::string, framework::Texture*>* textureMap;
+	static boost::unordered_map<std::string, framework::Sound*>* soundMap;
 
 	template <typename T>
-	static void LoadContentMap(const std::string subFolder, boost::unordered_map<std::string, T&>* map);
+	static void LoadContentMap(const std::string subFolder, boost::unordered_map<std::string, T*>* map);
 
 };
 

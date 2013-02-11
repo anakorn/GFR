@@ -134,7 +134,7 @@ bool GFR_AL::InitSystems()
 	al_set_window_title(s_Display, "GodFighter");
 
 	return true;
-}
+};
 
 void GFR_AL::DestroySystems()
 {
@@ -146,13 +146,13 @@ void GFR_AL::DestroySystems()
 		al_destroy_timer(s_UpdateTimer);
 	if (s_DrawTimer != NULL)
 		al_destroy_timer(s_DrawTimer);
-}
+};
 
 void GFR_AL::InitGame(game::stateTypes::Type initStateType)
 {
 	InitializeGUI();
 	s_StateManager.SetState(initStateType);
-}
+};
 
 void GFR_AL::RunGameLoop()
 {
@@ -211,38 +211,48 @@ void GFR_AL::RunGameLoop()
 			al_flip_display();*/
 		}
 	}
-}
+};
 
 void GFR_AL::EndGame()
 {
 	s_IsRunning = false;
-}
+};
 
 bool GFR_AL::IsRunning()
 {
 	return s_IsRunning;
-}
+};
 
 void GFR_AL::ResizeWindow(const u32 &width, const u32 &height)
 {
 	s_WindowWidth = width;
 	s_WindowHeight = height;
-}
+};
 
 u32 GFR_AL::GetScreenWidth()
 {
 	return s_WindowWidth;
-}
+};
 
 u32 GFR_AL::GetScreenHeight()
 {
 	return s_WindowHeight;
-}
+};
+
+f32 GFR_AL::GetUpdateRate()
+{
+	return s_UpdateRate;
+};
+
+f32 GFR_AL::GetDrawRate()
+{
+	return s_DrawRate;
+};
 
 void GFR_AL::PrintConsole(const char* str)
 {
 	fprintf(stderr, str);
-}
+};
 
 void GFR_AL::CalculateStretchScale()
 {
@@ -253,7 +263,7 @@ void GFR_AL::CalculateStretchScale()
 	al_identity_transform(&trans);
 	al_scale_transform(&trans, sx, sy);
 	al_use_transform(&trans);
-}
+};
 
 void GFR_AL::CalculateScale()
 {
@@ -265,7 +275,7 @@ void GFR_AL::CalculateScale()
 	s_ScaleH = TARGET_SCREEN_HEIGHT * scale;
 	s_ScaleX = (s_WindowWidth - s_ScaleW) / 2.0f;
 	s_ScaleY = (s_WindowHeight - s_ScaleH) / 2.0f;
-}
+};
 
 void GFR_AL::InitializeGUI(void)
 {
@@ -276,7 +286,7 @@ void GFR_AL::InitializeGUI(void)
 	agui::Font* m_DefaultFont = agui::Font::load("Fonts/PTSans.ttf", 16);
 	//Setting a global font is required and failure to do so will crash.
 	agui::Widget::setGlobalFont(m_DefaultFont);
-}
+};
 
 void GFR_AL::SetDefaultDirectory()
 {
@@ -285,21 +295,41 @@ void GFR_AL::SetDefaultDirectory()
 	al_change_directory(al_path_cstr(path, '/'));
 
 	al_destroy_path(path);
-}
+};
 
-std::string GFR_AL::GetContentDirectory(std::string subFolder)
+const std::string GFR_AL::GetContentDirectory(const char* subFolder)
 {
 	ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
 	al_append_path_component(path, "assets");
-	al_append_path_component(path, subFolder.c_str());
+	al_append_path_component(path, subFolder);
 
-	std::string stringifiedPath = al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP);
+	std::string pathFileName_str = std::string(al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP));
 	al_destroy_path(path);
 
-	return stringifiedPath;
-}
+	return pathFileName_str;
+};
 
-void GFR_AL::Draw(Texture* texture, float x, float y)
+ALLEGRO_BITMAP* GFR_AL::CreateBitmap(const char* pathFile)
 {
-	//al_draw_bitmap();
-}
+	return al_load_bitmap(pathFile);
+};
+
+void GFR_AL::DestroyBitmap(ALLEGRO_BITMAP* bitmap)
+{
+	al_destroy_bitmap(bitmap);
+};
+
+ALLEGRO_SAMPLE* GFR_AL::CreateSample(const char* pathFile)
+{
+	return al_load_sample(pathFile);
+};
+
+void GFR_AL::DestroySample(ALLEGRO_SAMPLE* sample)
+{
+	al_destroy_sample(sample);
+};
+
+void GFR_AL::DrawTexture(ALLEGRO_BITMAP* bitmap, f32 dx, f32 dy, u32 flags)
+{
+	al_draw_bitmap(bitmap, dx, dy, flags);
+};

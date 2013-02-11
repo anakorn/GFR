@@ -1,16 +1,15 @@
 #include "Sound.h"
+#include "GFR_AL.h"
 #include "ContentLoadException.h"
 
-Sound::Sound(const char* fileName)
-	: sound(al_load_sample(fileName))
+using namespace framework;
+
+Sound::Sound(ALLEGRO_SAMPLE* sample)
+	: m_Sample(sample)
 {
-	if (sound == NULL)
-	{
-		throw ContentLoadException(fileName);
-	}
-}
+};
 
 Sound::~Sound()
 {
-	al_destroy_sample(sound);
-}
+	GFR_AL::DestroySample(m_Sample);
+};

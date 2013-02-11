@@ -1,25 +1,24 @@
-// Texture.h
-// Wrapper for allegro bitmaps
-
 #ifndef GFR_FRAMEWORK_TYPES_TEXTURE_H
 #define GFR_FRAMEWORK_TYPES_TEXTURE_H
 
 #include <allegro5/allegro.h>
 
-class Texture
+namespace framework
 {
-public:
-	Texture(const char* fileName);
-	~Texture();
-
-	ALLEGRO_BITMAP* getBitmap()
+	/*	ALLEGRO_BITMAP type abstraction.
+	*/
+	class Texture
 	{
-		return bitmap;
-	}
+	public:
+		Texture				(ALLEGRO_BITMAP* bitmap);
+		~Texture			();
 
-private:
-	ALLEGRO_BITMAP* bitmap;
+		ALLEGRO_BITMAP*		GetBitmap() const { return m_Bitmap; }
 
+	private:
+		ALLEGRO_BITMAP*		m_Bitmap;
+
+	};
 };
 
 #endif

@@ -8,13 +8,14 @@ namespace framework
 	class DrawComponent : public Component
 	{
 	public:
-		void		SetAnimationState	();
-		Texture*	GetImage			();
+		void				SetAnimationState	();
+		void				SetTexture			(Texture& texture);
+		const Texture&		GetTexture			();
 
-		virtual const u64 GetMask() const { return MASK_DRAW; }
+		virtual const u64	GetMask() const { return MASK_DRAW; }
 
 	private:
-		Texture* texture;
+		Texture*			m_Texture;
 
 	};
 	COMPONENT_REGISTER(DrawComponent, "DrawComponent")

@@ -1,22 +1,15 @@
 #include "Texture.h"
+#include "GFR_AL.h"
 #include "ContentLoadException.h"
-#include <iostream>
 
-Texture::Texture(const char* fileName)
-	: bitmap(al_load_bitmap(fileName))
+using namespace framework;
+
+Texture::Texture(ALLEGRO_BITMAP* bitmap)
+	: m_Bitmap(bitmap)
 {
-	if (bitmap == NULL)
-	{
-		throw ContentLoadException(fileName);
-	}
-}
+};
 
 Texture::~Texture()
 {
-	al_destroy_bitmap(bitmap);
-}
-
-ALLEGRO_BITMAP* getBitmap()
-{
-	return NULL;	
-}
+	GFR_AL::DestroyBitmap(m_Bitmap);
+};

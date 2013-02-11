@@ -15,7 +15,7 @@ NetPeer::~NetPeer()
 
 void NetPeer::AddPacketHandler(game::stateTypes::Type state, PacketHandler* handler)
 {
-	handler->SetNetPeer(this);
+	handler->Attach(this);
 	m_Handlers.insert(std::make_pair(state, handler));
 }
 
@@ -87,9 +87,6 @@ void NetPeer::ListenFunc()
 		{
 			switch (m_Event.type)
 			{
-			case ENET_EVENT_TYPE_CONNECT:
-				HandleConnect(*m_Event.packet, *m_Event.peer);
-				break;
 			case ENET_EVENT_TYPE_RECEIVE:
 				{
 					for(auto iter = m_Handlers.begin(); iter != m_Handlers.end(); ++iter)
@@ -98,6 +95,9 @@ void NetPeer::ListenFunc()
 							break;
 					}
 				}
+				break;
+			case ENET_EVENT_TYPE_CONNECT:
+				HandleConnect(*m_Event.packet, *m_Event.peer);
 				break;
 			case ENET_EVENT_TYPE_DISCONNECT:
 				HandleDisconnect(*m_Event.packet, *m_Event.peer);
@@ -115,5 +115,8 @@ void NetPeer::ShutDown()
 {
 	enet_host_destroy(m_Net);
 	enet_deinitialize();
+
 	m_Status = SHUTDOWN;
+
+	RemoveAllActivePacketHandlers();
 }

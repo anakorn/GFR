@@ -44,8 +44,8 @@ namespace networking
 
 		std::map<game::stateTypes::Type, PacketHandler*> m_Handlers;
 
-		virtual void Listen();
-		virtual void ListenFunc();
+		void Listen();
+		void ListenFunc();
 
 		virtual void HandleConnect(const ENetPacket &packet, const ENetPeer &peer) = 0;
 		virtual void HandleDisconnect(const ENetPacket &packet, const ENetPeer &peer) = 0;

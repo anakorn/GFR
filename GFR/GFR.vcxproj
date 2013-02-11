@@ -87,6 +87,10 @@
     <ClInclude Include="ContentMgr.h" />
     <ClInclude Include="ContentUnloadException.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="Connection.h" />
+    <ClInclude Include="ConnectionsHandler.h" />
+    <ClInclude Include="C_LobbyHandler.h" />
+    <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="GFR_AL.h" />
@@ -108,7 +112,6 @@
     <ClInclude Include="NetServer.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="OptionsGUI.h" />
-    <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="NetworkEnums.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="ServerLobby.h" />
@@ -128,10 +131,13 @@
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="ContentMgr.cpp" />
+    <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ControlSystem.cpp" />
     <ClCompile Include="DrawComponent.cpp" />
+    <ClCompile Include="C_LobbyHandler.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="PacketHandler.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="GFR_AL.cpp" />
@@ -148,7 +154,6 @@
     <ClCompile Include="NetServer.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="OptionsGUI.cpp" />
-    <ClCompile Include="PacketHandler.cpp" />
     <ClCompile Include="ServerLobby.cpp" />
     <ClCompile Include="ServerLobbyGUI.cpp" />
     <ClCompile Include="ServerLobbySetup.cpp" />

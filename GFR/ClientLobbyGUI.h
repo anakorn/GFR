@@ -3,6 +3,7 @@
 
 #include "NetClient.h"
 #include "GUIBase.h"
+#include <Agui/Widgets/Label/Label.hpp>
 
 namespace game
 {
@@ -11,13 +12,15 @@ namespace game
 		class ClientLobbyGUI : public GUIBase
 		{
 		public:
-			ClientLobbyGUI(networking::NetClient &client);
+			ClientLobbyGUI(const networking::NetClient &client);
 			~ClientLobbyGUI();
 
 			void InitializeGUIComponents() override;
 			void Update() override;
 		private:
 			networking::NetClient m_Client;
+
+			agui::Label m_StatusLabel;
 		};
 	};
 };

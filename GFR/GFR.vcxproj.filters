@@ -40,9 +40,6 @@
     <Filter Include="framework\managers\inputMgr">
       <UniqueIdentifier>{abe7d686-2590-405d-b000-fb044f4c4cd6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="framework\networking\packet handlers">
-      <UniqueIdentifier>{300eb7a8-72ca-40b1-a964-2216269a40c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="game">
       <UniqueIdentifier>{36663d84-09dd-44a4-a21c-5ca58601447d}</UniqueIdentifier>
     </Filter>
@@ -63,6 +60,9 @@
     </Filter>
     <Filter Include="framework\managers\contentMgr">
       <UniqueIdentifier>{0f38bf69-0a5d-4fb9-9291-a3d99c3a7d6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\networking">
+      <UniqueIdentifier>{722ae73f-eb25-4cf9-9022-c5fc842bd79a}</UniqueIdentifier>
     </Filter>
     <Filter Include="framework\types">
       <UniqueIdentifier>{e1217a7a-96a6-4153-8a7b-99b32b2710ef}</UniqueIdentifier>
@@ -139,9 +139,6 @@
     <ClInclude Include="NetClient.h">
       <Filter>framework\networking</Filter>
     </ClInclude>
-    <ClInclude Include="PacketHandler.h">
-      <Filter>framework\networking\packet handlers</Filter>
-    </ClInclude>
     <ClInclude Include="ClientLobby.h">
       <Filter>game\gamestate\states</Filter>
     </ClInclude>
@@ -190,14 +187,26 @@
     <ClInclude Include="ContentMgr.h">
       <Filter>framework\managers\contentMgr</Filter>
     </ClInclude>
+    <ClInclude Include="C_LobbyHandler.h">
+      <Filter>game\networking</Filter>
+    </ClInclude>
     <ClInclude Include="Sound.h">
       <Filter>framework\types</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionsHandler.h">
+      <Filter>game\networking</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>framework\types</Filter>
     </ClInclude>
+    <ClInclude Include="Connection.h">
+      <Filter>framework\networking</Filter>
+    </ClInclude>
     <ClInclude Include="ContentLoadException.h">
       <Filter>framework\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandler.h">
+      <Filter>framework\networking</Filter>
     </ClInclude>
     <ClInclude Include="ContentUnloadException.h">
       <Filter>framework\exceptions</Filter>
@@ -259,9 +268,6 @@
     <ClCompile Include="NetClient.cpp">
       <Filter>framework\networking</Filter>
     </ClCompile>
-    <ClCompile Include="PacketHandler.cpp">
-      <Filter>framework\networking\packet handlers</Filter>
-    </ClCompile>
     <ClCompile Include="ClientLobby.cpp">
       <Filter>game\gamestate\states</Filter>
     </ClCompile>
@@ -304,11 +310,20 @@
     <ClCompile Include="ContentMgr.cpp">
       <Filter>framework\managers\contentMgr</Filter>
     </ClCompile>
+    <ClCompile Include="C_LobbyHandler.cpp">
+      <Filter>game\networking</Filter>
+    </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>framework\types</Filter>
     </ClCompile>
+    <ClCompile Include="Connection.cpp">
+      <Filter>framework\networking</Filter>
+    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>framework\types</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandler.cpp">
+      <Filter>framework\networking</Filter>
     </ClCompile>
     <ClCompile Include="DrawComponent.cpp">
       <Filter>framework\component\derivations</Filter>

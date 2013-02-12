@@ -14,7 +14,7 @@ namespace networking
 		SHUTDOWN
 	};
 
-	enum PacketTypes : unsigned char
+	enum PacketTypes : char
 	{
 		CHARACTER_SELECT,
 		CLIENT_CONNECT,

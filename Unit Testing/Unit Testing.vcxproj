@@ -43,13 +43,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\external\enet\include;$(SolutionDir)\external\cpptest\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\external\agui\include;$(SolutionDir)\external\allegro\include;$(SolutionDir)\GFR;$(SolutionDir)\external\enet\include;$(SolutionDir)\external\cpptest\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>cpptest.lib;enet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\cpptest\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cpptest.lib;enet.lib;allegro-5.0.8-monolith-md-debug.lib;agui.lib;GFR.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Debug;$(SolutionDir)\external\agui\lib\Debug;$(SolutionDir)\external\allegro\lib;$(SolutionDir)\external\enet\lib;$(SolutionDir)\external\cpptest\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

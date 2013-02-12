@@ -1,4 +1,4 @@
-#include "..\GFR\NetClient.h"
+#include <NetClient.h>
 #include "NetworkingSuite.h"
 
 using namespace UnitTesting;
@@ -16,10 +16,9 @@ NetworkingSuite::~NetworkingSuite()
 
 void NetworkingSuite::TestClientConnect()
 {
-
+	networking::NetClient client = networking::NetClient(11111);
 }
 
 void NetworkingSuite::TestPacketIO()
 {
-	networking::NetClient client = networking::NetClient(11111);
 }

@@ -13,6 +13,8 @@ namespace game
 			// IP and port of server to connect to
 			ClientLobby(const char* ip, const u32 &port);
 			~ClientLobby();
+
+			void Update() override;
 		};
 	};
 };

@@ -316,9 +316,6 @@
     <ClCompile Include="Sound.cpp">
       <Filter>framework\types</Filter>
     </ClCompile>
-    <ClCompile Include="Connection.cpp">
-      <Filter>framework\networking</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>framework\types</Filter>
     </ClCompile>

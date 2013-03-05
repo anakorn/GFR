@@ -113,11 +113,15 @@ bool GFR_AL::InitSystems()
 	// Retrieve max FPS from display refresh rate
 	s_DrawRate = (f32) al_get_display_refresh_rate(s_Display);
 	s_DrawRate = (s_DrawRate == 0.0f) ? 60.0f : s_DrawRate;
+	s_DrawRate = 1.0f / s_DrawRate;
+
+	// Update rate is double the draw rate
+	s_UpdateRate = 2.0f * s_DrawRate;
 
 	// Game will be updated @ half of refresh rate
-	s_UpdateTimer = al_create_timer(2.0f / s_DrawRate);
+	s_UpdateTimer = al_create_timer(s_UpdateRate);
 	// Game will be drawn @ display refresh rate
-	s_DrawTimer = al_create_timer(1.0f / s_DrawRate);
+	s_DrawTimer = al_create_timer(s_DrawRate);
 
 	if (!s_UpdateTimer || !s_DrawTimer) {
 		PrintConsole("GFR_AL::Create() call al_create_timer() failed.\n");

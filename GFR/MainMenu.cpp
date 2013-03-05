@@ -19,14 +19,14 @@ MainMenu::MainMenu()
 	m_Gui = new gui::MainMenuGUI();
 	m_Gui->InitializeGUIComponents();
 
-	m_PhysMgr.CreateWorld(0, 5, true);
+	m_PhysMgr.CreateWorld(0, 9.8f, true);
 
 	Entity* ent = new Entity();
 	ent->AttachComponent("PhysicsComponent");
 	ent->AttachComponent("DrawComponent");
 
 	static_cast<PhysicsComponent*>(ent->GetComponent("PhysicsComponent"))->SetBody(
-		m_PhysMgr.CreateDynamicBody(0, 0, 0, 0, 0, 0, true, true, true));
+		m_PhysMgr.CreateDynamicBody(0, 0, 0, 0, 0, 1.0f, true, true, true));
 	static_cast<DrawComponent*>(ent->GetComponent("DrawComponent"))->SetTexture(
 		*ContentMgr::LoadContent<Texture>("test.png"));
 
@@ -37,9 +37,9 @@ void MainMenu::Update()
 {
 	FOR_EACH(it, m_Entities)
 	{
-		m_MovementSystem.ProcessEntity(*it);
+		m_ControlSystem.ProcessEntity(*it);
 	}
-	
+
 	m_PhysMgr.Update(GFR_AL::GetUpdateRate());
 	State::Update();
 };
@@ -47,6 +47,10 @@ void MainMenu::Update()
 void MainMenu::Render()
 {
 	
+	FOR_EACH(it, m_Entities)
+	{
+		m_MovementSystem.ProcessEntity(*it);
+	}
 
 	State::Render();
 };

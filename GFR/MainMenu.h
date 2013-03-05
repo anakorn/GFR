@@ -7,6 +7,7 @@
 #include "PhysicsMgr.h"
 #include "Entity.h"
 #include "MovementSystem.h"
+#include "ControlSystem.h"
 // END TEMP
 
 namespace game
@@ -23,6 +24,7 @@ namespace game
 			virtual void Render();
 
 		private:
+			framework::ControlSystem		m_ControlSystem;
 			framework::MovementSystem		m_MovementSystem;
 			framework::PhysicsMgr			m_PhysMgr;
 			std::list <framework::Entity>	m_Entities;

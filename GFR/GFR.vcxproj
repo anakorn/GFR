@@ -131,7 +131,6 @@
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="ContentMgr.cpp" />
-    <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ControlSystem.cpp" />
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="C_LobbyHandler.cpp" />

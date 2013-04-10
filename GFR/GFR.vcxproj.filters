@@ -94,9 +94,6 @@
     <ClInclude Include="InputMgr.h">
       <Filter>framework\managers\inputMgr</Filter>
     </ClInclude>
-    <ClInclude Include="InputKeyNums.h">
-      <Filter>framework\managers\inputMgr</Filter>
-    </ClInclude>
     <ClInclude Include="GFR_AL.h">
       <Filter>framework\allegro</Filter>
     </ClInclude>

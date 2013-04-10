@@ -42,6 +42,10 @@ namespace framework
 		static ALLEGRO_SAMPLE*		CreateSample			(const char* pathFile);
 		static void					DestroySample			(ALLEGRO_SAMPLE* sample);
 		
+		// InputMgr
+		static bool					InitializeInputDevices	(ALLEGRO_EVENT_QUEUE* queue);
+		static std::string			KeyCodeToString			(int keyCode);
+
 		static void					DrawTexture				(ALLEGRO_BITMAP*, f32 dx, f32 dy, u32 flags = 0);
 		
 		static game::gameState::StateManager s_StateManager;

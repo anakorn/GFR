@@ -102,7 +102,6 @@
     <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GUIBase.h" />
-    <ClInclude Include="InputKeyNums.h" />
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MainMenuGUI.h" />

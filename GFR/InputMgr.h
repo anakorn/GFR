@@ -3,6 +3,9 @@
 
 #include "Common.h"
 #include "allegro5\allegro.h"
+#include "boost/unordered_map.hpp"
+#include <vector>
+#include <functional>
 
 namespace framework
 {
@@ -14,18 +17,15 @@ namespace framework
 	public:
 		// AL installs moved to InputMgr so that we can write
 		// a different InputMgr or initialize function for each control type
-		// ex. one for mouse/keyboard, another for controller
+		// ex. one for mouse/keyboard, another for controller.
+		typedef boost::unordered_map<std::string, std::vector<std::function<void()>>> FunctionMap;
+
 		static bool		Initialize	(ALLEGRO_EVENT_QUEUE* queue);
-		static void		Update		(void);
-		static bool		IsDown		(const u32 keyNum);
-		static void		BindKey		(const u32 keyNum, const u32 keyBind);
-		
-		static const char* GetBoundKeyName	(const u32 keyNum);
-		
-		static bool		LoadBindings(/*file*/);
+		static void		AddFunction (std::string key, std::function<void()> function);
+		static void		PressKey	(char keyCode);
 
 	private:
-
+		static FunctionMap* inputFunctions;
 
 	};
 };

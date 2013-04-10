@@ -189,6 +189,9 @@ void GFR_AL::RunGameLoop()
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
 			s_IsRunning = false;
+		case ALLEGRO_EVENT_KEY_DOWN:
+			InputMgr::PressKey(event.keyboard.keycode);
+			break;
 		default:
 			break;
 		}
@@ -311,6 +314,22 @@ const std::string GFR_AL::GetContentDirectory(const char* subFolder)
 	al_destroy_path(path);
 
 	return pathFileName_str;
+};
+
+bool GFR_AL::InitializeInputDevices(ALLEGRO_EVENT_QUEUE* queue)
+{
+	bool keyboardInstalled = al_install_keyboard();
+	bool mouseInstalled = al_install_mouse();
+
+	al_register_event_source(queue, al_get_keyboard_event_source());
+	al_register_event_source(queue, al_get_mouse_event_source());
+
+	return keyboardInstalled && mouseInstalled;
+};
+
+std::string GFR_AL::KeyCodeToString(int keyCode)
+{
+	return al_keycode_to_name(keyCode);
 };
 
 ALLEGRO_BITMAP* GFR_AL::CreateBitmap(const char* pathFile)

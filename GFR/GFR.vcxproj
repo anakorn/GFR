@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ClientLobby.h" />
     <ClInclude Include="ClientLobbyGUI.h" />
     <ClInclude Include="ClientLobbySetup.h" />
@@ -123,6 +124,7 @@
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClientLobby.cpp" />
     <ClCompile Include="ClientLobbyGUI.cpp" />
     <ClCompile Include="ClientLobbySetup.cpp" />

@@ -4,6 +4,7 @@
 
 #include "Common.h"
 #include <allegro5/allegro5.h>
+#include <string>
 
 namespace framework
 {
@@ -13,18 +14,24 @@ namespace framework
 		Configuration();
 		~Configuration();
 
-		static bool LoadConfigFile(const char* filename);
+		static bool		LoadConfigFile(const std::string filename);
 
-		static const char* GetStringValue(const char* section, const char* key);
-		static const bool GetBoolValue(const char* section, const char* key);
-		static const f32 GetFloatValue(const char* section, const char* key);
-		static const u32 GetIntValue(const char* section, const char* key);
+		static const	std::string GetStringValue(const std::string section, const std::string key);
+		static const	bool GetBoolValue(const std::string section, const std::string key);
+		static const	f32 GetFloatValue(const std::string section, const std::string key);
+		static const	u32 GetIntValue(const std::string section, const std::string key);
 
-		static void SetValue(const char* section, const char* key, const char* value);
-		static void SaveNewValues();
+		static void		SetValue(const std::string section, const std::string key, const std::string value);
+		static void		SaveNewValues();
 
 		// Programmatically set all default values
-		static void ResetConfigFile(const char* filename);
+		static void		ResetConfigFile(const std::string filename);
+
+	private:
+		static ALLEGRO_CONFIG*		s_ConfigFile;
+		static const std::string	s_ConfigPath;
+		static std::string			s_FullPath;
+
 	};
 };
 

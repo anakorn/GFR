@@ -70,6 +70,9 @@
     <Filter Include="framework\exceptions">
       <UniqueIdentifier>{2b2e95df-cd7f-4d19-a57d-f63e6b0766f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\managers\camera">
+      <UniqueIdentifier>{bef148af-d683-4771-8642-8cef1d2f2ecc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -208,6 +211,9 @@
     <ClInclude Include="ContentUnloadException.h">
       <Filter>framework\exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>framework\managers\camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -321,6 +327,9 @@
     </ClCompile>
     <ClCompile Include="DrawComponent.cpp">
       <Filter>framework\component\derivations</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>framework\managers\camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

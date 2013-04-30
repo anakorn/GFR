@@ -189,9 +189,12 @@ void GFR_AL::RunGameLoop()
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
 			s_IsRunning = false;
+			break;
 		case ALLEGRO_EVENT_KEY_DOWN:
 			InputMgr::PressKey(event.keyboard.keycode);
 			break;
+		case ALLEGRO_EVENT_KEY_UP:
+			InputMgr::ReleaseKey(event.keyboard.keycode);
 		default:
 			break;
 		}

@@ -19,6 +19,8 @@ MainMenu::MainMenu()
 	m_Gui = new gui::MainMenuGUI();
 	m_Gui->InitializeGUIComponents();
 
+	m_Camera = Camera();
+
 	m_PhysMgr.CreateWorld(0, 9.8f, true);
 
 	Entity* ent = new Entity();
@@ -41,6 +43,8 @@ void MainMenu::Update()
 	}
 
 	m_PhysMgr.Update(GFR_AL::GetUpdateRate());
+	m_Camera.Translate(1.0f, 0);
+	m_Camera.Update();
 	State::Update();
 };
 

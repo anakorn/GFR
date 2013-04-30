@@ -21,12 +21,12 @@ namespace framework
 		typedef boost::unordered_map<std::string, std::vector<std::function<void()>>> FunctionMap;
 
 		static bool		Initialize	(ALLEGRO_EVENT_QUEUE* queue);
-		static void		AddFunction (std::string key, std::function<void()> function);
-		static void		PressKey	(char keyCode);
+		static void		AddFunction (std::string key, std::function<void()> function, FunctionMap* map);
+		static void		PressKey	(int keyCode);
+		static void		ReleaseKey	(int keyCode);
 
-	private:
-		static FunctionMap* inputFunctions;
-
+		static FunctionMap* keyDownFunctions;
+		static FunctionMap* keyUpFunctions;
 	};
 };
 

@@ -8,6 +8,7 @@
 #include "Entity.h"
 #include "MovementSystem.h"
 #include "ControlSystem.h"
+#include "Camera.h"
 // END TEMP
 
 namespace game
@@ -28,6 +29,7 @@ namespace game
 			framework::MovementSystem		m_MovementSystem;
 			framework::PhysicsMgr			m_PhysMgr;
 			std::list <framework::Entity>	m_Entities;
+			framework::Camera				m_Camera;
 
 		};
 	};

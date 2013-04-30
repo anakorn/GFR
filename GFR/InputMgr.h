@@ -15,18 +15,41 @@ namespace framework
 	class InputMgr
 	{
 	public:
+		enum MouseButton
+		{
+			LEFT = 1,
+			RIGHT = 2,
+			MIDDLE = 3
+		};
+
 		// AL installs moved to InputMgr so that we can write
 		// a different InputMgr or initialize function for each control type
 		// ex. one for mouse/keyboard, another for controller.
-		typedef boost::unordered_map<std::string, std::vector<std::function<void()>>> FunctionMap;
+		typedef boost::unordered_map<std::string, std::vector<std::function<void()>>> KeyFunctionMap;
+		typedef boost::unordered_map<unsigned int, std::vector<std::function<void(int, int, int)>>> MouseFunctionMap;
 
-		static bool		Initialize	(ALLEGRO_EVENT_QUEUE* queue);
-		static void		AddFunction (std::string key, std::function<void()> function, FunctionMap* map);
-		static void		PressKey	(int keyCode);
-		static void		ReleaseKey	(int keyCode);
+		static bool		Initialize				(ALLEGRO_EVENT_QUEUE* queue);
 
-		static FunctionMap* keyDownFunctions;
-		static FunctionMap* keyUpFunctions;
+		// Event Register Functions
+		static void		AddKeyFunction			(std::string key, std::function<void()> function, KeyFunctionMap* map);
+		static void		AddMouseMoveFunction	(std::function<void(int, int)> function);
+		static void		AddMouseClickFunction	(unsigned int key, std::function<void(int, int, int)> function, MouseFunctionMap* map);
+
+		// Event Call Functions
+		static void		PressKey				(int keyCode);
+		static void		ReleaseKey				(int keyCode);			
+		static void		MoveMouse				(int mouseX, int mouseY);
+		static void		MouseDown				(unsigned int button, int mouseX, int mouseY, int mouseZ);
+		static void		MouseUp					(unsigned int button, int mouseX, int mouseY, int mouseZ);
+
+		// External Function Containers
+		static KeyFunctionMap* keyDownFunctions;
+		static KeyFunctionMap* keyUpFunctions;
+
+		static MouseFunctionMap* mouseDownFunctions;
+		static MouseFunctionMap* mouseUpFunctions;
+
+		static std::vector<std::function<void(int, int)>>* moveMouseFunctions;
 	};
 };
 

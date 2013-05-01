@@ -31,7 +31,6 @@ namespace framework
 		static f32					GetUpdateRate			();
 		static f32					GetDrawRate				();
 
-
 		static void					PrintConsole			(const char* str);
 
 		// ContentMgr

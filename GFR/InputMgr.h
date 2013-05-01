@@ -15,12 +15,6 @@ namespace framework
 	class InputMgr
 	{
 	public:
-		enum MouseButton
-		{
-			LEFT = 1,
-			RIGHT = 2,
-			MIDDLE = 3
-		};
 
 		// AL installs moved to InputMgr so that we can write
 		// a different InputMgr or initialize function for each control type
@@ -31,9 +25,11 @@ namespace framework
 		static bool		Initialize				(ALLEGRO_EVENT_QUEUE* queue);
 
 		// Event Register Functions
-		static void		AddKeyFunction			(std::string key, std::function<void()> function, KeyFunctionMap* map);
-		static void		AddMouseMoveFunction	(std::function<void(int, int)> function);
-		static void		AddMouseClickFunction	(unsigned int key, std::function<void(int, int, int)> function, MouseFunctionMap* map);
+		static void		RegisterKeyDownFunction		(std::string key, std::function<void()> function);
+		static void		RegisterKeyUpFunction		(std::string key, std::function<void()> function);
+		static void		RegisterMouseMoveFunction	(std::function<void(int, int)> function);
+		static void		RegisterMouseDownFunction	(unsigned int key, std::function<void(int, int, int)> function);
+		static void		RegisterMouseUpFunction		(unsigned int key, std::function<void(int, int, int)> function);
 
 		// Event Call Functions
 		static void		PressKey				(int keyCode);
@@ -41,6 +37,10 @@ namespace framework
 		static void		MoveMouse				(int mouseX, int mouseY);
 		static void		MouseDown				(unsigned int button, int mouseX, int mouseY, int mouseZ);
 		static void		MouseUp					(unsigned int button, int mouseX, int mouseY, int mouseZ);
+
+	private:
+		static void		RegisterKeyFunction			(std::string key, std::function<void()> function, KeyFunctionMap* map);
+		static void		RegisterMouseFunction		(unsigned int key, std::function<void(int, int, int)> function, MouseFunctionMap* map);
 
 		// External Function Containers
 		static KeyFunctionMap* keyDownFunctions;

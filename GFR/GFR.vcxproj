@@ -87,6 +87,7 @@
     <ClInclude Include="ContentLoadException.h" />
     <ClInclude Include="ContentMgr.h" />
     <ClInclude Include="ContentUnloadException.h" />
+    <ClInclude Include="MouseButtons.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="ConnectionsHandler.h" />

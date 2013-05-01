@@ -19,43 +19,29 @@ bool InputMgr::Initialize(ALLEGRO_EVENT_QUEUE* queue)
 };
 
 // Create a map of keys that each contain a vector of function pointers.
-void InputMgr::AddKeyFunction(std::string key, std::function<void()> function, KeyFunctionMap* map)
+void InputMgr::RegisterKeyDownFunction(std::string key, std::function<void()> function)
 {
-	// If the input functions key-binding doesn't exists in the map...
-	if (map->find(key) == map->end())
-	{
-		// Create a new vector for input functions.
-		std::vector<std::function<void()>> boundFunctions = std::vector<std::function<void()>>();
-		boundFunctions.push_back(function);
-
-		map->insert(std::pair<std::string, std::vector<std::function<void()>>>(key, boundFunctions));
-	}
-	else
-	{
-		map->at(key).push_back(function);
-	}
+	RegisterKeyFunction(key, function, keyDownFunctions);
 };
 
-void InputMgr::AddMouseMoveFunction(std::function<void(int, int)> function)
+void InputMgr::RegisterKeyUpFunction(std::string key, std::function<void()> function)
+{
+	RegisterKeyFunction(key, function, keyUpFunctions);
+};
+
+void InputMgr::RegisterMouseMoveFunction(std::function<void(int, int)> function)
 {
 	moveMouseFunctions->push_back(function);
 };
 
-void InputMgr::AddMouseClickFunction(unsigned int key, std::function<void(int, int, int)> function, MouseFunctionMap* map)
+void InputMgr::RegisterMouseDownFunction(unsigned int key, std::function<void(int, int, int)> function)
 {
-	// If the input functions key-binding doesn't exists in the map...
-	if (map->find(key) == map->end())
-	{
-		// Create a new vector for input functions.
-		std::vector<std::function<void(int, int, int)>> boundFunctions = std::vector<std::function<void(int, int, int)>>();
-		boundFunctions.push_back(function);
+	RegisterMouseFunction(key, function, mouseDownFunctions);
+};
 
-		map->insert(std::pair<unsigned int, std::vector<std::function<void(int, int, int)>>>(key, boundFunctions));
-	}
-	else
-	{
-		map->at(key).push_back(function);
-	}
+void InputMgr::RegisterMouseUpFunction(unsigned int key, std::function<void(int, int, int)> function)
+{
+	RegisterMouseFunction(key, function, mouseUpFunctions);
 };
 
 void InputMgr::PressKey(int keyCode)
@@ -119,5 +105,39 @@ void InputMgr::MouseUp(unsigned int button, int mouseX, int mouseY, int mouseZ)
 		{
 			functionsToCall.at(i)(mouseX, mouseY, mouseZ);
 		}
+	}
+};
+
+void InputMgr::RegisterKeyFunction(std::string key, std::function<void()> function, KeyFunctionMap* map)
+{
+	// If the input functions key-binding doesn't exists in the map...
+	if (map->find(key) == map->end())
+	{
+		// Create a new vector for input functions.
+		std::vector<std::function<void()>> boundFunctions = std::vector<std::function<void()>>();
+		boundFunctions.push_back(function);
+
+		map->insert(std::pair<std::string, std::vector<std::function<void()>>>(key, boundFunctions));
+	}
+	else
+	{
+		map->at(key).push_back(function);
+	}
+};
+
+void InputMgr::RegisterMouseFunction(unsigned int key, std::function<void(int, int, int)> function, MouseFunctionMap* map)
+{
+	// If the input functions key-binding doesn't exists in the map...
+	if (map->find(key) == map->end())
+	{
+		// Create a new vector for input functions.
+		std::vector<std::function<void(int, int, int)>> boundFunctions = std::vector<std::function<void(int, int, int)>>();
+		boundFunctions.push_back(function);
+
+		map->insert(std::pair<unsigned int, std::vector<std::function<void(int, int, int)>>>(key, boundFunctions));
+	}
+	else
+	{
+		map->at(key).push_back(function);
 	}
 };

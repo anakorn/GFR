@@ -9,6 +9,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+#include "MouseButtons.h"
 
 using namespace framework;
 
@@ -158,10 +159,17 @@ void GFR_AL::InitGame(game::stateTypes::Type initStateType)
 	s_StateManager.SetState(initStateType);
 };
 
+void test(int x, int y, int z)
+{
+	GFR_AL::PrintConsole("Works");
+};
+
 void GFR_AL::RunGameLoop()
 {
 	s_IsRunning = true;
 	bool redraw = true;
+
+	InputMgr::RegisterMouseDownFunction(MouseButton::LEFT, test);
 
 	while (s_IsRunning)
 	{

@@ -73,6 +73,12 @@
     <Filter Include="framework\managers\camera">
       <UniqueIdentifier>{bef148af-d683-4771-8642-8cef1d2f2ecc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\allegro\gfrAl_inputMgr">
+      <UniqueIdentifier>{85236957-78fe-48c2-bd30-2aa527a0221a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\allegro\gfrAl_contentMgr">
+      <UniqueIdentifier>{9ceaa784-07e9-4d76-b08c-f70b959e4c42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -217,6 +223,12 @@
     <ClInclude Include="MouseButtons.h">
       <Filter>framework</Filter>
     </ClInclude>
+    <ClInclude Include="GFRAL_InputMgr.h">
+      <Filter>framework\allegro\gfrAl_inputMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="GFRAL_ContentMgr.h">
+      <Filter>framework\allegro\gfrAl_contentMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -333,6 +345,12 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>framework\managers\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="GFRAL_InputMgr.cpp">
+      <Filter>framework\allegro\gfrAl_inputMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="GFRAL_ContentMgr.cpp">
+      <Filter>framework\allegro\gfrAl_contentMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

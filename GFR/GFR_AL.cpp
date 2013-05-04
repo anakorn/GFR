@@ -309,63 +309,6 @@ void GFR_AL::InitializeGUI(void)
 	agui::Widget::setGlobalFont(m_DefaultFont);
 };
 
-void GFR_AL::SetDefaultDirectory()
-{
-	ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
-	al_append_path_component(path, "assets");
-	al_change_directory(al_path_cstr(path, '/'));
-
-	al_destroy_path(path);
-};
-
-const std::string GFR_AL::GetContentDirectory(const char* subFolder)
-{
-	ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
-	al_append_path_component(path, "assets");
-	al_append_path_component(path, subFolder);
-
-	std::string pathFileName_str = std::string(al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP));
-	al_destroy_path(path);
-
-	return pathFileName_str;
-};
-
-bool GFR_AL::InitializeInputDevices(ALLEGRO_EVENT_QUEUE* queue)
-{
-	bool keyboardInstalled = al_install_keyboard();
-	bool mouseInstalled = al_install_mouse();
-
-	al_register_event_source(queue, al_get_keyboard_event_source());
-	al_register_event_source(queue, al_get_mouse_event_source());
-
-	return keyboardInstalled && mouseInstalled;
-};
-
-std::string GFR_AL::KeyCodeToString(int keyCode)
-{
-	return al_keycode_to_name(keyCode);
-};
-
-ALLEGRO_BITMAP* GFR_AL::CreateBitmap(const char* pathFile)
-{
-	return al_load_bitmap(pathFile);
-};
-
-void GFR_AL::DestroyBitmap(ALLEGRO_BITMAP* bitmap)
-{
-	al_destroy_bitmap(bitmap);
-};
-
-ALLEGRO_SAMPLE* GFR_AL::CreateSample(const char* pathFile)
-{
-	return al_load_sample(pathFile);
-};
-
-void GFR_AL::DestroySample(ALLEGRO_SAMPLE* sample)
-{
-	al_destroy_sample(sample);
-};
-
 void GFR_AL::DrawTexture(ALLEGRO_BITMAP* bitmap, f32 dx, f32 dy, u32 flags)
 {
 	al_draw_bitmap(bitmap, dx, dy, flags);

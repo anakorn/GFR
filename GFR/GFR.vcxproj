@@ -78,6 +78,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GFRAL_ContentMgr.h" />
+    <ClInclude Include="GFRAL_InputMgr.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClientLobby.h" />
     <ClInclude Include="ClientLobbyGUI.h" />
@@ -125,6 +127,8 @@
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GFRAL_ContentMgr.cpp" />
+    <ClCompile Include="GFRAL_InputMgr.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClientLobby.cpp" />
     <ClCompile Include="ClientLobbyGUI.cpp" />

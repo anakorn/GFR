@@ -159,17 +159,10 @@ void GFR_AL::InitGame(game::stateTypes::Type initStateType)
 	s_StateManager.SetState(initStateType);
 };
 
-void test(int x, int y, int z)
-{
-	GFR_AL::PrintConsole("Works");
-};
-
 void GFR_AL::RunGameLoop()
 {
 	s_IsRunning = true;
 	bool redraw = true;
-
-	InputMgr::RegisterMouseDownFunction(MouseButton::LEFT, test);
 
 	while (s_IsRunning)
 	{
@@ -190,20 +183,20 @@ void GFR_AL::RunGameLoop()
 			else if(event.timer.source == s_DrawTimer)
 				redraw = true;
 			break;
+		case ALLEGRO_EVENT_MOUSE_AXES:
+			InputMgr::MoveMouse(event.mouse);
+			break;
 		case ALLEGRO_EVENT_KEY_DOWN:
-			InputMgr::PressKey(event.keyboard.keycode);
+			InputMgr::PressKey(event.keyboard);
 			break;
 		case ALLEGRO_EVENT_KEY_UP:
-			InputMgr::ReleaseKey(event.keyboard.keycode);
-			break;
-		case ALLEGRO_EVENT_MOUSE_AXES:
-			InputMgr::MoveMouse(event.mouse.x, event.mouse.y);
+			InputMgr::ReleaseKey(event.keyboard);
 			break;
 		case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-			InputMgr::MouseDown(event.mouse.button, event.mouse.x, event.mouse.y, event.mouse.z);
+			InputMgr::MouseDown(event.mouse);
 			break;
 		case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
-			InputMgr::MouseUp(event.mouse.button, event.mouse.x, event.mouse.y, event.mouse.z);
+			InputMgr::MouseUp(event.mouse);
 			break;
 		case ALLEGRO_EVENT_DISPLAY_RESIZE: 
 		case ALLEGRO_EVENT_DISPLAY_FOUND: 

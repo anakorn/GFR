@@ -19,28 +19,28 @@ namespace framework
 		// AL installs moved to InputMgr so that we can write
 		// a different InputMgr or initialize function for each control type
 		// ex. one for mouse/keyboard, another for controller.
-		typedef boost::unordered_map<std::string, std::vector<std::function<void()>>> KeyFunctionMap;
-		typedef boost::unordered_map<unsigned int, std::vector<std::function<void(int, int, int)>>> MouseFunctionMap;
+		typedef boost::unordered_map<int, std::vector<std::function<void(ALLEGRO_KEYBOARD_EVENT)>>> KeyFunctionMap;
+		typedef boost::unordered_map<int, std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>>> MouseFunctionMap;
 
 		static bool		Initialize				(ALLEGRO_EVENT_QUEUE* queue);
 
 		// Event Register Functions
-		static void		RegisterKeyDownFunction		(std::string key, std::function<void()> function);
-		static void		RegisterKeyUpFunction		(std::string key, std::function<void()> function);
-		static void		RegisterMouseMoveFunction	(std::function<void(int, int)> function);
-		static void		RegisterMouseDownFunction	(unsigned int key, std::function<void(int, int, int)> function);
-		static void		RegisterMouseUpFunction		(unsigned int key, std::function<void(int, int, int)> function);
+		static void		RegisterKeyDownFunction		(int key, std::function<void(ALLEGRO_KEYBOARD_EVENT)> function);
+		static void		RegisterKeyUpFunction		(int key, std::function<void(ALLEGRO_KEYBOARD_EVENT)> function);
+		static void		RegisterMouseMoveFunction	(std::function<void(ALLEGRO_MOUSE_EVENT)> function);
+		static void		RegisterMouseDownFunction	(unsigned int key, std::function<void(ALLEGRO_MOUSE_EVENT)> function);
+		static void		RegisterMouseUpFunction		(unsigned int key, std::function<void(ALLEGRO_MOUSE_EVENT)> function);
 
 		// Event Call Functions
-		static void		PressKey				(int keyCode);
-		static void		ReleaseKey				(int keyCode);			
-		static void		MoveMouse				(int mouseX, int mouseY);
-		static void		MouseDown				(unsigned int button, int mouseX, int mouseY, int mouseZ);
-		static void		MouseUp					(unsigned int button, int mouseX, int mouseY, int mouseZ);
+		static void		PressKey				(ALLEGRO_KEYBOARD_EVENT event);
+		static void		ReleaseKey				(ALLEGRO_KEYBOARD_EVENT event);			
+		static void		MoveMouse				(ALLEGRO_MOUSE_EVENT event);
+		static void		MouseDown				(ALLEGRO_MOUSE_EVENT event);
+		static void		MouseUp					(ALLEGRO_MOUSE_EVENT event);
 
 	private:
-		static void		RegisterKeyFunction			(std::string key, std::function<void()> function, KeyFunctionMap* map);
-		static void		RegisterMouseFunction		(unsigned int key, std::function<void(int, int, int)> function, MouseFunctionMap* map);
+		static void		RegisterKeyFunction			(int key, std::function<void(ALLEGRO_KEYBOARD_EVENT)> function, KeyFunctionMap* map);
+		static void		RegisterMouseFunction		(unsigned int key, std::function<void(ALLEGRO_MOUSE_EVENT)> function, MouseFunctionMap* map);
 
 		// External Function Containers
 		static KeyFunctionMap* keyDownFunctions;
@@ -49,7 +49,7 @@ namespace framework
 		static MouseFunctionMap* mouseDownFunctions;
 		static MouseFunctionMap* mouseUpFunctions;
 
-		static std::vector<std::function<void(int, int)>>* moveMouseFunctions;
+		static std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>>* moveMouseFunctions;
 	};
 };
 

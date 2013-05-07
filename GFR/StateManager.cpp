@@ -5,6 +5,8 @@
 #include "ServerLobby.h"
 #include "ServerLobbySetup.h"
 #include "Options.h"
+#include "Gameplay.h"
+#include "PlayableCharacter.h"
 #include <vector>
 
 using namespace game;
@@ -57,7 +59,11 @@ State* StateManager::LoadState(game::stateTypes::Type type, std::vector<void*> a
 		State = new Options();
 		break;
 	case game::stateTypes::GAMEPLAY:
-		break;
+		{
+			//characters::Class playerClass = *static_cast<characters::Class*>(args[0]);
+			State = new Gameplay(characters::Class::ENGINEER);
+			break;
+		}
 	case game::stateTypes::PAUSE:
 		break;
 	default:

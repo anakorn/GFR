@@ -17,3 +17,13 @@ const f32 PhysicsComponent::GetY(void)
 {
 	return m_Body->GetPosition().y;
 };
+
+const b2Vec2 PhysicsComponent::GetLinearVelocity(void)
+{
+	return m_Body->GetLinearVelocity();
+}
+
+void PhysicsComponent::SetLinearVelocity(f32 x, f32 y)
+{
+	m_Body->SetLinearVelocity(b2Vec2(x, y));
+}

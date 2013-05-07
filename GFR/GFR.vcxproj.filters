@@ -73,6 +73,12 @@
     <Filter Include="framework\managers\camera">
       <UniqueIdentifier>{bef148af-d683-4771-8642-8cef1d2f2ecc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\input">
+      <UniqueIdentifier>{f5710324-4aba-4b76-a980-7688ea04799d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\characters">
+      <UniqueIdentifier>{2735109a-6d9f-4f60-902a-9c7cf2159cb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -214,6 +220,18 @@
     <ClInclude Include="Camera.h">
       <Filter>framework\managers\camera</Filter>
     </ClInclude>
+    <ClInclude Include="PlayableCharacter.h">
+      <Filter>game\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Runner.h">
+      <Filter>game\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerController.h">
+      <Filter>game\input</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay.h">
+      <Filter>game\gamestate\states</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -330,6 +348,15 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>framework\managers\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Runner.cpp">
+      <Filter>game\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay.cpp">
+      <Filter>game\gamestate\states</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerController.cpp">
+      <Filter>game\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

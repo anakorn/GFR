@@ -1,5 +1,6 @@
 #include "MainMenuGUI.h"
 #include "GFR_AL.h"
+#include "PlayableCharacter.h"
 
 using namespace game;
 using namespace gui;
@@ -10,6 +11,7 @@ public:
 	virtual void actionPerformed(const agui::ActionEvent &evt) override;
 };
 
+agui::Button gameplayTestButton;
 agui::Button hostGameButton;
 agui::Button joinGameButton;
 agui::Button optionsButton;
@@ -41,6 +43,11 @@ void MainMenuGUI::InitializeGUIComponents()
 	frame.setText("Example Frame");
 	layout.add(&frame);
 
+	gameplayTestButton.setText("Test Gameplay");
+	gameplayTestButton.resizeToContents();
+	gameplayTestButton.addActionListener(&buttonListener);
+	layout.add(&gameplayTestButton);
+
 	hostGameButton.setText("Host Game");
 	hostGameButton.resizeToContents();
 	hostGameButton.addActionListener(&buttonListener);
@@ -66,7 +73,14 @@ void MainMenuButtonListener::actionPerformed(const agui::ActionEvent &evt)
 {
 	agui::Widget* source = evt.getSource();
 
-	if (source == &hostGameButton)
+	if (source == &gameplayTestButton)
+	{
+		std::vector<void*> args;
+		// Hard code for now until selection is implemented
+		args.push_back(0);
+		framework::GFR_AL::s_StateManager.PushState(stateTypes::GAMEPLAY, args);
+	}
+	else if (source == &hostGameButton)
 		framework::GFR_AL::s_StateManager.PushState(stateTypes::SERVER_LOBBY_SETUP);
 	else if (source == &joinGameButton)
 		framework::GFR_AL::s_StateManager.PushState(stateTypes::CLIENT_LOBBY_SETUP);

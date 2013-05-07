@@ -21,7 +21,8 @@ stateTypes::Type State::GetStateType()
 
 void State::ProcessEvent(ALLEGRO_EVENT event)
 {
-	m_Gui->ProcessEvent(event);
+	if (m_Gui)
+		m_Gui->ProcessEvent(event);
 }
 
 void State::Update()

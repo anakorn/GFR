@@ -10,9 +10,12 @@ namespace framework
 	public:
 		~PhysicsComponent();
 
-		const f32	GetX			(void);
-		const f32	GetY			(void);
-		void		SetBody			(b2Body* body) { m_Body = body; }
+		const f32	 GetX				(void);
+		const f32	 GetY				(void);
+		void		 SetBody			(b2Body* body) { m_Body = body; }
+
+		const b2Vec2 GetLinearVelocity	(void);
+		void		 SetLinearVelocity	(f32 x, f32 y);
 
 		virtual const u64 GetMask() const { return MASK_PHYSICS; }
 

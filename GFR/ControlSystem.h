@@ -10,7 +10,12 @@ namespace framework
 		ControlSystem();
 		virtual void ProcessEntity(Entity& entity);
 
-		// TODO: PHYSICS set from INPUT here
+	private:
+		void MoveLeft();
+		void MoveRight();
+		void Jump();
+
+		void CastAbility(u32 index);
 	};
 };
 

@@ -2,11 +2,11 @@
 #define GFR_FRAMEWORK_COMPONENT_COMPONENTMASK_H
 
 // There can be at most 64 masks total! No more than 64 unique components allowed.
-#define MASK_PHYSICS	(1 << 0)
-#define MASK_DRAW		(1 << 1)
-#define MASK_INPUT		(1 << 2)
-//#define MASK_	(1 << 3)
-//#define MASK_	(1 << 4)
+#define MASK_PHYSICS			(1 << 0)
+#define MASK_DRAW				(1 << 1)
+#define MASK_INPUT				(1 << 2)
+#define MASK_RUNNER				(1 << 3)
+#define MASK_RUNNERCONTROLLER	(1 << 4)
 //#define MASK_	(1 << 5)
 //#define MASK_	(1 << 6)
 //#define MASK_	(1 << 7)

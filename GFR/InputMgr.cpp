@@ -1,7 +1,7 @@
 #include "InputMgr.h"
 #include "Common.h"
 #include "allegro5\allegro.h"
-#include "GFR_AL.h"
+#include "GFRAL_InputMgr.h"
 
 using namespace framework;
 
@@ -11,46 +11,109 @@ InputMgr::KeyFunctionMap* InputMgr::keyUpFunctions = new KeyFunctionMap();
 InputMgr::MouseFunctionMap* InputMgr::mouseDownFunctions = new MouseFunctionMap();
 InputMgr::MouseFunctionMap* InputMgr::mouseUpFunctions = new MouseFunctionMap();
 
-std::vector<std::function<void(int, int)>>* InputMgr::moveMouseFunctions = new std::vector<std::function<void(int, int)>>();
+std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>>* InputMgr::moveMouseFunctions = new std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>>();
 
 bool InputMgr::Initialize(ALLEGRO_EVENT_QUEUE* queue)
 {
-	return GFR_AL::InitializeInputDevices(queue);
+	return GFRAL_InputMgr::InitializeInputDevices(queue);
 };
 
 // Create a map of keys that each contain a vector of function pointers.
-void InputMgr::AddKeyFunction(std::string key, std::function<void()> function, KeyFunctionMap* map)
+void InputMgr::RegisterKeyDownFunction(int key, std::function<void(ALLEGRO_KEYBOARD_EVENT)> function)
 {
-	// If the input functions key-binding doesn't exists in the map...
-	if (map->find(key) == map->end())
-	{
-		// Create a new vector for input functions.
-		std::vector<std::function<void()>> boundFunctions = std::vector<std::function<void()>>();
-		boundFunctions.push_back(function);
-
-		map->insert(std::pair<std::string, std::vector<std::function<void()>>>(key, boundFunctions));
-	}
-	else
-	{
-		map->at(key).push_back(function);
-	}
+	RegisterKeyFunction(key, function, keyDownFunctions);
 };
 
-void InputMgr::AddMouseMoveFunction(std::function<void(int, int)> function)
+void InputMgr::RegisterKeyUpFunction(int key, std::function<void(ALLEGRO_KEYBOARD_EVENT)> function)
+{
+	RegisterKeyFunction(key, function, keyUpFunctions);
+};
+
+void InputMgr::RegisterMouseMoveFunction(std::function<void(ALLEGRO_MOUSE_EVENT)> function)
 {
 	moveMouseFunctions->push_back(function);
 };
 
-void InputMgr::AddMouseClickFunction(unsigned int key, std::function<void(int, int, int)> function, MouseFunctionMap* map)
+void InputMgr::RegisterMouseDownFunction(unsigned int key, std::function<void(ALLEGRO_MOUSE_EVENT)> function)
+{
+	RegisterMouseFunction(key, function, mouseDownFunctions);
+};
+
+void InputMgr::RegisterMouseUpFunction(unsigned int key, std::function<void(ALLEGRO_MOUSE_EVENT)> function)
+{
+	RegisterMouseFunction(key, function, mouseUpFunctions);
+};
+
+void InputMgr::PressKey(ALLEGRO_KEYBOARD_EVENT event)
+{
+	if (keyDownFunctions->find(event.keycode) != keyDownFunctions->end())
+	{
+		std::vector<std::function<void(ALLEGRO_KEYBOARD_EVENT)>> functionsToCall = keyDownFunctions->at(event.keycode);
+
+		for (unsigned int i = 0; i < functionsToCall.size(); i++)
+		{
+			functionsToCall.at(i)(event);
+		}
+	}
+};
+
+void InputMgr::ReleaseKey(ALLEGRO_KEYBOARD_EVENT event)
+{
+	if (keyUpFunctions->find(event.keycode) != keyUpFunctions->end())
+	{
+		std::vector<std::function<void(ALLEGRO_KEYBOARD_EVENT)>> functionsToCall = keyUpFunctions->at(event.keycode);
+
+		for (unsigned int i = 0; i < functionsToCall.size(); i++)
+		{
+			functionsToCall.at(i)(event);
+		}
+	}
+};
+
+void InputMgr::MoveMouse(ALLEGRO_MOUSE_EVENT event)
+{
+	for (unsigned int i = 0; i < moveMouseFunctions->size(); i++)
+	{
+		moveMouseFunctions->at(i)(event);
+	}
+};
+
+void InputMgr::MouseDown(ALLEGRO_MOUSE_EVENT event)
+{
+	if (mouseDownFunctions->find(event.button) != mouseDownFunctions->end())
+	{
+		std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>> functionsToCall = mouseDownFunctions->at(event.button);
+
+		for (unsigned int i = 0; i < functionsToCall.size(); i++)
+		{
+			functionsToCall.at(i)(event);
+		}
+	}
+};
+
+void InputMgr::MouseUp(ALLEGRO_MOUSE_EVENT event)
+{
+	if (mouseUpFunctions->find(event.button) != mouseUpFunctions->end())
+	{
+		std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>> functionsToCall = mouseUpFunctions->at(event.button);
+
+		for (unsigned int i = 0; i < functionsToCall.size(); i++)
+		{
+			functionsToCall.at(i)(event);
+		}
+	}
+};
+
+void InputMgr::RegisterKeyFunction(int key, std::function<void(ALLEGRO_KEYBOARD_EVENT)> function, KeyFunctionMap* map)
 {
 	// If the input functions key-binding doesn't exists in the map...
 	if (map->find(key) == map->end())
 	{
 		// Create a new vector for input functions.
-		std::vector<std::function<void(int, int, int)>> boundFunctions = std::vector<std::function<void(int, int, int)>>();
+		std::vector<std::function<void(ALLEGRO_KEYBOARD_EVENT)>> boundFunctions = std::vector<std::function<void(ALLEGRO_KEYBOARD_EVENT)>>();
 		boundFunctions.push_back(function);
 
-		map->insert(std::pair<unsigned int, std::vector<std::function<void(int, int, int)>>>(key, boundFunctions));
+		map->insert(std::pair<int, std::vector<std::function<void(ALLEGRO_KEYBOARD_EVENT)>>>(key, boundFunctions));
 	}
 	else
 	{
@@ -58,66 +121,19 @@ void InputMgr::AddMouseClickFunction(unsigned int key, std::function<void(int, i
 	}
 };
 
-void InputMgr::PressKey(int keyCode)
+void InputMgr::RegisterMouseFunction(unsigned int key, std::function<void(ALLEGRO_MOUSE_EVENT)> function, MouseFunctionMap* map)
 {
-	std::string key = GFR_AL::KeyCodeToString(keyCode);
-
-	if (keyDownFunctions->find(key) != keyDownFunctions->end())
+	// If the input functions key-binding doesn't exists in the map...
+	if (map->find(key) == map->end())
 	{
-		std::vector<std::function<void()>> functionsToCall = keyDownFunctions->at(key);
+		// Create a new vector for input functions.
+		std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>> boundFunctions = std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>>();
+		boundFunctions.push_back(function);
 
-		for (unsigned int i = 0; i < functionsToCall.size(); i++)
-		{
-			functionsToCall.at(i)();
-		}
+		map->insert(std::pair<unsigned int, std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>>>(key, boundFunctions));
 	}
-};
-
-void InputMgr::ReleaseKey(int keyCode)
-{
-	std::string key = GFR_AL::KeyCodeToString(keyCode);
-
-	if (keyUpFunctions->find(key) != keyUpFunctions->end())
+	else
 	{
-		std::vector<std::function<void()>> functionsToCall = keyUpFunctions->at(key);
-
-		for (unsigned int i = 0; i < functionsToCall.size(); i++)
-		{
-			functionsToCall.at(i)();
-		}
-	}
-};
-
-void InputMgr::MoveMouse(int mouseX, int mouseY)
-{
-	for (unsigned int i = 0; i < moveMouseFunctions->size(); i++)
-	{
-		moveMouseFunctions->at(i)(mouseX, mouseY);
-	}
-};
-
-void InputMgr::MouseDown(unsigned int button, int mouseX, int mouseY, int mouseZ)
-{
-	if (mouseDownFunctions->find(button) != mouseDownFunctions->end())
-	{
-		std::vector<std::function<void(int, int, int)>> functionsToCall = mouseDownFunctions->at(button);
-
-		for (unsigned int i = 0; i < functionsToCall.size(); i++)
-		{
-			functionsToCall.at(i)(mouseX, mouseY, mouseZ);
-		}
-	}
-};
-
-void InputMgr::MouseUp(unsigned int button, int mouseX, int mouseY, int mouseZ)
-{
-	if (mouseUpFunctions->find(button) != mouseUpFunctions->end())
-	{
-		std::vector<std::function<void(int, int, int)>> functionsToCall = mouseUpFunctions->at(button);
-
-		for (unsigned int i = 0; i < functionsToCall.size(); i++)
-		{
-			functionsToCall.at(i)(mouseX, mouseY, mouseZ);
-		}
+		map->at(key).push_back(function);
 	}
 };

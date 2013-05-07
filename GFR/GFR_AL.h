@@ -31,20 +31,7 @@ namespace framework
 		static f32					GetUpdateRate			();
 		static f32					GetDrawRate				();
 
-
 		static void					PrintConsole			(const char* str);
-
-		// ContentMgr
-		static void					SetDefaultDirectory		();
-		static const std::string	GetContentDirectory		(const char* subFolder);
-		static ALLEGRO_BITMAP*		CreateBitmap			(const char* pathFile);
-		static void					DestroyBitmap			(ALLEGRO_BITMAP* bitmap);
-		static ALLEGRO_SAMPLE*		CreateSample			(const char* pathFile);
-		static void					DestroySample			(ALLEGRO_SAMPLE* sample);
-		
-		// InputMgr
-		static bool					InitializeInputDevices	(ALLEGRO_EVENT_QUEUE* queue);
-		static std::string			KeyCodeToString			(int keyCode);
 
 		static void					DrawTexture				(ALLEGRO_BITMAP*, f32 dx, f32 dy, u32 flags = 0);
 		

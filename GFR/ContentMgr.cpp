@@ -1,7 +1,8 @@
 #include "ContentMgr.h"
-#include "GFR_AL.h"
+#include "GFRAL_ContentMgr.h"
 #include "ContentLoadException.h"
 #include "ContentUnloadException.h"
+#include "GFR_AL.h"
 
 namespace fs = boost::filesystem;
 using namespace framework;
@@ -13,7 +14,7 @@ boost::unordered_map<std::string, Sound*>* ContentMgr::soundMap = new boost::uno
 // to assets folder to minimize key length.
 void ContentMgr::Initialize()
 {
-	GFR_AL::SetDefaultDirectory();
+	GFRAL_ContentMgr::SetDefaultDirectory();
 };
 
 bool ContentMgr::LoadAllContent()
@@ -47,11 +48,11 @@ Texture* ContentMgr::LoadContent<Texture>(const std::string file)
 	}
 	else
 	{
-		std::string pathfilename = GFR_AL::GetContentDirectory("Textures") + file;
+		std::string pathfilename = GFRAL_ContentMgr::GetContentDirectory("Textures") + file;
 
 		try
 		{
-			ALLEGRO_BITMAP* bitmap = GFR_AL::CreateBitmap(pathfilename.c_str());
+			ALLEGRO_BITMAP* bitmap = GFRAL_ContentMgr::CreateBitmap(pathfilename.c_str());
 			Texture* texture = new Texture(bitmap);
 
 			textureMap->insert(std::pair<const std::string, Texture*>(file, texture));
@@ -80,11 +81,11 @@ Sound* ContentMgr::LoadContent<Sound>(const std::string file)
 	}
 	else
 	{
-		std::string pathfilename = GFR_AL::GetContentDirectory("Sounds") + file;
+		std::string pathfilename = GFRAL_ContentMgr::GetContentDirectory("Sounds") + file;
 
 		try
 		{
-			ALLEGRO_SAMPLE* sample = GFR_AL::CreateSample(pathfilename.c_str());
+			ALLEGRO_SAMPLE* sample = GFRAL_ContentMgr::CreateSample(pathfilename.c_str());
 			Sound* sound = new Sound(sample);
 
 			soundMap->insert(std::pair<const std::string, Sound*>(file, sound));
@@ -124,7 +125,7 @@ void ContentMgr::UnloadContent<Sound>(const std::string file)
 template <typename T>
 void ContentMgr::LoadContentMap(const std::string subFolder, boost::unordered_map<std::string, T*>* map)
 {
-	std::string contentPathDir = GFR_AL::GetContentDirectory(subFolder.c_str());
+	std::string contentPathDir = GFRAL_ContentMgr::GetContentDirectory(subFolder.c_str());
 	fs::recursive_directory_iterator end;
 	fs::recursive_directory_iterator rdi(contentPathDir);
 

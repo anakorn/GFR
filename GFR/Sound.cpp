@@ -1,5 +1,5 @@
 #include "Sound.h"
-#include "GFR_AL.h"
+#include "GFRAL_ContentMgr.h"
 #include "ContentLoadException.h"
 
 using namespace framework;
@@ -11,5 +11,5 @@ Sound::Sound(ALLEGRO_SAMPLE* sample)
 
 Sound::~Sound()
 {
-	GFR_AL::DestroySample(m_Sample);
+	GFRAL_ContentMgr::DestroySample(m_Sample);
 };

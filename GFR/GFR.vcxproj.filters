@@ -79,6 +79,9 @@
     <Filter Include="game\characters">
       <UniqueIdentifier>{2735109a-6d9f-4f60-902a-9c7cf2159cb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\allegro\managers">
+      <UniqueIdentifier>{bb6c65ec-9198-4ad8-bcc9-c20d961ff751}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -232,6 +235,12 @@
     <ClInclude Include="Gameplay.h">
       <Filter>game\gamestate\states</Filter>
     </ClInclude>
+    <ClInclude Include="GFRAL_ContentMgr.h">
+      <Filter>framework\allegro\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GFRAL_InputMgr.h">
+      <Filter>framework\allegro\managers</Filter>
+    </ClInclude>
     <ClInclude Include="EntityMgr.h">
       <Filter>framework\managers\entityMgr</Filter>
     </ClInclude>
@@ -360,6 +369,12 @@
     </ClCompile>
     <ClCompile Include="RunnerController.cpp">
       <Filter>game\input</Filter>
+    </ClCompile>
+    <ClCompile Include="GFRAL_ContentMgr.cpp">
+      <Filter>framework\allegro\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="GFRAL_InputMgr.cpp">
+      <Filter>framework\allegro\managers</Filter>
     </ClCompile>
     <ClCompile Include="EntityMgr.cpp">
       <Filter>framework\managers\entityMgr</Filter>

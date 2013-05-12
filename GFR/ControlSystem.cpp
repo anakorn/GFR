@@ -38,7 +38,7 @@ void ControlSystem::ProcessEntity(Entity& entity)
 		m_PhysComp = static_cast<PhysicsComponent*>(entity.GetComponent("PhysicsComponent"));
 
 	// Change y later when isJumping can be determined
-	b2Vec2 force(m_InputDirection.x * m_Pawn->GetCurrentMovementSpeed(), m_InputDirection.y * m_Pawn->GetCurrentJumpSpeed());
+	b2Vec2 force(m_InputDirection.x * m_Pawn->GetCurrentMovementSpeed(), -m_InputDirection.y * m_Pawn->GetCurrentJumpSpeed());
 	
 	m_PhysComp->ApplyImpulse(force);
 }

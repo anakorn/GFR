@@ -89,6 +89,8 @@
     <ClInclude Include="ContentUnloadException.h" />
     <ClInclude Include="EntityMgr.h" />
     <ClInclude Include="Gameplay.h" />
+    <ClInclude Include="GFRAL_ContentMgr.h" />
+    <ClInclude Include="GFRAL_InputMgr.h" />
     <ClInclude Include="PlayableCharacter.h" />
     <ClInclude Include="Runner.h" />
     <ClInclude Include="RunnerController.h" />
@@ -143,6 +145,8 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityMgr.cpp" />
     <ClCompile Include="Gameplay.cpp" />
+    <ClCompile Include="GFRAL_ContentMgr.cpp" />
+    <ClCompile Include="GFRAL_InputMgr.cpp" />
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="RunnerController.cpp" />
     <ClCompile Include="Sound.cpp" />

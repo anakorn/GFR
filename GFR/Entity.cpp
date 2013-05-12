@@ -24,6 +24,12 @@ Entity::Entity()
 
 }
 
+Entity::Entity(const u16 &networkID)
+	: m_pimpl(new EntityImpl()), m_NetworkID(networkID)
+{
+
+}
+
 Entity::~Entity()
 {
 	delete m_pimpl;
@@ -54,4 +60,9 @@ Component* Entity::GetComponent(const std::string& componentName)
 const u64 Entity::GetComponentsMask() const
 {
 	return m_pimpl->m_ComponentsMask;
+}
+
+const u16 Entity::GetNetworkID()
+{
+	return m_NetworkID;
 }

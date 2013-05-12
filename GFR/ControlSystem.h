@@ -10,10 +10,9 @@ namespace framework
 		ControlSystem();
 		virtual void ProcessEntity(Entity& entity);
 
-	private:
-		void MoveLeft();
-		void MoveRight();
-		void Jump();
+	protected:
+		void ChangeHorizontalDirection(const f32 &amount);
+		void ChangeVerticalDirection(const f32 &amount);
 
 		void CastAbility(u32 index);
 	};

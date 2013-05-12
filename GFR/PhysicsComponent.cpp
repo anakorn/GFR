@@ -23,7 +23,12 @@ const b2Vec2 PhysicsComponent::GetLinearVelocity(void)
 	return m_Body->GetLinearVelocity();
 }
 
-void PhysicsComponent::SetLinearVelocity(f32 x, f32 y)
+void PhysicsComponent::SetLinearVelocity(const f32 &x, const f32 &y)
 {
 	m_Body->SetLinearVelocity(b2Vec2(x, y));
+}
+
+void PhysicsComponent::ApplyImpulse(const b2Vec2 &impulse)
+{
+	m_Body->ApplyLinearImpulse(impulse, m_Body->GetWorldCenter());
 }

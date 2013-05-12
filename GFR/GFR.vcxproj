@@ -87,6 +87,7 @@
     <ClInclude Include="ContentLoadException.h" />
     <ClInclude Include="ContentMgr.h" />
     <ClInclude Include="ContentUnloadException.h" />
+    <ClInclude Include="EntityMgr.h" />
     <ClInclude Include="Gameplay.h" />
     <ClInclude Include="PlayableCharacter.h" />
     <ClInclude Include="Runner.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="C_LobbyHandler.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityMgr.cpp" />
     <ClCompile Include="Gameplay.cpp" />
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="RunnerController.cpp" />

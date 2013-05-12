@@ -232,6 +232,9 @@
     <ClInclude Include="Gameplay.h">
       <Filter>game\gamestate\states</Filter>
     </ClInclude>
+    <ClInclude Include="EntityMgr.h">
+      <Filter>framework\managers\entityMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -357,6 +360,9 @@
     </ClCompile>
     <ClCompile Include="RunnerController.cpp">
       <Filter>game\input</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityMgr.cpp">
+      <Filter>framework\managers\entityMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

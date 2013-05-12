@@ -17,9 +17,9 @@ ControlSystem::ControlSystem()
 {
 	// Eventually want to get controls from configuration
 	// Hard coded for now
-	InputMgr::AddKeyFunction("A", std::bind(&framework::ControlSystem::MoveLeft, this), InputMgr::keyDownFunctions);
-	InputMgr::AddKeyFunction("D", std::bind(&framework::ControlSystem::MoveRight, this), InputMgr::keyDownFunctions);
-	InputMgr::AddKeyFunction("W", std::bind(&framework::ControlSystem::Jump, this), InputMgr::keyDownFunctions);
+	InputMgr::RegisterKeyDownFunction(ALLEGRO_KEY_A, std::bind(&framework::ControlSystem::MoveLeft, this));
+	InputMgr::RegisterKeyDownFunction(ALLEGRO_KEY_D, std::bind(&framework::ControlSystem::MoveRight, this));
+	InputMgr::RegisterKeyDownFunction(ALLEGRO_KEY_W, std::bind(&framework::ControlSystem::Jump, this));
 }
 
 void ControlSystem::ProcessEntity(Entity& entity)

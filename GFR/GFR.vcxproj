@@ -87,6 +87,7 @@
     <ClInclude Include="ContentLoadException.h" />
     <ClInclude Include="ContentMgr.h" />
     <ClInclude Include="ContentUnloadException.h" />
+    <ClInclude Include="EntityMgr.h" />
     <ClInclude Include="Gameplay.h" />
     <ClInclude Include="GFRAL_ContentMgr.h" />
     <ClInclude Include="GFRAL_InputMgr.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="C_LobbyHandler.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityMgr.cpp" />
     <ClCompile Include="Gameplay.cpp" />
     <ClCompile Include="GFRAL_ContentMgr.cpp" />
     <ClCompile Include="GFRAL_InputMgr.cpp" />

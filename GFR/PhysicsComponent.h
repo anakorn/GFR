@@ -16,8 +16,10 @@ namespace framework
 		b2Body* const	GetBody				(void);
 		void			SetBody				(b2Body* body);
 
-		const b2Vec2	GetLinearVelocity	(void);
-		void			SetLinearVelocity	(f32 x, f32 y);
+		const b2Vec2 GetLinearVelocity	(void);
+		void		 SetLinearVelocity	(const f32 &x, const f32 &y);
+
+		void		 ApplyImpulse		(const b2Vec2 &force);
 
 		virtual const u64 GetMask() const { return MASK_PHYSICS; }
 

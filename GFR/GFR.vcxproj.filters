@@ -80,7 +80,7 @@
       <UniqueIdentifier>{2735109a-6d9f-4f60-902a-9c7cf2159cb9}</UniqueIdentifier>
     </Filter>
     <Filter Include="framework\allegro\subdivisions">
-      <UniqueIdentifier>{49b9948d-93e1-4829-902f-318d7ebb5980}</UniqueIdentifier>
+      <UniqueIdentifier>{bb6c65ec-9198-4ad8-bcc9-c20d961ff751}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +241,9 @@
     <ClInclude Include="GFRAL_InputMgr.h">
       <Filter>framework\allegro\subdivisions</Filter>
     </ClInclude>
+    <ClInclude Include="EntityMgr.h">
+      <Filter>framework\managers\entityMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -372,6 +375,9 @@
     </ClCompile>
     <ClCompile Include="GFRAL_InputMgr.cpp">
       <Filter>framework\allegro\subdivisions</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityMgr.cpp">
+      <Filter>framework\managers\entityMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

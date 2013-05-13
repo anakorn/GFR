@@ -18,12 +18,22 @@ const f32 PhysicsComponent::GetY(void)
 	return m_Body->GetPosition().y;
 };
 
+b2Body* const PhysicsComponent::GetBody(void)
+{
+	return m_Body;
+};
+
+void PhysicsComponent::SetBody(b2Body* body)
+{
+	m_Body = body;
+};
+
 const b2Vec2 PhysicsComponent::GetLinearVelocity(void)
 {
 	return m_Body->GetLinearVelocity();
-}
+};
 
 void PhysicsComponent::SetLinearVelocity(f32 x, f32 y)
 {
 	m_Body->SetLinearVelocity(b2Vec2(x, y));
-}
+};

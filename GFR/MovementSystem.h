@@ -8,7 +8,7 @@ namespace framework
 	{
 	public:
 		MovementSystem();
-		virtual void ProcessEntity(Entity& entity);
+		virtual void ProcessEntityImpl(Entity& entity);
 
 	};
 };

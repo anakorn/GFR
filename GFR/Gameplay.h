@@ -1,5 +1,5 @@
-#ifndef GFR_GAME_GAMESTATE_GAMEPLAY_H
-#define GFR_GAME_GAMESTATE_GAMEPLAY_H
+#ifndef GFR_GAME_GAMESTATE_STATES_GAMEPLAY_H
+#define GFR_GAME_GAMESTATE_STATES_GAMEPLAY_H
 
 #include "State.h"
 #include "PlayableCharacter.h"

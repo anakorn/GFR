@@ -11,10 +11,13 @@ namespace framework
 		System(const u64 componentsMask);
 		
 		bool			IsEntityCompatible	(const Entity& entity) const;
-		virtual void	ProcessEntity		(Entity& entity) = 0;
+		void			ProcessEntity		(Entity& entity);
+
+		// Implement this function in subclasses for System-specific behavior.
+		virtual void	ProcessEntityImpl	(Entity& entity) = 0;
 
 	private:
-		// Used to check if an entity contains the right components for this System
+		// Used to check if an entity contains the right components for this System.
 		const u64 m_ComponentsMask;
 
 	};

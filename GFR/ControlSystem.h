@@ -8,7 +8,7 @@ namespace framework
 	{
 	public:
 		ControlSystem();
-		virtual void ProcessEntity(Entity& entity);
+		virtual void ProcessEntityImpl(Entity& entity);
 
 	private:
 		void MoveLeft();

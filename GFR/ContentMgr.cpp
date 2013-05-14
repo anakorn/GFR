@@ -53,7 +53,7 @@ Texture* ContentMgr::LoadContent<Texture>(const std::string file)
 		std::string pathfilename = GFRAL_Content::GetContentDirectory("Textures") + file;
 
 		if (!al_filename_exists(pathfilename.c_str()))
-			pathfilename = GFRAL_ContentMgr::GetContentDirectory("Textures") + MISSING_TEXTURE_PATH.c_str();
+			pathfilename = GFRAL_Content::GetContentDirectory("Textures") + MISSING_TEXTURE_PATH.c_str();
 
 		try
 		{

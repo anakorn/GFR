@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include "GFRAL_ContentMgr.h"
+#include "GFRAL_Content.h"
 #include "ContentLoadException.h"
 
 using namespace framework;
@@ -11,5 +11,5 @@ Texture::Texture(ALLEGRO_BITMAP* bitmap)
 
 Texture::~Texture()
 {
-	GFRAL_ContentMgr::DestroyBitmap(m_Bitmap);
+	GFRAL_Content::DestroyBitmap(m_Bitmap);
 };

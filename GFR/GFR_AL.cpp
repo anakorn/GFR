@@ -300,7 +300,7 @@ void GFR_AL::CalculateScale()
 
 void GFR_AL::InitializeGUI(void)
 {
-	agui::Image::setImageLoader(new agui::Allegro5ImageLoader());
+ 	agui::Image::setImageLoader(new agui::Allegro5ImageLoader());
 	agui::Font::setFontLoader(new agui::Allegro5FontLoader());
 	agui::Color::setPremultiplyAlpha(true);
 

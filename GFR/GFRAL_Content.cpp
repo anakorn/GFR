@@ -1,8 +1,8 @@
-#include "GFRAL_ContentMgr.h"
+#include "GFRAL_Content.h"
 
 using namespace framework;
 
-void GFRAL_ContentMgr::SetDefaultDirectory()
+void GFRAL_Content::SetDefaultDirectory()
 {
 	ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
 	al_append_path_component(path, "assets");
@@ -11,7 +11,7 @@ void GFRAL_ContentMgr::SetDefaultDirectory()
 	al_destroy_path(path);
 };
 
-const std::string GFRAL_ContentMgr::GetContentDirectory(const char* subFolder)
+const std::string GFRAL_Content::GetContentDirectory(const char* subFolder)
 {
 	ALLEGRO_PATH* path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
 	al_append_path_component(path, "assets");
@@ -23,22 +23,22 @@ const std::string GFRAL_ContentMgr::GetContentDirectory(const char* subFolder)
 	return pathFileName_str;
 };
 
-ALLEGRO_BITMAP* GFRAL_ContentMgr::CreateBitmap(const char* pathFile)
+ALLEGRO_BITMAP* GFRAL_Content::CreateBitmap(const char* pathFile)
 {
 	return al_load_bitmap(pathFile);
 };
 
-void GFRAL_ContentMgr::DestroyBitmap(ALLEGRO_BITMAP* bitmap)
+void GFRAL_Content::DestroyBitmap(ALLEGRO_BITMAP* bitmap)
 {
 	al_destroy_bitmap(bitmap);
 };
 
-ALLEGRO_SAMPLE* GFRAL_ContentMgr::CreateSample(const char* pathFile)
+ALLEGRO_SAMPLE* GFRAL_Content::CreateSample(const char* pathFile)
 {
 	return al_load_sample(pathFile);
 };
 
-void GFRAL_ContentMgr::DestroySample(ALLEGRO_SAMPLE* sample)
+void GFRAL_Content::DestroySample(ALLEGRO_SAMPLE* sample)
 {
 	al_destroy_sample(sample);
 };

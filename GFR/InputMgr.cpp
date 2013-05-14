@@ -1,7 +1,7 @@
 #include "InputMgr.h"
 #include "Common.h"
 #include "allegro5\allegro.h"
-#include "GFRAL_InputMgr.h"
+#include "GFRAL_Input.h"
 
 using namespace framework;
 
@@ -15,7 +15,7 @@ std::vector<std::function<void(ALLEGRO_MOUSE_EVENT)>>* InputMgr::moveMouseFuncti
 
 bool InputMgr::Initialize(ALLEGRO_EVENT_QUEUE* queue)
 {
-	return GFRAL_InputMgr::InitializeInputDevices(queue);
+	return GFRAL_Input::InitializeInputDevices(queue);
 };
 
 // Create a map of keys that each contain a vector of function pointers.

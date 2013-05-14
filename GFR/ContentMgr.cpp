@@ -10,6 +10,8 @@ using namespace framework;
 boost::unordered_map<std::string, Texture*>* ContentMgr::textureMap = new boost::unordered_map<std::string, Texture*>();
 boost::unordered_map<std::string, Sound*>* ContentMgr::soundMap = new boost::unordered_map<std::string, Sound*>();
 
+const std::string MISSING_TEXTURE_PATH = "missingTexture.png";
+
 // Change working directory path to go straight
 // to assets folder to minimize key length.
 void ContentMgr::Initialize()
@@ -49,6 +51,9 @@ Texture* ContentMgr::LoadContent<Texture>(const std::string file)
 	else
 	{
 		std::string pathfilename = GFRAL_ContentMgr::GetContentDirectory("Textures") + file;
+
+		if (!al_filename_exists(pathfilename.c_str()))
+			pathfilename = GFRAL_ContentMgr::GetContentDirectory("Textures") + MISSING_TEXTURE_PATH.c_str();
 
 		try
 		{

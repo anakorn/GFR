@@ -1,33 +1,31 @@
 #ifndef GFR_FRAMEWORK_MANAGERS_ENTITYMGR_H
 #define GFR_FRAMEWORK_MANAGERS_ENTITYMGR_H
 
-#include "Entity.h"
-#include "boost/unordered_map.hpp"
+#include <map>
 #include <vector>
+#include "Entity.h"
 
 namespace framework
 {
 	class EntityMgr
 	{
 	public:
-		EntityMgr();
 		~EntityMgr();
 
-		Entity* CreateLocalEntity();
-		Entity* CreateNetworkEntity();
+		static Entity* CreateLocalEntity();
+		static Entity* CreateNetworkEntity();
+		static Entity* CreateNetworkEntity(const u32 &networkID);
 
-		void RemoveLocalEntity();
-		void RemoveNetworkEntity(const u16 &networkID);
+		static void RemoveLocalEntity(const u32 &localID);
+		static void RemoveNetworkEntity(const u32 &networkID);
 
-		Entity* GetNetworkEntity(const u16 &networkID);
-
-		void Render();
+		static Entity* GetLocalEntity(const u32 &localID);
+		static Entity* GetNetworkEntity(const u32 &networkID);
 
 	private:
-		std::vector<Entity*> m_LocalEntities;
-		boost::unordered_map<u16, Entity*> m_NetworkEntities;
+		static Entity* CreateEntity(std::map<u32, Entity*> entityMap, std::vector<u32> removedIDList);
+		static void RemoveEntity(const u32 &id, std::map<u32, Entity*> entityMap, std::vector<u32> removedIDList);
 
-		u16 m_NetworkEntitiesCreated;
 	};
 };
 

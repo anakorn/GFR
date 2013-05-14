@@ -5,6 +5,7 @@
 #include "PhysicsComponent.h"
 #include "DrawComponent.h"
 #include "Runner.h"
+#include "EntityMgr.h"
 
 using namespace game;
 using namespace gameState;
@@ -16,13 +17,14 @@ Gameplay::Gameplay(characters::Class playerCharacter)
 	m_Gui = NULL;
 
 	// ENTITIES
-	Entity* testPlayer = new Entity();
+	Entity* testPlayer = EntityMgr::CreateNetworkEntity();
+	Entity* testPlayer2 = EntityMgr::CreateNetworkEntity();
 	testPlayer->AttachComponent("PhysicsComponent");
 	testPlayer->AttachComponent("DrawComponent");
 	testPlayer->AttachComponent("Runner");
 	testPlayer->AttachComponent("RunnerController");
 
-	Entity* testGround = new Entity();
+	Entity* testGround = EntityMgr::CreateLocalEntity();
 	testGround->AttachComponent("PhysicsComponent");
 	testGround->AttachComponent("DrawComponent");
 
@@ -68,7 +70,7 @@ Gameplay::Gameplay(characters::Class playerCharacter)
 	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->SetTexture(
 		*ContentMgr::LoadContent<Texture>("test.png"));
 	static_cast<characters::Runner*>(testPlayer->GetComponent("Runner"))->Initialize(
-		"My Player", 100.0f, 50.0f, 50.0f);
+		"My Player", 100.0f, 1000000.0f, 1000000.0f);
 	m_Entities.push_back(*testPlayer);
 
 	static_cast<PhysicsComponent*>(testGround->GetComponent("PhysicsComponent"))->SetBody(

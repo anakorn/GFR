@@ -24,8 +24,8 @@ Entity::Entity()
 
 }
 
-Entity::Entity(const u16 &networkID)
-	: m_pimpl(new EntityImpl()), m_NetworkID(networkID)
+Entity::Entity(const u32 &id)
+	: m_pimpl(new EntityImpl()), m_ID(id)
 {
 
 }
@@ -62,7 +62,7 @@ const u64 Entity::GetComponentsMask() const
 	return m_pimpl->m_ComponentsMask;
 }
 
-const u16 Entity::GetNetworkID()
+const u32 Entity::GetID()
 {
-	return m_NetworkID;
+	return m_ID;
 }

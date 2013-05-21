@@ -5,6 +5,7 @@
 #include "PhysicsComponent.h"
 #include "DrawComponent.h"
 #include "Runner.h"
+#include "GameplayDebugGUI.h"
 
 using namespace game;
 using namespace gameState;
@@ -13,7 +14,8 @@ using namespace framework;
 Gameplay::Gameplay(characters::Class playerCharacter)
 	: State(stateTypes::GAMEPLAY)
 {
-	m_Gui = NULL;
+	m_Gui = new gui::GameplayDebugGUI(*this);
+	m_Gui->InitializeGUIComponents();
 
 	// ENTITIES
 	Entity* testPlayer = new Entity();
@@ -76,12 +78,12 @@ Gameplay::Gameplay(characters::Class playerCharacter)
 	static_cast<DrawComponent*>(testGround->GetComponent("DrawComponent"))->SetTexture(
 		*ContentMgr::LoadContent<Texture>("test_ground.png"));
 	m_Entities.push_back(*testGround);
-}
+};
 
 Gameplay::~Gameplay()
 {
 
-}
+};
 
 void Gameplay::Update()
 {
@@ -92,8 +94,8 @@ void Gameplay::Update()
 
 	m_PhysMgr.Update(GFR_AL::GetUpdateRate());
 	m_Camera.Update();
-	//State::Update();
-}
+	State::Update();
+};
 
 void Gameplay::Render()
 {
@@ -101,5 +103,10 @@ void Gameplay::Render()
 	{
 		m_MovementSystem.ProcessEntity(*it);
 	}
-	//State::Render();
-}
+	State::Render();
+};
+
+void Gameplay::actionPerformed(const agui::ActionEvent &evt)
+{
+	int x = 0;
+};

@@ -13,7 +13,7 @@ namespace game
 {
 	namespace gameState
 	{
-		class Gameplay : public State
+		class Gameplay : public State, public agui::ActionListener
 		{
 		public:
 			Gameplay(characters::Class playerCharacter);
@@ -21,6 +21,7 @@ namespace game
 
 			virtual void Update() override;
 			virtual void Render() override;
+			virtual void actionPerformed(const agui::ActionEvent &evt) override;
 
 		private:
 			framework::ControlSystem		m_ControlSystem;

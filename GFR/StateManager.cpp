@@ -111,7 +111,7 @@ void StateManager::RemoveStateProcess(game::stateTypes::Type type)
 	{
 		if ((*it)->GetStateType() == type)
 		{
-			delete *it;
+			DELETE_SAFE(*it);
 			it = m_ActiveStates.erase(it);
 			return;
 		}

@@ -78,7 +78,7 @@ void MainMenuButtonListener::actionPerformed(const agui::ActionEvent &evt)
 		std::vector<void*> args;
 		// Hard code for now until selection is implemented
 		args.push_back(0);
-		framework::GFR_AL::s_StateManager.PushState(stateTypes::GAMEPLAY, args);
+		framework::GFR_AL::s_StateManager.SetState(stateTypes::GAMEPLAY, args);
 	}
 	else if (source == &hostGameButton)
 		framework::GFR_AL::s_StateManager.PushState(stateTypes::SERVER_LOBBY_SETUP);

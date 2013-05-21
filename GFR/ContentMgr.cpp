@@ -1,5 +1,5 @@
 #include "ContentMgr.h"
-#include "GFRAL_ContentMgr.h"
+#include "GFRAL_Content.h"
 #include "ContentLoadException.h"
 #include "ContentUnloadException.h"
 #include "GFR_AL.h"
@@ -10,11 +10,13 @@ using namespace framework;
 boost::unordered_map<std::string, Texture*>* ContentMgr::textureMap = new boost::unordered_map<std::string, Texture*>();
 boost::unordered_map<std::string, Sound*>* ContentMgr::soundMap = new boost::unordered_map<std::string, Sound*>();
 
+const std::string MISSING_TEXTURE_PATH = "missingTexture.png";
+
 // Change working directory path to go straight
 // to assets folder to minimize key length.
 void ContentMgr::Initialize()
 {
-	GFRAL_ContentMgr::SetDefaultDirectory();
+	GFRAL_Content::SetDefaultDirectory();
 };
 
 bool ContentMgr::LoadAllContent()
@@ -48,11 +50,14 @@ Texture* ContentMgr::LoadContent<Texture>(const std::string file)
 	}
 	else
 	{
-		std::string pathfilename = GFRAL_ContentMgr::GetContentDirectory("Textures") + file;
+		std::string pathfilename = GFRAL_Content::GetContentDirectory("Textures") + file;
+
+		if (!al_filename_exists(pathfilename.c_str()))
+			pathfilename = GFRAL_Content::GetContentDirectory("Textures") + MISSING_TEXTURE_PATH.c_str();
 
 		try
 		{
-			ALLEGRO_BITMAP* bitmap = GFRAL_ContentMgr::CreateBitmap(pathfilename.c_str());
+			ALLEGRO_BITMAP* bitmap = GFRAL_Content::CreateBitmap(pathfilename.c_str());
 			Texture* texture = new Texture(bitmap);
 
 			textureMap->insert(std::pair<const std::string, Texture*>(file, texture));
@@ -81,11 +86,11 @@ Sound* ContentMgr::LoadContent<Sound>(const std::string file)
 	}
 	else
 	{
-		std::string pathfilename = GFRAL_ContentMgr::GetContentDirectory("Sounds") + file;
+		std::string pathfilename = GFRAL_Content::GetContentDirectory("Sounds") + file;
 
 		try
 		{
-			ALLEGRO_SAMPLE* sample = GFRAL_ContentMgr::CreateSample(pathfilename.c_str());
+			ALLEGRO_SAMPLE* sample = GFRAL_Content::CreateSample(pathfilename.c_str());
 			Sound* sound = new Sound(sample);
 
 			soundMap->insert(std::pair<const std::string, Sound*>(file, sound));
@@ -125,7 +130,7 @@ void ContentMgr::UnloadContent<Sound>(const std::string file)
 template <typename T>
 void ContentMgr::LoadContentMap(const std::string subFolder, boost::unordered_map<std::string, T*>* map)
 {
-	std::string contentPathDir = GFRAL_ContentMgr::GetContentDirectory(subFolder.c_str());
+	std::string contentPathDir = GFRAL_Content::GetContentDirectory(subFolder.c_str());
 	fs::recursive_directory_iterator end;
 	fs::recursive_directory_iterator rdi(contentPathDir);
 

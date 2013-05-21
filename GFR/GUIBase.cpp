@@ -17,9 +17,9 @@ GUIBase::~GUIBase()
 {
 	m_GUI->getTop()->clear();
 
-	delete m_GraphicsHandler;
-	delete m_GUI;
-	delete m_InputHandler;
+	DELETE_SAFE(m_GraphicsHandler);
+	DELETE_SAFE(m_GUI);
+	DELETE_SAFE(m_InputHandler);
 }
 
 void GUIBase::AddWidget(agui::Widget* widget)

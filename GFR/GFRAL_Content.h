@@ -1,12 +1,12 @@
-#ifndef GFR_FRAMEWORK_ALLEGRO_SUBDIVISIONS_GFRAL_CONTENTMGR_H
-#define GFR_FRAMEWORK_ALLEGRO_SUBDIVISIONS_GFRAL_CONTENTMGR_H
+#ifndef GFR_FRAMEWORK_ALLEGRO_SUBDIVISIONS_GFRAL_CONTENT_H
+#define GFR_FRAMEWORK_ALLEGRO_SUBDIVISIONS_GFRAL_CONTENT_H
 
 #include "allegro5/allegro.h"
 #include <string>
 
 namespace framework
 {
-	class GFRAL_ContentMgr
+	class GFRAL_Content
 	{
 	public:
 		static void					SetDefaultDirectory		();

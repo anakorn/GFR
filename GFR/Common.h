@@ -62,4 +62,6 @@ assert_sizeof( f64,	8 );
 #define FOR_EACH(ITER_NAME, LIST) \
 	for (auto ITER_NAME = LIST.begin(); ITER_NAME != LIST.end(); ITER_NAME++)
 
+#define DELETE_SAFE(PTR) delete PTR; PTR = nullptr;
+
 #endif

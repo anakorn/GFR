@@ -10,3 +10,8 @@ MainMenu::MainMenu()
 	m_Gui = new gui::MainMenuGUI();
 	m_Gui->InitializeGUIComponents();
 };
+
+MainMenu::~MainMenu()
+{
+
+};

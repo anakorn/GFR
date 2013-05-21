@@ -17,9 +17,9 @@ Component* framework::CreateComponent(const std::string& componentName)
 
 	component::detail::CreateComponentFunc func = funcIt->second;
 	return func();
-}
+};
 
-void framework::DestroyComponent(const Component* component)
-{
-	delete component;
-}
+//void framework::DestroyComponent(const Component* component)
+//{
+//	DELETE_SAFE(component);
+//};

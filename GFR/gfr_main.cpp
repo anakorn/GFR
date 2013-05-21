@@ -17,7 +17,11 @@ int main(int argc, char** argv)
 	}
 
 	// Set up game-specific systems
+#if _DEBUG
+	framework::GFR_AL::InitGame(game::stateTypes::GAMEPLAY);
+#else
 	framework::GFR_AL::InitGame(game::stateTypes::MAIN_MENU);
+#endif
 
 	// Main game loop
 	framework::GFR_AL::RunGameLoop();

@@ -235,14 +235,17 @@
     <ClInclude Include="Gameplay.h">
       <Filter>game\gamestate\states</Filter>
     </ClInclude>
-    <ClInclude Include="GFRAL_ContentMgr.h">
+    <ClInclude Include="GFRAL_Content.h">
       <Filter>framework\allegro\subdivisions</Filter>
     </ClInclude>
-    <ClInclude Include="GFRAL_InputMgr.h">
+    <ClInclude Include="GFRAL_Input.h">
       <Filter>framework\allegro\subdivisions</Filter>
     </ClInclude>
     <ClInclude Include="EntityMgr.h">
       <Filter>framework\managers\entityMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="GameplayDebugGUI.h">
+      <Filter>game\gui\guis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -370,14 +373,17 @@
     <ClCompile Include="RunnerController.cpp">
       <Filter>game\input</Filter>
     </ClCompile>
-    <ClCompile Include="GFRAL_ContentMgr.cpp">
+    <ClCompile Include="GFRAL_Content.cpp">
       <Filter>framework\allegro\subdivisions</Filter>
     </ClCompile>
-    <ClCompile Include="GFRAL_InputMgr.cpp">
+    <ClCompile Include="GFRAL_Input.cpp">
       <Filter>framework\allegro\subdivisions</Filter>
     </ClCompile>
     <ClCompile Include="EntityMgr.cpp">
       <Filter>framework\managers\entityMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="GameplayDebugGUI.cpp">
+      <Filter>game\gui\guis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

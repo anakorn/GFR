@@ -23,6 +23,10 @@ namespace game
 			virtual void Render() override;
 			virtual void actionPerformed(const agui::ActionEvent &evt) override;
 
+			// TODO: Replace with more appropriate way for creating entities
+			void CreateTestPlayer(void);
+			void CreateTestGround(void);
+
 		private:
 			framework::ControlSystem		m_ControlSystem;
 			framework::MovementSystem		m_MovementSystem;

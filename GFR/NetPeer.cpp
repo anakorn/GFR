@@ -21,7 +21,7 @@ void NetPeer::AddPacketHandler(game::stateTypes::Type state, PacketHandler* hand
 
 void NetPeer::RemovePacketHandler(game::stateTypes::Type state)
 {
-	delete m_Handlers.at(state);
+	DELETE_SAFE(m_Handlers.at(state));
 	m_Handlers.erase(state);
 }
 
@@ -29,7 +29,7 @@ void NetPeer::RemoveAllActivePacketHandlers()
 {
 	for(auto iter = m_Handlers.begin(); iter != m_Handlers.end();)
 	{
-		delete iter->second;
+		DELETE_SAFE(iter->second);
 		iter = m_Handlers.erase(iter);
 	}
 }

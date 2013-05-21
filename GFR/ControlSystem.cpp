@@ -30,6 +30,12 @@ ControlSystem::ControlSystem()
 	InputMgr::RegisterKeyUpFunction(ALLEGRO_KEY_D, std::bind(&ControlSystem::ChangeHorizontalDirection, this, -1.0f));
 }
 
+ControlSystem::~ControlSystem()
+{
+	m_Pawn = NULL;
+	m_PhysComp = NULL;
+};
+
 void ControlSystem::ProcessEntityImpl(Entity& entity)
 {
 	if (!m_Pawn)

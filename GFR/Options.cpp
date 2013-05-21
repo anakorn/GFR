@@ -10,3 +10,8 @@ Options::Options()
 	m_Gui = new gui::OptionsGUI();
 	m_Gui->InitializeGUIComponents();
 }
+
+Options::~Options()
+{
+
+};

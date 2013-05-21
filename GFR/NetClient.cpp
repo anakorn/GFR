@@ -18,7 +18,7 @@ NetClient::NetClient()
 
 NetClient::~NetClient()
 {
-	delete m_Server;
+	DELETE_SAFE(m_Server);
 }
 
 void NetClient::Connect(const char* &ip, const u32 &timeout)

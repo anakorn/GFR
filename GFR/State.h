@@ -12,7 +12,7 @@ namespace game
 		{
 		public:
 			State(stateTypes::Type type);
-			~State();
+			virtual ~State();
 
 			stateTypes::Type GetStateType();
 

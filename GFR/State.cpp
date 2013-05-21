@@ -11,7 +11,7 @@ State::State(stateTypes::Type type)
 
 State::~State()
 {
-	delete m_Gui;
+	DELETE_SAFE(m_Gui);
 }
 
 stateTypes::Type State::GetStateType()

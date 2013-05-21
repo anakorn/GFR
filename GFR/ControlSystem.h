@@ -8,6 +8,7 @@ namespace framework
 	{
 	public:
 		ControlSystem();
+		~ControlSystem();
 		virtual void ProcessEntityImpl(Entity& entity);
 
 	protected:
@@ -15,6 +16,7 @@ namespace framework
 		void ChangeVerticalDirection(const f32 &amount);
 
 		void CastAbility(u32 index);
+
 	};
 };
 

@@ -4,7 +4,7 @@ using namespace framework;
 
 PhysicsMgr::~PhysicsMgr()
 {
-	delete m_World;
+	DELETE_SAFE(m_World);
 }
 
 b2World* const PhysicsMgr::GetWorld(void)

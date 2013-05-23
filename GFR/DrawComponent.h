@@ -1,5 +1,5 @@
-#ifndef GFR_FRAMEWORK_COMPONENT_DERIVATIONS_DRAWCOMPONENT_H
-#define GFR_FRAMEWORK_COMPONENT_DERIVATIONS_DRAWCOMPONENT_H
+#ifndef GFR_GAME_COMPONENT_DRAWCOMPONENT_H
+#define GFR_GAME_COMPONENT_DRAWCOMPONENT_H
 #include "ComponentBase.h"
 #include "Texture.h"
 
@@ -19,12 +19,16 @@ namespace framework
 		void				SetY				(f32 y);
 		f32					GetY				();
 
+		void				SetVisible			(bool visible);
+		const bool			IsVisible			();
+
 		virtual const u64	GetMask() const { return MASK_DRAW; }
 
 	private:
 		Texture*			m_Texture;
-		f32					m_x;
-		f32					m_y;
+		f32					m_X;
+		f32					m_Y;
+		bool				m_IsVisible;
 
 	};
 	COMPONENT_REGISTER(DrawComponent, "DrawComponent")

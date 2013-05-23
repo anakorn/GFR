@@ -1,5 +1,5 @@
-#ifndef GFR_GAME_CHARACTERS_GOD_H
-#define GFR_GAME_CHARACTERS_GOD_H
+#ifndef GFR_GAME_COMPONENTS_CHARACTERS_GODCOMPONENT_H
+#define GFR_GAME_COMPONENTS_CHARACTERS_GODCOMPONENT_H
 
 #include "Common.h"
 #include "PlayableCharacter.h"
@@ -8,7 +8,7 @@ namespace game
 {
 	namespace characters
 	{
-		class God : public PlayableCharacter
+		class GodComponent : public PlayableCharacter
 		{
 		public:
 			
@@ -18,7 +18,7 @@ namespace game
 			
 		};
 
-		COMPONENT_REGISTER(God, "God")
+		COMPONENT_REGISTER(GodComponent, "GodComponent")
 	};
 };
 

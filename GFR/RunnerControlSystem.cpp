@@ -3,13 +3,13 @@
 #include "Entity.h"
 
 #include "PhysicsComponent.h"
-#include "Runner.h"
+#include "RunnerComponent.h"
 #include "InputMgr.h"
 //#include "InputComponent.h"
 
 using namespace framework;
 
-game::characters::Runner* m_Pawn;
+game::characters::RunnerComponent* m_Pawn;
 PhysicsComponent* m_PhysComp;
 
 b2Vec2 m_InputDirection;
@@ -39,7 +39,7 @@ RunnerControlSystem::~RunnerControlSystem()
 void RunnerControlSystem::ProcessEntityImpl(Entity& entity)
 {
 	if (!m_Pawn)
-		m_Pawn = static_cast<game::characters::Runner*>(entity.GetComponent("Runner"));
+		m_Pawn = static_cast<game::characters::RunnerComponent*>(entity.GetComponent("RunnerComponent"));
 	if (!m_PhysComp)
 		m_PhysComp = static_cast<PhysicsComponent*>(entity.GetComponent("PhysicsComponent"));
 

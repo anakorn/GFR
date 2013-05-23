@@ -4,7 +4,7 @@
 #include "ContentMgr.h"
 #include "PhysicsComponent.h"
 #include "DrawComponent.h"
-#include "Runner.h"
+#include "RunnerComponent.h"
 #include "GameplayDebugGUI.h"
 #include "EntityMgr.h"
 
@@ -71,8 +71,8 @@ void Gameplay::CreateTestPlayer(void)
 	Entity* testPlayer = EntityMgr::CreateNetworkEntity();
 	testPlayer->AttachComponent("PhysicsComponent");
 	testPlayer->AttachComponent("DrawComponent");
-	testPlayer->AttachComponent("Runner");
-	testPlayer->AttachComponent("Controller");
+	testPlayer->AttachComponent("RunnerComponent");
+	testPlayer->AttachComponent("ControllerComponent");
 	
 	b2PolygonShape runnerShape;
 	runnerShape.SetAsBox(100, 100);
@@ -93,7 +93,7 @@ void Gameplay::CreateTestPlayer(void)
 		runnerBody);
 	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->SetTexture(
 		*ContentMgr::LoadContent<Texture>("test.png"));
-	static_cast<characters::Runner*>(testPlayer->GetComponent("Runner"))->Initialize(
+	static_cast<characters::RunnerComponent*>(testPlayer->GetComponent("RunnerComponent"))->Initialize(
 		"My Player", 100.0f, 1000000.0f, 1000000.0f);
 	m_Entities.push_back(*testPlayer);
 };

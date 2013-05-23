@@ -1,7 +1,9 @@
 #ifndef GFR_GAME_COMPONENT_DRAWCOMPONENT_H
 #define GFR_GAME_COMPONENT_DRAWCOMPONENT_H
+
 #include "ComponentBase.h"
 #include "Texture.h"
+#include "Vec2.h"
 
 namespace framework
 {
@@ -13,10 +15,11 @@ namespace framework
 		void				SetTexture			(Texture& texture);
 		const Texture&		GetTexture			();
 
-		void				SetPosition			(f32 x, f32 y);
-		void				SetX				(f32 x);
+		void				SetPosition			(const Vec2f& position);
+		Vec2f				GetPosition			();
+		void				SetX				(f32& x);
 		f32					GetX				();
-		void				SetY				(f32 y);
+		void				SetY				(f32& y);
 		f32					GetY				();
 
 		void				SetVisible			(bool visible);
@@ -26,8 +29,7 @@ namespace framework
 
 	private:
 		Texture*			m_Texture;
-		f32					m_X;
-		f32					m_Y;
+		Vec2f				m_Position;
 		bool				m_IsVisible;
 
 	};

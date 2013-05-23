@@ -309,7 +309,7 @@ void GFR_AL::InitializeGUI(void)
 	agui::Widget::setGlobalFont(m_DefaultFont);
 };
 
-void GFR_AL::DrawTexture(ALLEGRO_BITMAP* bitmap, f32 dx, f32 dy, u32 flags)
+void GFR_AL::DrawTexture(ALLEGRO_BITMAP* bitmap, Vec2f position, u32 flags)
 {
-	al_draw_bitmap(bitmap, dx, dy, flags);
+	al_draw_bitmap(bitmap, position.x(), position.y(), flags);
 };

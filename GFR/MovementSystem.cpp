@@ -17,5 +17,5 @@ void MovementSystem::ProcessEntityImpl(Entity& entity)
 	PhysicsComponent* physComp = static_cast<PhysicsComponent*>(entity.GetComponent("PhysicsComponent"));
 	DrawComponent* drawComp = static_cast<DrawComponent*>(entity.GetComponent("DrawComponent"));
 	
-	drawComp->SetPosition(physComp->GetX(), physComp->GetY());
+	drawComp->SetPosition(physComp->GetPosition());
 };

@@ -262,6 +262,9 @@
     <ClInclude Include="RunnerStateSystem.h">
       <Filter>game\system\state</Filter>
     </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>framework\types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />

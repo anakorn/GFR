@@ -2,6 +2,7 @@
 #define GFR_GAME_COMPONENT_PHYSICSCOMPONENT_H
 #include "ComponentBase.h"
 #include "Box2D\Box2D.h"
+#include "Vec2.h"
 
 namespace framework
 {
@@ -19,6 +20,7 @@ namespace framework
 		f32				GetBaseJumpSpeed		();
 		f32				GetCurrentJumpSpeed		();
 
+		const Vec2f		GetPosition				();
 		const f32		GetX					(void);
 		const f32		GetY					(void);
 

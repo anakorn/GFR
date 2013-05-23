@@ -136,6 +136,7 @@
     <ClInclude Include="StateTypes.h" />
     <ClInclude Include="SystemBase.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />

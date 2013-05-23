@@ -15,5 +15,5 @@ void RenderSystem::ProcessEntityImpl(Entity& entity)
 {
 	DrawComponent* drawComp = static_cast<DrawComponent*>(entity.GetComponent("DrawComponent"));
 
-	GFR_AL::DrawTexture(drawComp->GetTexture().GetBitmap(), drawComp->GetX(), drawComp->GetY());
+	GFR_AL::DrawTexture(drawComp->GetTexture().GetBitmap(), drawComp->GetPosition());
 };

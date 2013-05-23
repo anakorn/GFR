@@ -12,30 +12,36 @@ const Texture& DrawComponent::GetTexture()
 	return *m_Texture;
 };
 
-void DrawComponent::SetPosition(f32 x, f32 y)
+void DrawComponent::SetPosition(const Vec2f& position)
 {
-	m_X = x;
-	m_Y = y;
+	m_Position = position;
 };
 
-void DrawComponent::SetX(f32 x)
+Vec2f DrawComponent::GetPosition()
 {
-	m_X = x;
+	return m_Position;
+};
+
+void DrawComponent::SetX(f32& x)
+{
+	f32 y = m_Position.y();
+	m_Position = Vec2f(x, y);
 };
 
 f32 DrawComponent::GetX()
 {
-	return m_X;
+	return m_Position.x();
 };
 
-void DrawComponent::SetY(f32 y)
+void DrawComponent::SetY(f32& y)
 {
-	m_Y = y;
+	f32 x = m_Position.x();
+	m_Position = Vec2f(x, y);
 };
 
 f32 DrawComponent::GetY()
 {
-	return m_Y;
+	return m_Position.y();
 };
 
 void DrawComponent::SetVisible(bool visible)

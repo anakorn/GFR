@@ -247,6 +247,9 @@
     <ClInclude Include="GameplayDebugGUI.h">
       <Filter>game\gui\guis</Filter>
     </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>framework\system\derivations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -384,6 +387,9 @@
     </ClCompile>
     <ClCompile Include="GameplayDebugGUI.cpp">
       <Filter>game\gui\guis</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>framework\system\derivations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

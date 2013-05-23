@@ -93,6 +93,7 @@
     <ClInclude Include="GFRAL_Content.h" />
     <ClInclude Include="GFRAL_Input.h" />
     <ClInclude Include="PlayableCharacter.h" />
+    <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Runner.h" />
     <ClInclude Include="RunnerController.h" />
     <ClInclude Include="Sound.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="GameplayDebugGUI.cpp" />
     <ClCompile Include="GFRAL_Content.cpp" />
     <ClCompile Include="GFRAL_Input.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="RunnerController.cpp" />
     <ClCompile Include="Sound.cpp" />

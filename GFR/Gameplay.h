@@ -7,6 +7,7 @@
 #include "Entity.h"
 #include "MovementSystem.h"
 #include "ControlSystem.h"
+#include "RenderSystem.h"
 #include "Camera.h"
 
 namespace game
@@ -30,6 +31,7 @@ namespace game
 		private:
 			framework::ControlSystem		m_ControlSystem;
 			framework::MovementSystem		m_MovementSystem;
+			framework::RenderSystem			m_RenderSystem;
 			framework::PhysicsMgr			m_PhysMgr;
 			std::list <framework::Entity>	m_Entities;
 			framework::Camera				m_Camera;

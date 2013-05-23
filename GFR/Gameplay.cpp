@@ -34,6 +34,7 @@ void Gameplay::Update()
 	FOR_EACH(it, m_Entities)
 	{
 		m_ControlSystem.ProcessEntity(*it);
+		m_MovementSystem.ProcessEntity(*it);
 	}
 
 	m_PhysMgr.Update(GFR_AL::GetUpdateRate());
@@ -45,7 +46,7 @@ void Gameplay::Render()
 {
 	FOR_EACH(it, m_Entities)
 	{
-		m_MovementSystem.ProcessEntity(*it);
+		m_RenderSystem.ProcessEntity(*it);
 	}
 	State::Render();
 };

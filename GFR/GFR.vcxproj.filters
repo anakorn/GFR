@@ -82,6 +82,12 @@
     <Filter Include="framework\allegro\subdivisions">
       <UniqueIdentifier>{bb6c65ec-9198-4ad8-bcc9-c20d961ff751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\npcs">
+      <UniqueIdentifier>{74014424-ebe9-45c8-ac18-f4457656fc15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\entitystate">
+      <UniqueIdentifier>{83d2f858-6c31-417c-8ef7-f2245d23d8fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -117,9 +123,6 @@
     </ClInclude>
     <ClInclude Include="GUIBase.h">
       <Filter>game\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlSystem.h">
-      <Filter>framework\system\derivations</Filter>
     </ClInclude>
     <ClInclude Include="MovementSystem.h">
       <Filter>framework\system\derivations</Filter>
@@ -229,9 +232,6 @@
     <ClInclude Include="Runner.h">
       <Filter>game\characters</Filter>
     </ClInclude>
-    <ClInclude Include="RunnerController.h">
-      <Filter>game\input</Filter>
-    </ClInclude>
     <ClInclude Include="Gameplay.h">
       <Filter>game\gamestate\states</Filter>
     </ClInclude>
@@ -249,6 +249,27 @@
     </ClInclude>
     <ClInclude Include="RenderSystem.h">
       <Filter>framework\system\derivations</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>game\input</Filter>
+    </ClInclude>
+    <ClInclude Include="God.h">
+      <Filter>game\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Minion.h">
+      <Filter>game\npcs</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerControlSystem.h">
+      <Filter>framework\system\derivations</Filter>
+    </ClInclude>
+    <ClInclude Include="GodControlSystem.h">
+      <Filter>framework\system\derivations</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerState.h">
+      <Filter>game\entitystate</Filter>
+    </ClInclude>
+    <ClInclude Include="MinionState.h">
+      <Filter>game\entitystate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -273,9 +294,6 @@
     </ClCompile>
     <ClCompile Include="GUIBase.cpp">
       <Filter>game\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="ControlSystem.cpp">
-      <Filter>framework\system\derivations</Filter>
     </ClCompile>
     <ClCompile Include="MovementSystem.cpp">
       <Filter>framework\system\derivations</Filter>
@@ -373,9 +391,6 @@
     <ClCompile Include="Gameplay.cpp">
       <Filter>game\gamestate\states</Filter>
     </ClCompile>
-    <ClCompile Include="RunnerController.cpp">
-      <Filter>game\input</Filter>
-    </ClCompile>
     <ClCompile Include="GFRAL_Content.cpp">
       <Filter>framework\allegro\subdivisions</Filter>
     </ClCompile>
@@ -390,6 +405,27 @@
     </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
       <Filter>framework\system\derivations</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>game\input</Filter>
+    </ClCompile>
+    <ClCompile Include="God.cpp">
+      <Filter>game\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Minion.cpp">
+      <Filter>game\npcs</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerControlSystem.cpp">
+      <Filter>framework\system\derivations</Filter>
+    </ClCompile>
+    <ClCompile Include="GodControlSystem.cpp">
+      <Filter>framework\system\derivations</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerState.cpp">
+      <Filter>game\entitystate</Filter>
+    </ClCompile>
+    <ClCompile Include="MinionState.cpp">
+      <Filter>game\entitystate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

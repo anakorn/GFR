@@ -72,7 +72,7 @@ void Gameplay::CreateTestPlayer(void)
 	testPlayer->AttachComponent("PhysicsComponent");
 	testPlayer->AttachComponent("DrawComponent");
 	testPlayer->AttachComponent("Runner");
-	testPlayer->AttachComponent("RunnerController");
+	testPlayer->AttachComponent("Controller");
 	
 	b2PolygonShape runnerShape;
 	runnerShape.SetAsBox(100, 100);

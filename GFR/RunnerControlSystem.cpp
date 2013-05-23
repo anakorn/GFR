@@ -38,13 +38,14 @@ RunnerControlSystem::~RunnerControlSystem()
 
 void RunnerControlSystem::ProcessEntityImpl(Entity& entity)
 {
+	// TODO: Do we still need to check for m_Pawn here?
 	if (!m_Pawn)
 		m_Pawn = static_cast<game::characters::RunnerComponent*>(entity.GetComponent("RunnerComponent"));
 	if (!m_PhysComp)
 		m_PhysComp = static_cast<PhysicsComponent*>(entity.GetComponent("PhysicsComponent"));
 
 	// Change y later when isJumping can be determined
-	b2Vec2 force(m_InputDirection.x * m_Pawn->GetCurrentMovementSpeed(), -m_InputDirection.y * m_Pawn->GetCurrentJumpSpeed());
+	b2Vec2 force(m_InputDirection.x * m_PhysComp->GetCurrentMovementSpeed(), -m_InputDirection.y * m_PhysComp->GetCurrentJumpSpeed());
 	
 	m_PhysComp->ApplyImpulse(force);
 }

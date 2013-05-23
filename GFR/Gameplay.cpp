@@ -89,12 +89,12 @@ void Gameplay::CreateTestPlayer(void)
 	b2Body* runnerBody = m_PhysMgr.GetWorld()->CreateBody(&runnerBD);
 	runnerBody->CreateFixture(&runnerFD);
 
-	static_cast<PhysicsComponent*>(testPlayer->GetComponent("PhysicsComponent"))->SetBody(
-		runnerBody);
+	static_cast<PhysicsComponent*>(testPlayer->GetComponent("PhysicsComponent"))->Initialize(
+		runnerBody, 1000000.0f, 1000000.0f);
+	
 	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->SetTexture(
 		*ContentMgr::LoadContent<Texture>("test.png"));
-	static_cast<characters::RunnerComponent*>(testPlayer->GetComponent("RunnerComponent"))->Initialize(
-		"My Player", 100.0f, 1000000.0f, 1000000.0f);
+	static_cast<characters::RunnerComponent*>(testPlayer->GetComponent("RunnerComponent"))->Initialize("My Player", 100.0f);
 	m_Entities.push_back(*testPlayer);
 };
 

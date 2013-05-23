@@ -2,9 +2,25 @@
 
 using namespace framework;
 
-void DrawComponent::SetTexture(Texture& texture)
+void DrawComponent::Initialize(Texture* texture)
 {
-	m_Texture = &texture;
+	SetTexture(texture);
+	m_Animation = nullptr;
+};
+
+void DrawComponent::SetAnimation(Animation* animation)
+{
+	m_Animation = animation;
+};
+
+Animation* DrawComponent::GetAnimation()
+{
+	return m_Animation;
+};
+
+void DrawComponent::SetTexture(Texture* texture)
+{
+	m_Texture = texture;
 };
 
 const Texture& DrawComponent::GetTexture()

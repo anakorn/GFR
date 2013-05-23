@@ -166,12 +166,6 @@
     <ClInclude Include="StateManager.h">
       <Filter>game\gamestate</Filter>
     </ClInclude>
-    <ClInclude Include="SystemBase.h">
-      <Filter>framework\system\base</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementSystem.h">
-      <Filter>framework\system\derivations</Filter>
-    </ClInclude>
     <ClInclude Include="ContentMgr.h">
       <Filter>framework\managers\contentMgr</Filter>
     </ClInclude>
@@ -265,6 +259,11 @@
     <ClInclude Include="Vec2.h">
       <Filter>framework\types</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>framework\types</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="SystemBase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
@@ -336,12 +335,6 @@
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
       <Filter>game\gamestate</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemBase.cpp">
-      <Filter>framework\system\base</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementSystem.cpp">
-      <Filter>framework\system\derivations</Filter>
     </ClCompile>
     <ClCompile Include="ContentMgr.cpp">
       <Filter>framework\managers\contentMgr</Filter>
@@ -418,6 +411,11 @@
     <ClCompile Include="RunnerStateSystem.cpp">
       <Filter>game\system\state</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>framework\types</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="SystemBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="gfr_icon.rc" />

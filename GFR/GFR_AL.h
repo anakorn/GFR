@@ -4,6 +4,7 @@
 #include "allegro5\allegro.h"
 #include "StateManager.h"
 #include "Vec2.h"
+#include "Texture.h"
 
 namespace framework
 {
@@ -34,7 +35,8 @@ namespace framework
 
 		static void					PrintConsole			(const char* str);
 
-		static void					DrawTexture				(ALLEGRO_BITMAP*, Vec2f position, u32 flags = 0);
+		static void					DrawTexture				(const Texture& texture, Vec2f position, u32 flags = 0);
+		static void					DrawTextureRegion		(const Texture& texture, Vec2f position, u32 regionX, u32 regionY, u32 regionWidth, u32 regionHeight, u32 flags = 0);
 		
 		static game::gameState::StateManager s_StateManager;
 

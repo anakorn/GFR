@@ -15,7 +15,7 @@ namespace framework
 
 		ALLEGRO_BITMAP*		GetBitmap() const { return m_Bitmap; }
 
-	private:
+	protected:
 		ALLEGRO_BITMAP*		m_Bitmap;
 
 	};

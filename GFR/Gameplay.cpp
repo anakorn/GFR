@@ -92,8 +92,12 @@ void Gameplay::CreateTestPlayer(void)
 	static_cast<PhysicsComponent*>(testPlayer->GetComponent("PhysicsComponent"))->Initialize(
 		runnerBody, 1000000.0f, 1000000.0f);
 	
-	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->SetTexture(
-		*ContentMgr::LoadContent<Texture>("test.png"));
+	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->Initialize(
+		ContentMgr::LoadContent<Texture>("test.png"));
+	// Animation test
+	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->SetAnimation(
+		new Animation(*ContentMgr::LoadContent<Texture>("engineerRun.png"), 8, 36, 75));
+	// Animation test end.
 	static_cast<characters::RunnerComponent*>(testPlayer->GetComponent("RunnerComponent"))->Initialize("My Player", 100.0f);
 	m_Entities.push_back(*testPlayer);
 };
@@ -122,7 +126,7 @@ void Gameplay::CreateTestGround(void)
 
 	static_cast<PhysicsComponent*>(testGround->GetComponent("PhysicsComponent"))->SetBody(
 		groundBody);
-	static_cast<DrawComponent*>(testGround->GetComponent("DrawComponent"))->SetTexture(
-		*ContentMgr::LoadContent<Texture>("test_ground.png"));
+	static_cast<DrawComponent*>(testGround->GetComponent("DrawComponent"))->Initialize(
+		ContentMgr::LoadContent<Texture>("test_ground.png"));
 	m_Entities.push_back(*testGround);
 };

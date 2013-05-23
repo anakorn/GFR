@@ -15,5 +15,27 @@ void RenderSystem::ProcessEntityImpl(Entity& entity)
 {
 	DrawComponent* drawComp = static_cast<DrawComponent*>(entity.GetComponent("DrawComponent"));
 
-	GFR_AL::DrawTexture(drawComp->GetTexture().GetBitmap(), drawComp->GetPosition());
+	if (drawComp->IsVisible())
+	{
+		Animation* animation = drawComp->GetAnimation();
+
+		if (animation == nullptr)
+		{
+			GFR_AL::DrawTexture(drawComp->GetTexture(), drawComp->GetPosition());
+		}
+		else
+		{
+			if (++animation->frameCount >= animation->frameDelay)
+			{
+				if (++animation->curFrame >= animation->numOfFrames)
+					animation->curFrame = 0;
+
+				animation->frameCount = 0;
+			}
+			
+			GFR_AL::DrawTextureRegion(animation->texture, drawComp->GetPosition(),
+				animation->curFrame * animation->frameWidth, 0, animation->frameWidth, animation->frameHeight);
+		}
+		
+	}
 };

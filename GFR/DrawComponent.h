@@ -3,16 +3,23 @@
 
 #include "ComponentBase.h"
 #include "Texture.h"
+#include "Animation.h"
 #include "Vec2.h"
+#include <vector>
 
 namespace framework
 {
 	class DrawComponent : public Component
 	{
 	public:
+		void				Initialize			(Texture* texture);
+
 		void				SetAnimationState	();
+
+		void				SetAnimation		(Animation* animation);
+		Animation*			GetAnimation		();						// Returns a pointer so we can check if component contains animation.
 		
-		void				SetTexture			(Texture& texture);
+		void				SetTexture			(Texture* texture);
 		const Texture&		GetTexture			();
 
 		void				SetPosition			(const Vec2f& position);
@@ -28,6 +35,7 @@ namespace framework
 		virtual const u64	GetMask() const { return MASK_DRAW; }
 
 	private:
+		Animation*			m_Animation;
 		Texture*			m_Texture;
 		Vec2f				m_Position;
 		bool				m_IsVisible;

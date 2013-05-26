@@ -10,23 +10,11 @@
     <Filter Include="framework\system">
       <UniqueIdentifier>{35eb12e1-0731-47c9-8924-a9f3bd4b96e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="framework\component\base">
-      <UniqueIdentifier>{42a7786d-5fa0-4c97-8460-5036398bf048}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="framework\component\derivations">
-      <UniqueIdentifier>{6b00503d-b94f-4ac5-becf-254c5dc9b5e8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="framework\entity">
       <UniqueIdentifier>{1389d1d8-5bba-4181-97cf-dd8cf0eb6bcd}</UniqueIdentifier>
     </Filter>
     <Filter Include="framework\allegro">
       <UniqueIdentifier>{775b3379-870f-402d-941b-99f554557d33}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="framework\system\base">
-      <UniqueIdentifier>{7e475745-c172-42dd-9a1d-7826282fa4e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="framework\system\derivations">
-      <UniqueIdentifier>{8cdf6479-5729-427c-a6ef-4e66af36d426}</UniqueIdentifier>
     </Filter>
     <Filter Include="framework\managers">
       <UniqueIdentifier>{d4be1b6a-8e95-426b-b3dc-7d37bcb9e7bd}</UniqueIdentifier>
@@ -73,14 +61,26 @@
     <Filter Include="framework\managers\camera">
       <UniqueIdentifier>{bef148af-d683-4771-8642-8cef1d2f2ecc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="game\input">
-      <UniqueIdentifier>{f5710324-4aba-4b76-a980-7688ea04799d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="game\characters">
-      <UniqueIdentifier>{2735109a-6d9f-4f60-902a-9c7cf2159cb9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="framework\allegro\subdivisions">
       <UniqueIdentifier>{bb6c65ec-9198-4ad8-bcc9-c20d961ff751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\component">
+      <UniqueIdentifier>{93bd0e76-84a3-46f9-b2b7-3780afd7ba0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\component\characters">
+      <UniqueIdentifier>{2735109a-6d9f-4f60-902a-9c7cf2159cb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\component\npcs">
+      <UniqueIdentifier>{74014424-ebe9-45c8-ac18-f4457656fc15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\system">
+      <UniqueIdentifier>{0bbd73da-08c8-46f9-a14c-efff70169adc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\system\control">
+      <UniqueIdentifier>{f8b38b65-f2c9-4a5c-bb24-a0b60b134dca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\system\state">
+      <UniqueIdentifier>{83d2f858-6c31-417c-8ef7-f2245d23d8fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,15 +90,6 @@
     </ClInclude>
     <ClInclude Include="ComponentMask.h">
       <Filter>framework\component</Filter>
-    </ClInclude>
-    <ClInclude Include="ComponentBase.h">
-      <Filter>framework\component\base</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
-      <Filter>framework\component\derivations</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawComponent.h">
-      <Filter>framework\component\derivations</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>framework\entity</Filter>
@@ -112,17 +103,8 @@
     <ClInclude Include="Configuration.h">
       <Filter>framework\allegro</Filter>
     </ClInclude>
-    <ClInclude Include="SystemBase.h">
-      <Filter>framework\system\base</Filter>
-    </ClInclude>
     <ClInclude Include="GUIBase.h">
       <Filter>game\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlSystem.h">
-      <Filter>framework\system\derivations</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementSystem.h">
-      <Filter>framework\system\derivations</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsMgr.h">
       <Filter>framework\managers\physicsMgr</Filter>
@@ -184,15 +166,6 @@
     <ClInclude Include="StateManager.h">
       <Filter>game\gamestate</Filter>
     </ClInclude>
-    <ClInclude Include="SystemBase.h">
-      <Filter>framework\system\base</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlSystem.h">
-      <Filter>framework\system\derivations</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementSystem.h">
-      <Filter>framework\system\derivations</Filter>
-    </ClInclude>
     <ClInclude Include="ContentMgr.h">
       <Filter>framework\managers\contentMgr</Filter>
     </ClInclude>
@@ -224,13 +197,7 @@
       <Filter>framework\managers\camera</Filter>
     </ClInclude>
     <ClInclude Include="PlayableCharacter.h">
-      <Filter>game\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="Runner.h">
-      <Filter>game\characters</Filter>
-    </ClInclude>
-    <ClInclude Include="RunnerController.h">
-      <Filter>game\input</Filter>
+      <Filter>game\component\characters</Filter>
     </ClInclude>
     <ClInclude Include="Gameplay.h">
       <Filter>game\gamestate\states</Filter>
@@ -247,12 +214,59 @@
     <ClInclude Include="GameplayDebugGUI.h">
       <Filter>game\gui\guis</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentBase.h">
+      <Filter>framework\component</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawComponent.h">
+      <Filter>game\component</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>game\component</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSystem.h">
+      <Filter>game\system</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>game\system</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemBase.h">
+      <Filter>framework\system</Filter>
+    </ClInclude>
+    <ClInclude Include="GodControlSystem.h">
+      <Filter>game\system\control</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerControlSystem.h">
+      <Filter>game\system\control</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerComponent.h">
+      <Filter>game\component</Filter>
+    </ClInclude>
+    <ClInclude Include="MinionComponent.h">
+      <Filter>game\component\npcs</Filter>
+    </ClInclude>
+    <ClInclude Include="GodComponent.h">
+      <Filter>game\component\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerComponent.h">
+      <Filter>game\component\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="MinionStateSystem.h">
+      <Filter>game\system\state</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerStateSystem.h">
+      <Filter>game\system\state</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>framework\types</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>framework\types</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="SystemBase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gfr_main.cpp" />
-    <ClCompile Include="ComponentBase.cpp">
-      <Filter>framework\component\base</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>framework\entity</Filter>
     </ClCompile>
@@ -265,20 +279,8 @@
     <ClCompile Include="Configuration.cpp">
       <Filter>framework\allegro</Filter>
     </ClCompile>
-    <ClCompile Include="SystemBase.cpp">
-      <Filter>framework\system\base</Filter>
-    </ClCompile>
     <ClCompile Include="GUIBase.cpp">
       <Filter>game\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="ControlSystem.cpp">
-      <Filter>framework\system\derivations</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementSystem.cpp">
-      <Filter>framework\system\derivations</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>framework\component\derivations</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuGUI.cpp">
       <Filter>game\gui\guis</Filter>
@@ -334,15 +336,6 @@
     <ClCompile Include="StateManager.cpp">
       <Filter>game\gamestate</Filter>
     </ClCompile>
-    <ClCompile Include="SystemBase.cpp">
-      <Filter>framework\system\base</Filter>
-    </ClCompile>
-    <ClCompile Include="ControlSystem.cpp">
-      <Filter>framework\system\derivations</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementSystem.cpp">
-      <Filter>framework\system\derivations</Filter>
-    </ClCompile>
     <ClCompile Include="ContentMgr.cpp">
       <Filter>framework\managers\contentMgr</Filter>
     </ClCompile>
@@ -358,20 +351,11 @@
     <ClCompile Include="PacketHandler.cpp">
       <Filter>framework\networking</Filter>
     </ClCompile>
-    <ClCompile Include="DrawComponent.cpp">
-      <Filter>framework\component\derivations</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>framework\managers\camera</Filter>
     </ClCompile>
-    <ClCompile Include="Runner.cpp">
-      <Filter>game\characters</Filter>
-    </ClCompile>
     <ClCompile Include="Gameplay.cpp">
       <Filter>game\gamestate\states</Filter>
-    </ClCompile>
-    <ClCompile Include="RunnerController.cpp">
-      <Filter>game\input</Filter>
     </ClCompile>
     <ClCompile Include="GFRAL_Content.cpp">
       <Filter>framework\allegro\subdivisions</Filter>
@@ -385,6 +369,53 @@
     <ClCompile Include="GameplayDebugGUI.cpp">
       <Filter>game\gui\guis</Filter>
     </ClCompile>
+    <ClCompile Include="ComponentBase.cpp">
+      <Filter>framework\component</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawComponent.cpp">
+      <Filter>game\component</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>game\component</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementSystem.cpp">
+      <Filter>game\system</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>game\system</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemBase.cpp">
+      <Filter>framework\system</Filter>
+    </ClCompile>
+    <ClCompile Include="GodControlSystem.cpp">
+      <Filter>game\system\control</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerControlSystem.cpp">
+      <Filter>game\system\control</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerComponent.cpp">
+      <Filter>game\component</Filter>
+    </ClCompile>
+    <ClCompile Include="MinionComponent.cpp">
+      <Filter>game\component\npcs</Filter>
+    </ClCompile>
+    <ClCompile Include="GodComponent.cpp">
+      <Filter>game\component\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerComponent.cpp">
+      <Filter>game\component\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="MinionStateSystem.cpp">
+      <Filter>game\system\state</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerStateSystem.cpp">
+      <Filter>game\system\state</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>framework\types</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="SystemBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="gfr_icon.rc" />

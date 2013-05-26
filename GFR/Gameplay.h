@@ -6,7 +6,8 @@
 #include "PhysicsMgr.h"
 #include "Entity.h"
 #include "MovementSystem.h"
-#include "ControlSystem.h"
+#include "RunnerControlSystem.h"
+#include "RenderSystem.h"
 #include "Camera.h"
 
 namespace game
@@ -28,8 +29,9 @@ namespace game
 			void CreateTestGround(void);
 
 		private:
-			framework::ControlSystem		m_ControlSystem;
+			framework::RunnerControlSystem	m_ControlSystem;
 			framework::MovementSystem		m_MovementSystem;
+			framework::RenderSystem			m_RenderSystem;
 			framework::PhysicsMgr			m_PhysMgr;
 			std::list <framework::Entity>	m_Entities;
 			framework::Camera				m_Camera;

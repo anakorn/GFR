@@ -1,17 +1,28 @@
-#ifndef GFR_FRAMEWORK_COMPONENT_DERIVATIONS_PHYSICSCOMPONENT_H
-#define GFR_FRAMEWORK_COMPONENT_DERIVATIONS_PHYSICSCOMPONENT_H
+#ifndef GFR_GAME_COMPONENT_PHYSICSCOMPONENT_H
+#define GFR_GAME_COMPONENT_PHYSICSCOMPONENT_H
 #include "ComponentBase.h"
 #include "Box2D\Box2D.h"
+#include "Vec2.h"
 
 namespace framework
 {
 	class PhysicsComponent : public Component
 	{
 	public:
+
 		~PhysicsComponent();
 
-		const f32		GetX				(void);
-		const f32		GetY				(void);
+		void Initialize(b2Body* body, const f32 &movementSpeed, const f32 &jumpSpeed);
+
+		f32				GetBaseMovementSpeed	();
+		f32				GetCurrentMovementSpeed	();
+
+		f32				GetBaseJumpSpeed		();
+		f32				GetCurrentJumpSpeed		();
+
+		const Vec2f		GetPosition				();
+		const f32		GetX					(void);
+		const f32		GetY					(void);
 
 		b2Body* const	GetBody				(void);
 		void			SetBody				(b2Body* body);
@@ -25,6 +36,12 @@ namespace framework
 
 	private:
 		b2Body*		m_Body;
+
+		f32 m_BaseMovementSpeed;
+		f32 m_CurrentMovementSpeed;
+
+		f32 m_BaseJumpSpeed;
+		f32 m_CurrentJumpSpeed;
 
 	};
 	COMPONENT_REGISTER(PhysicsComponent, "PhysicsComponent")

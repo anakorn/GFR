@@ -1,14 +1,14 @@
-#ifndef GFR_FRAMEWORK_SYSTEM_DERIVATIONS_CONTROLSYSTEM_H
-#define GFR_FRAMEWORK_SYSTEM_DERIVATIONS_CONTROLSYSTEM_H
+#ifndef GFR_GAME_SYSTEM_CONTROL_RUNNERCONTROLSYSTEM_H
+#define GFR_GAME_SYSTEM_CONTROL_RUNNERCONTROLSYSTEM_H
 #include "SystemBase.h"
 
 namespace framework
 {
-	class ControlSystem : public System
+	class RunnerControlSystem : public System
 	{
 	public:
-		ControlSystem();
-		~ControlSystem();
+		RunnerControlSystem();
+		~RunnerControlSystem();
 		virtual void ProcessEntityImpl(Entity& entity);
 
 	protected:

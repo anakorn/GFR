@@ -4,7 +4,7 @@
 #include "ContentMgr.h"
 #include "PhysicsComponent.h"
 #include "DrawComponent.h"
-#include "Runner.h"
+#include "RunnerComponent.h"
 #include "GameplayDebugGUI.h"
 #include "EntityMgr.h"
 
@@ -34,6 +34,7 @@ void Gameplay::Update()
 	FOR_EACH(it, m_Entities)
 	{
 		m_ControlSystem.ProcessEntity(*it);
+		m_MovementSystem.ProcessEntity(*it);
 	}
 
 	m_PhysMgr.Update(GFR_AL::GetUpdateRate());
@@ -45,7 +46,7 @@ void Gameplay::Render()
 {
 	FOR_EACH(it, m_Entities)
 	{
-		m_MovementSystem.ProcessEntity(*it);
+		m_RenderSystem.ProcessEntity(*it);
 	}
 	State::Render();
 };
@@ -70,8 +71,8 @@ void Gameplay::CreateTestPlayer(void)
 	Entity* testPlayer = EntityMgr::CreateNetworkEntity();
 	testPlayer->AttachComponent("PhysicsComponent");
 	testPlayer->AttachComponent("DrawComponent");
-	testPlayer->AttachComponent("Runner");
-	testPlayer->AttachComponent("RunnerController");
+	testPlayer->AttachComponent("RunnerComponent");
+	testPlayer->AttachComponent("ControllerComponent");
 	
 	b2PolygonShape runnerShape;
 	runnerShape.SetAsBox(100, 100);
@@ -88,12 +89,16 @@ void Gameplay::CreateTestPlayer(void)
 	b2Body* runnerBody = m_PhysMgr.GetWorld()->CreateBody(&runnerBD);
 	runnerBody->CreateFixture(&runnerFD);
 
-	static_cast<PhysicsComponent*>(testPlayer->GetComponent("PhysicsComponent"))->SetBody(
-		runnerBody);
-	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->SetTexture(
-		*ContentMgr::LoadContent<Texture>("test.png"));
-	static_cast<characters::Runner*>(testPlayer->GetComponent("Runner"))->Initialize(
-		"My Player", 100.0f, 1000000.0f, 1000000.0f);
+	static_cast<PhysicsComponent*>(testPlayer->GetComponent("PhysicsComponent"))->Initialize(
+		runnerBody, 1000000.0f, 1000000.0f);
+	
+	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->Initialize(
+		ContentMgr::LoadContent<Texture>("test.png"));
+	// Animation test
+	static_cast<DrawComponent*>(testPlayer->GetComponent("DrawComponent"))->SetAnimation(
+		new Animation(*ContentMgr::LoadContent<Texture>("engineerRun.png"), 8, 36, 75));
+	// Animation test end.
+	static_cast<characters::RunnerComponent*>(testPlayer->GetComponent("RunnerComponent"))->Initialize("My Player", 100.0f);
 	m_Entities.push_back(*testPlayer);
 };
 
@@ -121,7 +126,7 @@ void Gameplay::CreateTestGround(void)
 
 	static_cast<PhysicsComponent*>(testGround->GetComponent("PhysicsComponent"))->SetBody(
 		groundBody);
-	static_cast<DrawComponent*>(testGround->GetComponent("DrawComponent"))->SetTexture(
-		*ContentMgr::LoadContent<Texture>("test_ground.png"));
+	static_cast<DrawComponent*>(testGround->GetComponent("DrawComponent"))->Initialize(
+		ContentMgr::LoadContent<Texture>("test_ground.png"));
 	m_Entities.push_back(*testGround);
 };

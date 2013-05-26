@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClientLobby.h" />
     <ClInclude Include="ClientLobbyGUI.h" />
@@ -92,9 +93,15 @@
     <ClInclude Include="GameplayDebugGUI.h" />
     <ClInclude Include="GFRAL_Content.h" />
     <ClInclude Include="GFRAL_Input.h" />
+    <ClInclude Include="GodComponent.h" />
+    <ClInclude Include="GodControlSystem.h" />
+    <ClInclude Include="MinionComponent.h" />
+    <ClInclude Include="MinionStateSystem.h" />
     <ClInclude Include="PlayableCharacter.h" />
-    <ClInclude Include="Runner.h" />
-    <ClInclude Include="RunnerController.h" />
+    <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="RunnerComponent.h" />
+    <ClInclude Include="ControllerComponent.h" />
+    <ClInclude Include="RunnerStateSystem.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="ConnectionsHandler.h" />
@@ -107,7 +114,7 @@
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="ComponentDetail.h" />
     <ClInclude Include="ComponentMask.h" />
-    <ClInclude Include="ControlSystem.h" />
+    <ClInclude Include="RunnerControlSystem.h" />
     <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GUIBase.h" />
@@ -130,8 +137,10 @@
     <ClInclude Include="StateTypes.h" />
     <ClInclude Include="SystemBase.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClientLobby.cpp" />
     <ClCompile Include="ClientLobbyGUI.cpp" />
@@ -140,7 +149,9 @@
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="ContentMgr.cpp" />
-    <ClCompile Include="ControlSystem.cpp" />
+    <ClCompile Include="GodControlSystem.cpp" />
+    <ClCompile Include="MinionStateSystem.cpp" />
+    <ClCompile Include="RunnerControlSystem.cpp" />
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="C_LobbyHandler.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -149,8 +160,12 @@
     <ClCompile Include="GameplayDebugGUI.cpp" />
     <ClCompile Include="GFRAL_Content.cpp" />
     <ClCompile Include="GFRAL_Input.cpp" />
-    <ClCompile Include="Runner.cpp" />
-    <ClCompile Include="RunnerController.cpp" />
+    <ClCompile Include="GodComponent.cpp" />
+    <ClCompile Include="MinionComponent.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="RunnerComponent.cpp" />
+    <ClCompile Include="ControllerComponent.cpp" />
+    <ClCompile Include="RunnerStateSystem.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="PacketHandler.cpp" />
     <ClCompile Include="State.cpp" />

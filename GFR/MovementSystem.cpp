@@ -17,7 +17,5 @@ void MovementSystem::ProcessEntityImpl(Entity& entity)
 	PhysicsComponent* physComp = static_cast<PhysicsComponent*>(entity.GetComponent("PhysicsComponent"));
 	DrawComponent* drawComp = static_cast<DrawComponent*>(entity.GetComponent("DrawComponent"));
 	
-	f32 dx = physComp->GetX();
-	f32 dy = physComp->GetY();
-	GFR_AL::DrawTexture(drawComp->GetTexture().GetBitmap(), dx, dy);
+	drawComp->SetPosition(physComp->GetPosition());
 };

@@ -55,11 +55,11 @@ void Gameplay::actionPerformed(const agui::ActionEvent &evt)
 	gui::GameplayDebugGUI* gui = (gui::GameplayDebugGUI*) m_Gui;
 	agui::Widget* source = evt.getSource();
 
-	if (source == &gui->backToMenuButton)
+	if (source == &gui->buttonBackToMenu)
 	{
 		GFR_AL::s_StateManager.SetState(stateTypes::MAIN_MENU);
 	}
-	else if (source == &gui->createEntityButton)
+	else if (source == &gui->buttonCreateEntity)
 	{
 		CreateTestPlayer();
 	}

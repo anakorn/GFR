@@ -21,7 +21,8 @@ void RenderSystem::ProcessEntityImpl(Entity& entity)
 
 		if (animation == nullptr)
 		{
-			GFR_AL::DrawTexture(drawComp->GetTexture(), drawComp->GetPosition());
+			GFR_AL::DrawTextureRotated(drawComp->GetTexture(), drawComp->GetPosition(), 
+				drawComp->GetOrigin(), drawComp->GetRotation());
 		}
 		else
 		{

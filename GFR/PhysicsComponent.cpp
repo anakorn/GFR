@@ -38,10 +38,15 @@ f32 PhysicsComponent::GetCurrentJumpSpeed()
 	return m_CurrentJumpSpeed;
 };
 
-const Vec2f framework::PhysicsComponent::GetPosition()
+const Vec2f PhysicsComponent::GetPosition()
 {
 	b2Vec2 position = m_Body->GetPosition();
 	return Vec2f(position.x, position.y);
+};
+
+const f32 PhysicsComponent::GetRotation()
+{
+	return m_Body->GetAngle();
 };
 
 const f32 PhysicsComponent::GetX(void)

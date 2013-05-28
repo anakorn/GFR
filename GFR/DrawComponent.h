@@ -21,9 +21,13 @@ namespace framework
 		
 		void				SetTexture			(Texture* texture);
 		const Texture&		GetTexture			();
-
+		
+		void				SetOrigin			(const Vec2f& origin);
+		Vec2f				GetOrigin			();
 		void				SetPosition			(const Vec2f& position);
 		Vec2f				GetPosition			();
+		void				SetRotation			(const f32& rotation);
+		f32					GetRotation			();
 		void				SetX				(f32& x);
 		f32					GetX				();
 		void				SetY				(f32& y);
@@ -37,7 +41,9 @@ namespace framework
 	private:
 		Animation*			m_Animation;
 		Texture*			m_Texture;
+		Vec2f				m_Origin;
 		Vec2f				m_Position;
+		f32					m_Rotation;
 		bool				m_IsVisible;
 
 	};

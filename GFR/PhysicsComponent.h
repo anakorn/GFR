@@ -19,23 +19,24 @@ namespace framework
 
 		f32				GetBaseJumpSpeed		();
 		f32				GetCurrentJumpSpeed		();
-
+		
 		const Vec2f		GetPosition				();
-		const f32		GetX					(void);
-		const f32		GetY					(void);
+		const f32		GetRotation				();
+		const f32		GetX					();
+		const f32		GetY					();
 
-		b2Body* const	GetBody				(void);
-		void			SetBody				(b2Body* body);
+		b2Body* const	GetBody					();
+		void			SetBody					(b2Body* body);
 
-		const b2Vec2 GetLinearVelocity	(void);
-		void		 SetLinearVelocity	(const f32 &x, const f32 &y);
+		const b2Vec2	GetLinearVelocity		();
+		void			SetLinearVelocity		(const f32 &x, const f32 &y);
 
-		void		 ApplyImpulse		(const b2Vec2 &force);
+		void			ApplyImpulse			(const b2Vec2 &force);
 
 		virtual const u64 GetMask() const { return MASK_PHYSICS; }
 
 	private:
-		b2Body*		m_Body;
+		b2Body* m_Body;
 
 		f32 m_BaseMovementSpeed;
 		f32 m_CurrentMovementSpeed;

@@ -314,6 +314,11 @@ void GFR_AL::DrawTexture(const Texture& texture, Vec2f position, u32 flags)
 	al_draw_bitmap(texture.GetBitmap(), position.x(), position.y(), flags);
 };
 
+void GFR_AL::DrawTextureRotated(const Texture& texture, Vec2f position, Vec2f origin, f32 angleInRadians, u32 flags)
+{
+	al_draw_rotated_bitmap(texture.GetBitmap(), origin.x(), origin.y(), position.x(), position.y(), angleInRadians, flags);
+};
+
 void GFR_AL::DrawTextureRegion(const Texture& texture, Vec2f position, u32 regionX, u32 regionY, u32 regionWidth, u32 regionHeight, u32 flags)
 {
 	al_draw_bitmap_region(texture.GetBitmap(), regionX, regionY, regionWidth, regionHeight, position.x(), position.y(), flags);

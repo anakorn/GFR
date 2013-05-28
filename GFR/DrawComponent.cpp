@@ -6,6 +6,7 @@ void DrawComponent::Initialize(Texture* texture)
 {
 	SetTexture(texture);
 	m_Animation = nullptr;
+	m_Rotation = 0;
 };
 
 void DrawComponent::SetAnimation(Animation* animation)
@@ -28,6 +29,16 @@ const Texture& DrawComponent::GetTexture()
 	return *m_Texture;
 };
 
+void DrawComponent::SetOrigin(const Vec2f& origin)
+{
+	m_Origin = origin;
+};
+
+Vec2f DrawComponent::GetOrigin()
+{
+	return m_Origin;
+};
+
 void DrawComponent::SetPosition(const Vec2f& position)
 {
 	m_Position = position;
@@ -36,6 +47,16 @@ void DrawComponent::SetPosition(const Vec2f& position)
 Vec2f DrawComponent::GetPosition()
 {
 	return m_Position;
+};
+
+void DrawComponent::SetRotation(const f32& rotation)
+{
+	m_Rotation = rotation;
+};
+
+f32 DrawComponent::GetRotation()
+{
+	return m_Rotation;
 };
 
 void DrawComponent::SetX(f32& x)

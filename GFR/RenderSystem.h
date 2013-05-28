@@ -8,6 +8,8 @@ namespace framework
 	{
 	public:
 		RenderSystem();
+
+	private:
 		virtual void ProcessEntityImpl(Entity& entity);
 
 	};

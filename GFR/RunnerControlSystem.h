@@ -9,13 +9,15 @@ namespace framework
 	public:
 		RunnerControlSystem();
 		~RunnerControlSystem();
-		virtual void ProcessEntityImpl(Entity& entity);
 
 	protected:
 		void ChangeHorizontalDirection(const f32 &amount);
 		void ChangeVerticalDirection(const f32 &amount);
 
 		void CastAbility(u32 index);
+		
+	private:
+		virtual void ProcessEntityImpl(Entity& entity);
 
 	};
 };

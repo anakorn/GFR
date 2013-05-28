@@ -13,6 +13,7 @@ namespace framework
 		bool			IsEntityCompatible	(const Entity& entity) const;
 		void			ProcessEntity		(Entity& entity);
 
+	protected:
 		// Implement this function in subclasses for System-specific behavior.
 		virtual void	ProcessEntityImpl	(Entity& entity) = 0;
 
